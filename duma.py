@@ -32,8 +32,8 @@ CREDITOS_TOTAL = 337.5 # Ingeniería Informática Superior
 
 print "duma.py - Accede a la DUMA (Universidad de Málaga) y muestra estadísticas - 18/febrero/2011"
 print "Copyright (C) 2011 Pablo Castellano"
-print "This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome"
-print "to redistribute it under certain conditions; type `show c' for details."
+print "This program comes with ABSOLUTELY NO WARRANTY."
+print "This is free software, and you are welcome to redistribute it under certain conditions."
 print
 
 br = Browser()
@@ -45,7 +45,6 @@ br.addheaders.append(('Keep-Alive', '300'))
 br.addheaders.append(('Connection', 'keep-alive'))
 br.open("https://www.sci.uma.es/wuma/protegido/za/ficha.php?id=50643")
 
-# TODO: comprobar si usuario es invalido y no seguir
 while br.title() != 'POST data':
 	username = raw_input("Introduce tu usuario (del tipo xxxx@alu.uma.es): ")
 	password = getpass.getpass("Introduce tu contraseña (no se mostrará): ")
