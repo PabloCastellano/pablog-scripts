@@ -23,7 +23,6 @@ __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
 
 from mechanize import Browser
-import mechanize
 import re
 from BeautifulSoup import BeautifulSoup
 import getpass
