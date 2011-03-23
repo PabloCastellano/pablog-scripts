@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # duma.py - Accede a la DUMA (Universidad de Málaga) y muestra estadísticas - 18/febrero/2011
 # Copyright (C) 2011 Pablo Castellano <pablo@anche.no>
@@ -93,8 +94,7 @@ notables=0
 sobresalientes=0
 matriculas=0
 for x in asignaturas:
-	#TODO: formatear mejor
-	print "%s\t\t\t%s\t%s\t%s\t%s\t%s\t%s" %(x[0], x[1], x[2], x[3], x[4], x[5], x[6])
+	print "%s %s %s %s %s %s %s" %(x[0].ljust(44), x[1].ljust(10), x[2].ljust(10), x[3].ljust(13), x[4].ljust(13), x[5], x[6])
 	if x[3] == 'NOTABLE':
 		notables = notables +1
 	elif x[3] == 'APROBADO':
