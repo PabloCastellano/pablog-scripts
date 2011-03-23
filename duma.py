@@ -30,7 +30,7 @@ import getpass
 
 CREDITOS_TOTAL = 337.5 # Ingeniería Informática Superior
 
-print "duma.py - Accede a la DUMA (Universidad de Málaga) y muestra estadísticas - 18/febrero/2011"
+print "duma.py - Accede a la DUMA (Universidad de Málaga) y muestra estadísticas"
 print "Copyright (C) 2011 Pablo Castellano"
 print "This program comes with ABSOLUTELY NO WARRANTY."
 print "This is free software, and you are welcome to redistribute it under certain conditions."
