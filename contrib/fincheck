@@ -11,10 +11,10 @@
 #	Peter Collingbourne
 #	Jean-Paul Duyx
 
-version=20100417
+version=20100915
 
 # Debugging. 0 = no debug
-DEBUG=0
+DEBUG=1
 # File to send debug to
 DEBUGFILE=debug.txt
 
@@ -46,6 +46,9 @@ DEBUGFILE=debug.txt
 # yes or no
 BETA_USER=yes
 # ****************************************************************************
+
+# Sept 15th 2010 (Simon G)
+# 1st version of last7daysfreeminutes
 
 # April 17th 2010 (Simon G)
 # Fixed last7daysminutes and last7dayssms
@@ -122,7 +125,7 @@ BETA_USER=yes
 
 
 usage() {
- echo >&2 "usage: $(basename $0) [creditcents|usedminutes|freedays|last7daysminutes|last7dayssms|call|sms|smsbalance|callerids] service username password [monthsago|daysago|sourcenumber|smstext] [destinationnumber]"
+ echo >&2 "usage: $(basename $0) [creditcents|usedminutes|freedays|last7daysminutes|last7dayssms|last7daysfreeminutes|call|sms|smsbalance|callerids] service username password [monthsago|daysago|sourcenumber|smstext] [destinationnumber]"
  echo >&2 ""
  echo >&2 " Extra options when sending an sms. After [destinationnumber] there is [callerid] [monthtosend] [daytosend] [hourtosend] [minutetosend] [gmt difference in hours]."
  echo >&2 ""
@@ -188,6 +191,8 @@ _freedays)
 _usedminutes)
 ;;
 _last7daysminutes)
+;;
+_last7daysfreeminutes)
 ;;
 _last7dayssms)
  NOW=$(awk 'BEGIN{print systime()}')
@@ -455,7 +460,7 @@ _last7dayssms)
  gomainpage
 ;;
 
-_last7daysminutes)
+_last7days*minutes)
 
  # All calls made in the last 7 days
  # The total time is returned
@@ -509,11 +514,20 @@ _last7daysminutes)
 	| sed -e 's/<[^>]*>//g' | sed -e 's/&[^;]*;//g' \
   | while read YEAR MONTH DAY NUMBER DURH DURM DURS COST; do
 	if [ $DEBUG -ne 0 ]; then
-		echo "$YEAR-$MONTH-$DAY $NUMBER $DURH:$DURM:$DURS $COST" >> $DEBUGFILE
+		echo "$YEAR-$MONTH-$DAY $NUMBER $DURH:$DURM:$DURS [$COST]" >> $DEBUGFILE
 	fi
     if [ $YEAR$MONTH$DAY -ge $YEARSTART$ZMONTHSTART$ZDAYSTART -a $YEAR$MONTH$DAY -le $YEAREND$ZMONTHEND$ZDAYEND ]
     then
-     echo "$DURH $DURM $DURS"
+     if [ $OP = "last7daysfreeminutes" ]; then
+	if [ $DEBUG -ne 0 ]; then
+		echo "last7daysfreeminutes" >> $DEBUGFILE
+	fi
+	if [ ${#COST} -eq 1 ]; then
+	  echo "$DURH $DURM $DURS"
+        fi
+     else
+       echo "$DURH $DURM $DURS"
+     fi
     fi
    done \
   | awk "$TOTALIZER"
@@ -592,3 +606,4 @@ esac
 LOGGEDIN=$(Curl -s -k -b ${COOKIEJAR} "${BASEURL}/index.php?part=logoff")
 
 rm ${COOKIEJAR}
+
