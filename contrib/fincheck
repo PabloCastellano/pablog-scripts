@@ -1,0 +1,594 @@
+#!/bin/sh
+
+# Authors: 
+#	Enzo Michelangeli <http://www.voip-info.org/users/view/enzo>
+#	Simon G <http://www.voip-info.org/users/view/simong>
+#	Krystian Kowalczuk (kryskow (monkey) wp.pl)
+#	MurDok MurDoK < murdok.lnx (monkeytail) gmaildotcom >
+#	Uwe Gellhaus
+#	Theo Markettos
+#	Andreas Mohr
+#	Peter Collingbourne
+#	Jean-Paul Duyx
+
+version=20100417
+
+# Debugging. 0 = no debug
+DEBUG=0
+# File to send debug to
+DEBUGFILE=debug.txt
+
+
+# KNOWN BUGS:
+# Some characters are not sent: ex. ñ, @...
+
+# Per Sébastien LEONARD said ,
+# If you are using proxies that are the same for http and https.
+# Eg. export http_proxy=http://proxy:8080; export HTTPS_PROXY=http://proxy:8080;
+# Then you need to modify the call to curl instead.
+# PATCH:
+# 13a14,19
+#> if [ ${#http_proxy} -ne 0 ]
+#> then
+#>         alias curl="curl -x $http_proxy"
+#> fi
+#> 
+#> 
+#516a523
+#> unalias curl
+
+
+# ***************************** BIG SETTING !!! *******************************
+# Test of domain-name to ip address. 
+# Needed with certain services that resolve to different ip addresses 
+# that are un-connected with each other.
+# Report if this works on your system or not. Simon G <junk at simong dot net>
+# yes or no
+BETA_USER=yes
+# ****************************************************************************
+
+# April 17th 2010 (Simon G)
+# Fixed last7daysminutes and last7dayssms
+# Maybe the output / functionality has changed too :)
+
+# Dec 12th 2009 (Simon G)
+# Finarea / Betamax seem to be making changes to their website to make
+# scripts like this one break.
+
+# Aug 21th 2009 (Jean-Paul Duyx)
+# Added jumblo support for checks: creditcents and freedays, other checks do _NOT_ work with jumblo 
+
+# June 5th 2009 (Peter Collingbourne)
+# Added smartvoip support.
+
+# May 7th 2009 (Andreas Mohr)
+# Fix to make sure English is returned from server as this is needed for parsing.
+# And some changes to make this script more "embedded" friendly"
+
+# September 13th 2008 (Krystian Kowalczuk)
+# Fix for last7daysminutes - now only FREE! calls are counted, and not all calls
+
+# September 5th 2008 (MurDoK)
+# 'callerids' option added. 
+# Now also asks for confirmation when a message exceeds 160 characters.
+# This script doesn't break anymore if curl is not installed
+
+# August 31st 2008
+# Fixed a bug with creditcents for balances over €1000.
+
+# August 6th 2008 (Krystian Kowalczuk)
+# small fix for new billing format
+
+# June 24th 2008 (Theo Markettos)
+# New function smsbalance. Send your balance as an SMS.
+#
+# New system to connect to ip address instead of hostname(domain).
+# This solves a problem of connecting to different unconnected servers
+# that have the same hostname.
+
+# June 22nd 2008 (Uwe Gellhaus)
+# New .com clone (intervoip), but different url base.
+
+# April 15th 2008 (MurDoK)
+# New websms2.php in use. Ability to set CallerID.(Those you have registered)
+# NOTE: When sending delayed SMSes the command line options have changed. (callerid)
+# ALSO: Floating point numbers and awk with non-english locales (LANG!=en_US) fixed.
+
+# March 07th 2008 (Krystian Kowalczuk)
+# Fix for new betamax billing format (for counting used free minutes and sms-es in last 7 days)
+
+# Feb 28th 2008 (SimonG)
+# Special creditcents and freedays for nonoh.net
+# Added freedays function, taken from the PHP script.
+# Help from "Uwe Gellhaus" ugell at yahoo dot de
+
+# January 28th 2008 (Krystian Kowalczuk)
+# Added the possibility to count free  
+# sms-es in last 7 days.
+
+# July 23rd 2007
+# Added a patch to fix a CR problem with voipcheap. Thanks to 
+# Peter Walser for this patch.
+
+# May 5th 2007
+# Added a patch to the usedminutes function to search for 
+#  € 0.039 instead of FREE. when using the voipbusterpro.com service.
+
+# Janurary 19th 2007
+# Added date feature to SMS sending. Simon G <junk at simong dot net>
+
+# 2 October 2006
+# New features: Make call, send SMS by Simon G <junk at simong dot net>
+
+
+usage() {
+ echo >&2 "usage: $(basename $0) [creditcents|usedminutes|freedays|last7daysminutes|last7dayssms|call|sms|smsbalance|callerids] service username password [monthsago|daysago|sourcenumber|smstext] [destinationnumber]"
+ echo >&2 ""
+ echo >&2 " Extra options when sending an sms. After [destinationnumber] there is [callerid] [monthtosend] [daytosend] [hourtosend] [minutetosend] [gmt difference in hours]."
+ echo >&2 ""
+ echo >&2 " Omit [smstext] when using smsbalance."
+ exit 255
+}
+
+if [ $# -lt 4 ]; then
+ usage;
+fi
+
+OP="$1"
+SERVICE="$2"
+USERNAME="$3"
+PASSWORD="$4"
+MONTHSAGO="$5"
+DAYSAGO="$5"
+SOURCENUM=`echo "$5" | sed "s/+/00/"` # Convert + to 00
+SMSTEXT="$5"
+DESTNUM=`echo "$6" | sed "s/+/00/"` # Convert + to 00
+CALLERID="$7" #sms (MurDoK)	
+SMSMONTH="$8"
+SMSDAY="$9"
+# cost of a call connected through site. 
+CONNECTCOST="0.050" # What is it for ? Not much its seems!
+# We need to shift to get more than 9 command line options
+shift
+SMSHOUR="$9"
+shift
+SMSMINUTE="$9"
+shift
+SMSGMT="$9"
+
+# Where to store temporary data
+COOKIEJAR="/tmp/cj.$$"
+CALLRECORDS="/tmp/cr.$$"
+LAST7TMPFILE="/tmp/l7tmp.$$"
+#
+
+umask 077 # protect cookie jar from indiscreet eyes
+# uncomment the following line if usage is accounted for on "per minute or part thereof" basis
+TOTALIZER='{totalsecs +=(3600 * $1 + 60 * ($2 + int(($3 + 59)/60)))} END {print totalsecs/60}'
+# uncomment the following line if usage is accounted for on per second basis
+#TOTALIZER='{totalsecs += (3600 * $1 + 60 * $2 + $3)} END {print int((totalsecs+59)/60)}'
+
+Curl() {
+ curl "$@"
+ local STATUS="$?"
+ if [ ! $STATUS ]; then rm -f ${COOKIEJAR}; exit $STATUS; fi
+}
+
+case _"$OP" in
+_call)
+;;
+_sms)
+;;
+_smsbalance)
+;;
+_creditcents)
+;;
+_freedays)
+;;
+_usedminutes)
+;;
+_last7daysminutes)
+;;
+_last7dayssms)
+ NOW=$(awk 'BEGIN{print systime()}')
+ if [ $? != 0 ]; then
+  echo >&2 "This script requires awk installed".
+  exit 255
+ fi
+;;
+_callerids)
+;;
+*)
+ usage
+;;
+esac
+
+case _"$PASSWORD" in
+_)
+        usage
+;;
+esac
+
+gomainpage() {
+ LOGGEDIN=$(Curl -s -k -b ${COOKIEJAR} \
+          "${BASEURL}"'/index.php?part=menu&justloggedin=true&language=en')
+}
+
+sendsmsnow() {
+
+	if [ "X$CALLERID" = "X" ]; then
+		# Caller ID is not set
+		CALLERID="default"
+	fi
+
+	SURE=y
+	SMSLENGTH=$(echo ${SMSTEXT} | wc -c)
+	if [ $SMSLENGTH -gt 160 ]; then
+		echo >&2 "Your sms is $SMSLENGTH characters long and maximum allowed for each sms is 160."
+		echo >&2 "It means that $(expr \( $SMSLENGTH - 1 \) / 160 + 1) messages will be sent"
+		echo >&2 "Do you want to continue? [y/N]: "
+		read SURE
+	fi
+
+	if  [ "X$SURE" = "Xy" ] || [ "X$SURE" = "XY" ]; then
+		echo "Sending direct sms to [${DESTNUM}] with caller id [${CALLERID}]"
+		OUTPUT=$(Curl -s -k -b ${COOKIEJAR} -d action=send -d panel=true \
+			-d message="${SMSTEXT}" -d callerid="${CALLERID}" -d bnrphonenumber="${DESTNUM}" \
+			-d sendscheduled=no "${BASEURL}/websms2.php")
+	else
+		echo >&2 "Message is not going to be sent"
+	fi
+}
+
+#need curl
+which curl>/dev/null
+if [ $? != 0 ]; then
+ echo >&2 "This script requires curl installed".
+ exit 255
+fi
+
+# BASEURL
+#noncomtest=`echo $SERVICE | sed -n '/\./p'` # Look for dots in the service name
+#if [ -z "$noncomtest" ]; then # Normal dot com
+
+#	if [ $SERVICE = "intervoip" -o $SERVICE = "smartvoip" -o $SERVICE = "jumblo" ]
+#		then # Special for intervoip, smartvoip and jumblo
+		HOSTNAME="www.${SERVICE}.com"
+                BASEURL="https://SEDDOMAIN/myaccount" # Another tld
+ #       else
+		# Normal dot coms
+#		HOSTNAME="myaccount.${SERVICE}.com"
+#		BASEURL="https://SEDDOMAIN/clx"
+#	fi
+#else # Other Non- .com s 
+#	HOSTNAME="myaccount.${SERVICE}"
+#	BASEURL="https://SEDDOMAIN/clx" # Another tld
+#fi
+
+# some sites (eg smslisto.com) use multiple servers and they don't share
+# session cookies, so we must pick one to login to and always use that IP
+# address
+
+if [ "X$BETA_USER" = "Xyes" ]; then
+
+	echo >&2 "Thanks for beta testing me. Set BETA_USER=no to switch this off. Reports please to Simon G <junk at simong dot net>"
+ 
+	# TODO Find a better way to do this 
+	# Alt 1 using standard bash tools. host is not used as my default openwrt does not have that command.
+	IP=`nslookup $HOSTNAME | grep "Address: " | tail -n 1 | sed 's/.* \([[:digit:]]\{1,3\}\(\.[[:digit:]]\{1,3\}\)\{3\}\).*/\1/'`
+
+	# Alt. 2 using perl
+	# IP=`perl -e 'use Socket; print inet_ntoa(inet_aton("$ARGV[0]") or die "Couldnt resolve $ARGV[0]: $!\n") or die "Couldnt resolve $ARGV[0]: $!\n";' $HOSTNAME`
+
+else
+	IP=$HOSTNAME
+fi
+
+BASEURL=`echo $BASEURL | sed s/SEDDOMAIN/$IP/`
+#
+
+#### Login with username and password
+#LOGGEDIN=$(Curl -s -k -c ${COOKIEJAR} -d username="${USERNAME}" -d password="${PASSWORD}" ${BASEURL}/ | grep -i 'Refresh')
+LOGGEDIN=$(Curl -s -k -c ${COOKIEJAR} -d user="${USERNAME}" -d pass="${PASSWORD}" ${BASEURL}/index.php?part=tplogin )
+LOGINWC=$(echo "$LOGGEDIN" | wc -l)
+if [ "$LOGINWC" -gt  20 ]; then 
+	echo "Sorry could not login"
+	echo "$LOGGEDIN"
+	exit 254
+fi
+#### go to index page as required by META Refresh. This time will fail (?)
+gomainpage
+
+case _"$OP" in
+_creditcents)
+
+ if [ $SERVICE = "nonoh.net" -o $SERVICE = "jumblo" ]; then
+	#echo "Special nonoh.net, jumblo creditcents"
+	# <span id="balanceid">&euro;&nbsp;0.00</span>
+
+	Curl -s -k -b ${COOKIEJAR} "${BASEURL}/contacts.php" \
+	| perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
+	| sed -n -e \
+	's|.*\&euro\;\&nbsp\;\([0-9.,]\+\).*|\1|p' | sed -n -e 's|,\?||pg' \
+	| LC_ALL=C awk '{print 100 * $1}'
+
+ else
+  #### go to index page as required by META Refresh. This time will work (?)
+  gomainpage
+  echo $LOGGEDIN \
+  | sed -n -e 's|.*Remaining credit[^0-9]\+\([0-9.,]\+\).*|\1|p' | sed -n -e 's|,\?||pg' \
+  | LC_ALL=C awk '{print 100 * $1}'
+ fi
+;;
+
+_freedays)
+
+  if [ $SERVICE = "nonoh.net" ]; then
+        #echo "Special nonoh.net freedays"
+	# You have: 118 freedays
+	FREEDAYS=`Curl -s -k -b ${COOKIEJAR} "${BASEURL}/contacts.php" \
+	| perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
+	| grep freedays | sed -n -e 's|.*id=\"balanceid\">\([0-9]*\).*|\1|p'`
+
+  elif [ $SERVICE = "jumblo" ]
+  then
+   #    jumblo line for freedays:
+   #	<p>90 freedays</p>
+    FREEDAYS=`Curl -s -k -b ${COOKIEJAR} "${BASEURL}/contacts.php" \
+    | perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
+    | grep freedays | sed -n -e 's|.*p>\([0-9]*\) freedays.*|\1|p'`
+
+  else
+	  # From the PHP script 
+	  # // Freedays remaining:
+	  # // $bResult = preg_match('/.*Freedays remaining\:\<br\>\<b\>([0-9]*).*\<\/span/', $sMainPage, $aMatches); //
+	  # Eg. Freedays remaining:<br><b>334</b>&nbsp;<span 
+	  #### go to index page as required by META Refresh. This time will work (?)
+	  gomainpage
+	  FREEDAYS=`echo $LOGGEDIN | sed -n -e 's|.*Freedays remaining\:<br><b>\([0-9]*\).*|\1|p'`
+ 
+  fi
+
+  if [ -z $FREEDAYS ]; then FREEDAYS="0"; fi
+  echo $FREEDAYS  
+;;
+
+_usedminutes)
+ CURYEAR=$(date +%Y)
+ CURMONTH=$(date +%m | sed -e 's/^0//')
+ if [ _"$MONTHSAGO" != _ ]; then
+  CURABSMONTH=$((12 * $CURYEAR + $CURMONTH - 1))
+  THENABSMONTH=$(($CURABSMONTH - $MONTHSAGO))
+  CURYEAR=$(($THENABSMONTH / 12))
+  CURMONTH=$((($THENABSMONTH % 12) + 1))
+ fi
+
+ if [ $SERVICE = "voipbusterpro" ]; then
+   # Voipbusterpro.com
+   # &euro;&nbsp;0.039
+
+   Curl -s -k -b ${COOKIEJAR} "${BASEURL}/calls.php?month=${CURMONTH}&year=${CURYEAR}" \
+   | perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
+   | sed -n -e \
+    's|[[:space:]]*<tr>.*\([0-9][0-9]\):\([0-9][0-9]\):\([0-9][0-9]\).*\&euro\;\&nbsp\;0\.039.*|\1 \2 \3|p' \
+   | awk "$TOTALIZER"
+
+ else
+  # Other services
+
+   Curl -s -k -b ${COOKIEJAR} "${BASEURL}/calls.php?month=${CURMONTH}&year=${CURYEAR}" \
+      | perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
+      | sed -n -e 's|.*text-align: left.*\([0-9][0-9]\):\([0-9][0-9]\):\([0-9][0-9]\).*|\1 \2 \3|p' \
+   | awk "$TOTALIZER"
+
+fi
+
+ #### go to index page before logoff (?)
+ gomainpage
+;;
+
+_last7dayssms)
+
+ # All smses made in the last 7 days
+ # The total time is returned
+
+ datedaysago() { # format days_ago [timestamp]
+  local TS="$3"
+  if [ _"$TS" = _ ]; then TS=$(awk 'BEGIN{print systime()}'); fi
+  awk 'BEGIN{print strftime("'"$1"'",'"$TS"'-('"$2"'*24*3600))}'
+ }
+
+ if [ _"$DAYSAGO" = _ ]; then
+  DAYSAGO=0
+ fi
+
+ YEAREND=$(datedaysago "%Y" "$DAYSAGO" "$NOW")
+ ZMONTHEND=$(datedaysago "%m" "$DAYSAGO" "$NOW")
+ ZDAYEND=$(datedaysago "%d" "$DAYSAGO" "$NOW")
+ MONTHEND=$(echo $ZMONTHEND | sed -e 's/^0//')
+ DAYEND=$(echo $ZDAYEND | sed -e 's/^0//')
+
+ YEARSTART=$(datedaysago "%Y" "$(($DAYSAGO + 6))" "$NOW")
+ ZMONTHSTART=$(datedaysago "%m" "$(($DAYSAGO + 6))" "$NOW")
+ ZDAYSTART=$(datedaysago "%d" "$(($DAYSAGO + 6))" "$NOW")
+ MONTHSTART=$(echo $ZMONTHSTART | sed -e 's/^0//')
+ DAYSTART=$(echo $ZDAYSTART | sed -e 's/^0//')
+
+  {
+   if [ _"$MONTHSTART" != _"$MONTHEND" ]; then
+    #### get last month's data
+    Curl -s -k -b ${COOKIEJAR} \
+        "${BASEURL}/calls.php?month=${MONTHSTART}&year=${YEARSTART}"
+    #### go to index page before getting this month's data (?)
+    gomainpage
+   fi
+   Curl -s -k -b ${COOKIEJAR} \
+        "${BASEURL}/calls.php?month=${MONTHEND}&year=${YEAREND}"
+  } \
+  | {
+   if [ $DEBUG -ne 0 ]; then
+	 tee $DEBUGFILE
+   else
+	cat
+   fi
+  } \
+     | perl -e 'while( <> ) { s#<tr>\s*#<tr>#g; print; }' \
+     | perl -e 'while( <> ) { s#</td>\s*#</td>#g; print; }' \
+     | sed -n -e \
+	'{
+	s/.*<nobr>\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\).*SMS.*\(+[0-9]*\).*\([0-9][0-9]\):\([0-9]\{2\}\):\([0-9]\{2\}\)<\/td><td style.*<td style.*>\(.*\)<\/td><td style.*/\1 \2 \3 \4 \5 \6 \7 \8/p
+	}' \
+	| sed -e 's/<[^>]*>//g' | sed -e 's/&[^;]*;//g' \
+  | while read YEAR MONTH DAY NUMBER DURH DURM DURS COST; do
+	if [ $DEBUG -ne 0 ]; then
+		echo "$YEAR-$MONTH-$DAY $NUMBER $DURH:$DURM:$DURS $COST" >> $DEBUGFILE
+	fi
+    if [ $YEAR$MONTH$DAY -ge $YEARSTART$ZMONTHSTART$ZDAYSTART -a $YEAR$MONTH$DAY -le $YEAREND$ZMONTHEND$ZDAYEND ]
+    then
+     CENTS=`echo $COST | LC_ALL=C awk '{print 100 * $1}'` # Change COST to cents
+     echo "$CENTS" # Change this from "$CENTS" to "1" to return number of smses.
+    fi
+   done \
+  | awk '{totalprice +=($1)} END {print totalprice}'
+
+ #### go to index page before logoff (?)
+ gomainpage
+;;
+
+_last7daysminutes)
+
+ # All calls made in the last 7 days
+ # The total time is returned
+
+ datedaysago() { # format days_ago [timestamp]
+  local TS="$3"
+  if [ _"$TS" = _ ]; then TS=$(awk 'BEGIN{print systime()}'); fi
+  awk 'BEGIN{print strftime("'"$1"'",'"$TS"'-('"$2"'*24*3600))}'
+ }
+
+ if [ _"$DAYSAGO" = _ ]; then
+  DAYSAGO=0
+ fi
+
+ YEAREND=$(datedaysago "%Y" "$DAYSAGO" "$NOW")
+ ZMONTHEND=$(datedaysago "%m" "$DAYSAGO" "$NOW")
+ ZDAYEND=$(datedaysago "%d" "$DAYSAGO" "$NOW")
+ MONTHEND=$(echo $ZMONTHEND | sed -e 's/^0//')
+ DAYEND=$(echo $ZDAYEND | sed -e 's/^0//')
+
+ YEARSTART=$(datedaysago "%Y" "$(($DAYSAGO + 6))" "$NOW")
+ ZMONTHSTART=$(datedaysago "%m" "$(($DAYSAGO + 6))" "$NOW")
+ ZDAYSTART=$(datedaysago "%d" "$(($DAYSAGO + 6))" "$NOW")
+ MONTHSTART=$(echo $ZMONTHSTART | sed -e 's/^0//')
+ DAYSTART=$(echo $ZDAYSTART | sed -e 's/^0//')
+
+  {
+   if [ _"$MONTHSTART" != _"$MONTHEND" ]; then
+    #### get last month's data
+    Curl -s -k -b ${COOKIEJAR} \
+        "${BASEURL}/calls.php?month=${MONTHSTART}&year=${YEARSTART}"
+    #### go to index page before getting this month's data (?)
+    gomainpage
+   fi
+   Curl -s -k -b ${COOKIEJAR} \
+        "${BASEURL}/calls.php?month=${MONTHEND}&year=${YEAREND}"
+  } \
+  | {
+   if [ $DEBUG -ne 0 ]; then
+	 tee $DEBUGFILE
+   else
+	cat
+   fi
+  } \
+     | perl -e 'while( <> ) { s#<tr>\s*#<tr>#g; print; }' \
+     | perl -e 'while( <> ) { s#</td>\s*#</td>#g; print; }' \
+     | sed -n -e \
+	'{
+      s/.*<nobr>\([0-9]\{4\}\)-\([0-9]\{2\}\)-\([0-9]\{2\}\).*\(+[0-9]*\).*\([0-9][0-9]\):\([0-9]\{2\}\):\([0-9]\{2\}\).*>\(.*\)<\/td><td style.* <\/td><\/tr>/\1 \2 \3 \4 \5 \6 \7 \8/p
+	}' \
+	| sed -e 's/<[^>]*>//g' | sed -e 's/&[^;]*;//g' \
+  | while read YEAR MONTH DAY NUMBER DURH DURM DURS COST; do
+	if [ $DEBUG -ne 0 ]; then
+		echo "$YEAR-$MONTH-$DAY $NUMBER $DURH:$DURM:$DURS $COST" >> $DEBUGFILE
+	fi
+    if [ $YEAR$MONTH$DAY -ge $YEARSTART$ZMONTHSTART$ZDAYSTART -a $YEAR$MONTH$DAY -le $YEAREND$ZMONTHEND$ZDAYEND ]
+    then
+     echo "$DURH $DURM $DURS"
+    fi
+   done \
+  | awk "$TOTALIZER"
+
+ #### go to index page before logoff (?)
+ gomainpage
+;;
+
+# **** CALL ****
+_call)
+
+  echo "Calling From [${SOURCENUM}] to [${DESTNUM}]"
+
+  #echo "BASEURL is [${BASEURL}/webcalls2.php]"
+
+   OUTPUT=$(Curl -s -k -b ${COOKIEJAR} -d action=initcall -d panel=true \
+	-d anrphonenr="${SOURCENUM}" -d bnrphonenr="${DESTNUM}" \
+	"${BASEURL}/webcalls.php")
+	#"${BASEURL}/webcalls2.php")
+
+ #### go to index page before logoff (?)
+ gomainpage
+;;
+
+# **** SMS ****
+_sms)
+
+	#SMSDAY="18"
+	#SMSMONTH="01"
+	#SMSHOUR="16"
+	#SMSMINUTE="35"
+	#SMSGMT="1"
+if [ ${#SMSGMT} -gt 0 ]; then # They have filled in the GMT option. Hopefully the others too
+
+	echo "Sending delayed sms to [${DESTNUM}] at Month[${SMSMONTH}] Day[${SMSDAY}] Hour[${SMSHOUR}] Minute [${SMSMINUTE}] GMT[${SMSGMT}]"
+
+	   OUTPUT=$(Curl -s -k -b ${COOKIEJAR} -d action=send -d panel=true \
+		-d message="${SMSTEXT}" -d bnrphonenumber="${DESTNUM}" \
+		-d day="${SMSDAY}" -d month="${SMSMONTH}" -d hour="${SMSHOUR}" \
+		-d minute="${SMSMINUTE}" -d gmt="${SMSGMT}" "${BASEURL}/websms2.php")
+
+else # Use the unscheduled one
+	sendsmsnow
+
+fi
+ 
+# echo "$OUTPUT" > debug.log
+
+ #### go to index page before logoff (?)
+ gomainpage
+;;
+
+# send an SMS containing our account balance and free days
+_smsbalance)
+# we don't include the SMS text parameter, so shift params up one
+	CALLERID=$DESTNUM
+	DESTNUM=$SMSTEXT
+	FREEDAYS=`echo $LOGGEDIN | sed -n -e 's|.*Freedays remaining\:<br><b>\([0-9]*\).*|\1|p'`
+	if [ -z $FREEDAYS ]; then FREEDAYS="0"; fi
+  	CREDIT=`echo $LOGGEDIN | sed -n -e 's|.*Remaining credit[^0-9]\+\([0-9.]\+\).*|\1|p'`
+	SMSTEXT="$SERVICE account: credit $CREDIT, remaining $FREEDAYS free days"
+	sendsmsnow
+	gomainpage
+;;
+
+_callerids) ##Needs testing. I have only tested it with voipbuster. Fails a lot with BETA_USER=no
+	#Also improve the pipes :P
+	IDS=$(Curl -s -k -b ${COOKIEJAR} "${BASEURL}/websms2.php" \
+	| perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
+	| grep -A 1 callerid | grep option \
+	|sed  -e 's/[^"]*"\([^"]*\)"[^"]*/\1 /g')
+	echo $IDS
+;;
+esac
+
+LOGGEDIN=$(Curl -s -k -b ${COOKIEJAR} "${BASEURL}/index.php?part=logoff")
+
+rm ${COOKIEJAR}
