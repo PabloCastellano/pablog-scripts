@@ -10,8 +10,9 @@
 #	Andreas Mohr
 #	Peter Collingbourne
 #	Jean-Paul Duyx
+#	Nei http://anti.teamidiot.de/nei/2010/10/nonoh_command_line_dialer/
 
-version=20100915
+version=20101117
 
 # Debugging. 0 = no debug
 DEBUG=1
@@ -46,6 +47,14 @@ DEBUGFILE=debug.txt
 # yes or no
 BETA_USER=yes
 # ****************************************************************************
+
+# Nov 17th 2010 (Nei)
+# Added rates information to "call" function.
+
+# Oct 29th 2010 (Simon G)
+# Making some sed expressions also compatible with
+# non-GNU seds. eg. FreeBSD, Solaris etc.
+# Also special creditcents for nonoh.net .
 
 # Sept 15th 2010 (Simon G)
 # 1st version of last7daysfreeminutes
@@ -171,7 +180,10 @@ TOTALIZER='{totalsecs +=(3600 * $1 + 60 * ($2 + int(($3 + 59)/60)))} END {print 
 # uncomment the following line if usage is accounted for on per second basis
 #TOTALIZER='{totalsecs += (3600 * $1 + 60 * $2 + $3)} END {print int((totalsecs+59)/60)}'
 
+CURLEXTRA="" # Every call to Curl adds this. So far a messy patch for setting Host: header.
+
 Curl() {
+ #curl -S "$@"
  curl "$@"
  local STATUS="$?"
  if [ ! $STATUS ]; then rm -f ${COOKIEJAR}; exit $STATUS; fi
@@ -253,27 +265,20 @@ if [ $? != 0 ]; then
 fi
 
 # BASEURL
-#noncomtest=`echo $SERVICE | sed -n '/\./p'` # Look for dots in the service name
-#if [ -z "$noncomtest" ]; then # Normal dot com
+noncomtest=`echo $SERVICE | sed -n '/\./p'` # Look for dots in the service name
+if [ -z "$noncomtest" ]; then # Normal dot com
 
-#	if [ $SERVICE = "intervoip" -o $SERVICE = "smartvoip" -o $SERVICE = "jumblo" ]
-#		then # Special for intervoip, smartvoip and jumblo
 		HOSTNAME="www.${SERVICE}.com"
-                BASEURL="https://SEDDOMAIN/myaccount" # Another tld
- #       else
-		# Normal dot coms
-#		HOSTNAME="myaccount.${SERVICE}.com"
-#		BASEURL="https://SEDDOMAIN/clx"
-#	fi
-#else # Other Non- .com s 
-#	HOSTNAME="myaccount.${SERVICE}"
-#	BASEURL="https://SEDDOMAIN/clx" # Another tld
-#fi
+
+else # Other Non- .com s 
+
+	HOSTNAME="www.${SERVICE}"
+fi
+BASEURL="https://SEDDOMAIN/myaccount" # Another tld
 
 # some sites (eg smslisto.com) use multiple servers and they don't share
-# session cookies, so we must pick one to login to and always use that IP
+# session cookies, so we must pick one to login ip and always use that IP
 # address
-
 if [ "X$BETA_USER" = "Xyes" ]; then
 
 	echo >&2 "Thanks for beta testing me. Set BETA_USER=no to switch this off. Reports please to Simon G <junk at simong dot net>"
@@ -282,23 +287,37 @@ if [ "X$BETA_USER" = "Xyes" ]; then
 	# Alt 1 using standard bash tools. host is not used as my default openwrt does not have that command.
 	IP=`nslookup $HOSTNAME | grep "Address: " | tail -n 1 | sed 's/.* \([[:digit:]]\{1,3\}\(\.[[:digit:]]\{1,3\}\)\{3\}\).*/\1/'`
 
-	# Alt. 2 using perl
+	# Alt. 2 using perl, but then there are many systems that don't have perl.
 	# IP=`perl -e 'use Socket; print inet_ntoa(inet_aton("$ARGV[0]") or die "Couldnt resolve $ARGV[0]: $!\n") or die "Couldnt resolve $ARGV[0]: $!\n";' $HOSTNAME`
+
+	# If you are using this, I'm going to also try to connect to the IP but still give the service name or HOST to the webserver.
+	# This is needed for webservers hosting multiple domains on the same IP address. (Named based hosting)
+
+	# Curl -H "Host: <HOSTNAME>"
+	CURLEXTRA="-H \"Host: $HOSTNAME\""
 
 else
 	IP=$HOSTNAME
 fi
 
 BASEURL=`echo $BASEURL | sed s/SEDDOMAIN/$IP/`
+if [ $DEBUG -ne 0 ]; then
+	 echo "version is $version" >> $DEBUGFILE
+         echo "BASEURL is [${BASEURL}]" >> $DEBUGFILE
+	 echo "CURLEXTRA is [${CURLEXTRA}]" >> $DEBUGFILE
+fi
+
 #
 
 #### Login with username and password
 #LOGGEDIN=$(Curl -s -k -c ${COOKIEJAR} -d username="${USERNAME}" -d password="${PASSWORD}" ${BASEURL}/ | grep -i 'Refresh')
-LOGGEDIN=$(Curl -s -k -c ${COOKIEJAR} -d user="${USERNAME}" -d pass="${PASSWORD}" ${BASEURL}/index.php?part=tplogin )
+LOGGEDIN=$(Curl -s -k -c ${COOKIEJAR} -d user="${USERNAME}" -d pass="${PASSWORD}" $CURLEXTRA ${BASEURL}/index.php?part=tplogin )
 LOGINWC=$(echo "$LOGGEDIN" | wc -l)
 if [ "$LOGINWC" -gt  20 ]; then 
 	echo "Sorry could not login"
-	echo "$LOGGEDIN"
+	if [ $DEBUG -ne 0 ]; then
+		echo "$LOGGEDIN" >> $DEBUGFILE
+	fi
 	exit 254
 fi
 #### go to index page as required by META Refresh. This time will fail (?)
@@ -307,11 +326,11 @@ gomainpage
 case _"$OP" in
 _creditcents)
 
- if [ $SERVICE = "nonoh.net" -o $SERVICE = "jumblo" ]; then
-	#echo "Special nonoh.net, jumblo creditcents"
+ if [ $SERVICE = "jumblo" ]; then
+	#echo "Special jumblo creditcents"
 	# <span id="balanceid">&euro;&nbsp;0.00</span>
 
-	Curl -s -k -b ${COOKIEJAR} "${BASEURL}/contacts.php" \
+	Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/contacts.php" \
 	| perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
 	| sed -n -e \
 	's|.*\&euro\;\&nbsp\;\([0-9.,]\+\).*|\1|p' | sed -n -e 's|,\?||pg' \
@@ -320,8 +339,38 @@ _creditcents)
  else
   #### go to index page as required by META Refresh. This time will work (?)
   gomainpage
+  # Old GNU sed
+  #| sed -n -e 's|.*Remaining credit[^0-9]\+\([0-9.,]\+\).*|\1|p' | sed -n -e 's|,\?||pg' \
+
+  # nonoh.net is special.
+  if [ $SERVICE = "nonoh.net" ]; then
+	echo "Special nonoh.net creditcents"
+	LOGGEDIN=$(Curl -s -k -b ${COOKIEJAR} \
+        	  "${BASEURL}"'/contacts.php')
+  fi
+  #
+
   echo $LOGGEDIN \
-  | sed -n -e 's|.*Remaining credit[^0-9]\+\([0-9.,]\+\).*|\1|p' | sed -n -e 's|,\?||pg' \
+  | {
+	if [ $DEBUG -ne 0 ]; then
+        	 tee -a $DEBUGFILE
+   	else
+        	cat
+   	fi 
+  } \
+  | {
+	if [ $SERVICE = "nonoh.net" ]; then
+		# Special
+		sed 's/.*buy_credit\.php[^0-9]\{1,\}\([0-9.,]\{1,\}\).*buy_credit\.php.*/\1/'
+
+		# Or maybe this one. A FreeBSD user got much better results with it
+		#tr  '' "\n" | grep euro | sed 's/.*euro[^0-9]\{1,\}\([0-9.,]\{1,\}\).*/\1/'
+
+	else
+		# Normal
+		sed 's/.*Remaining credit[^0-9]\{1,\}\([0-9.,]\{1,\}\).*/\1/' 
+	fi
+  } \
   | LC_ALL=C awk '{print 100 * $1}'
  fi
 ;;
@@ -331,7 +380,7 @@ _freedays)
   if [ $SERVICE = "nonoh.net" ]; then
         #echo "Special nonoh.net freedays"
 	# You have: 118 freedays
-	FREEDAYS=`Curl -s -k -b ${COOKIEJAR} "${BASEURL}/contacts.php" \
+	FREEDAYS=`Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/contacts.php" \
 	| perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
 	| grep freedays | sed -n -e 's|.*id=\"balanceid\">\([0-9]*\).*|\1|p'`
 
@@ -339,7 +388,7 @@ _freedays)
   then
    #    jumblo line for freedays:
    #	<p>90 freedays</p>
-    FREEDAYS=`Curl -s -k -b ${COOKIEJAR} "${BASEURL}/contacts.php" \
+    FREEDAYS=`Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/contacts.php" \
     | perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
     | grep freedays | sed -n -e 's|.*p>\([0-9]*\) freedays.*|\1|p'`
 
@@ -372,7 +421,7 @@ _usedminutes)
    # Voipbusterpro.com
    # &euro;&nbsp;0.039
 
-   Curl -s -k -b ${COOKIEJAR} "${BASEURL}/calls.php?month=${CURMONTH}&year=${CURYEAR}" \
+   Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/calls.php?month=${CURMONTH}&year=${CURYEAR}" \
    | perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
    | sed -n -e \
     's|[[:space:]]*<tr>.*\([0-9][0-9]\):\([0-9][0-9]\):\([0-9][0-9]\).*\&euro\;\&nbsp\;0\.039.*|\1 \2 \3|p' \
@@ -381,7 +430,7 @@ _usedminutes)
  else
   # Other services
 
-   Curl -s -k -b ${COOKIEJAR} "${BASEURL}/calls.php?month=${CURMONTH}&year=${CURYEAR}" \
+   Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/calls.php?month=${CURMONTH}&year=${CURYEAR}" \
       | perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
       | sed -n -e 's|.*text-align: left.*\([0-9][0-9]\):\([0-9][0-9]\):\([0-9][0-9]\).*|\1 \2 \3|p' \
    | awk "$TOTALIZER"
@@ -423,12 +472,12 @@ _last7dayssms)
    if [ _"$MONTHSTART" != _"$MONTHEND" ]; then
     #### get last month's data
     Curl -s -k -b ${COOKIEJAR} \
-        "${BASEURL}/calls.php?month=${MONTHSTART}&year=${YEARSTART}"
+       $CURLEXTRA "${BASEURL}/calls.php?month=${MONTHSTART}&year=${YEARSTART}"
     #### go to index page before getting this month's data (?)
     gomainpage
    fi
    Curl -s -k -b ${COOKIEJAR} \
-        "${BASEURL}/calls.php?month=${MONTHEND}&year=${YEAREND}"
+       $CURLEXTRA "${BASEURL}/calls.php?month=${MONTHEND}&year=${YEAREND}"
   } \
   | {
    if [ $DEBUG -ne 0 ]; then
@@ -491,12 +540,12 @@ _last7days*minutes)
    if [ _"$MONTHSTART" != _"$MONTHEND" ]; then
     #### get last month's data
     Curl -s -k -b ${COOKIEJAR} \
-        "${BASEURL}/calls.php?month=${MONTHSTART}&year=${YEARSTART}"
+       $CURLEXTRA "${BASEURL}/calls.php?month=${MONTHSTART}&year=${YEARSTART}"
     #### go to index page before getting this month's data (?)
     gomainpage
    fi
    Curl -s -k -b ${COOKIEJAR} \
-        "${BASEURL}/calls.php?month=${MONTHEND}&year=${YEAREND}"
+       $CURLEXTRA "${BASEURL}/calls.php?month=${MONTHEND}&year=${YEAREND}"
   } \
   | {
    if [ $DEBUG -ne 0 ]; then
@@ -545,11 +594,25 @@ _call)
 
    OUTPUT=$(Curl -s -k -b ${COOKIEJAR} -d action=initcall -d panel=true \
 	-d anrphonenr="${SOURCENUM}" -d bnrphonenr="${DESTNUM}" \
-	"${BASEURL}/webcalls.php")
+	$CURLEXTRA "${BASEURL}/webcalls.php")
 	#"${BASEURL}/webcalls2.php")
 
- #### go to index page before logoff (?)
- gomainpage
+   sleep 8
+   for i in `seq 1 6`; do
+     echo -n "[$i/6] "
+     LTPARAM=$(echo "$OUTPUT"|grep connection$i.send|sed -e 's,.*"\(.*\)".*,\1,')
+     #echo LTPARAM $LTPARAM
+     LTOUT=$(Curl -s -k -b ${COOKIEJAR} -d "${LTPARAM}" "${BASEURL}/getwebcallstatus2.php")
+     echo $LTOUT
+     if [[ "x$LTOUT" = x*\]* ]]; then
+       echo -n ">>"
+       echo "$OUTPUT" | grep errormessages.push | sed -e 's,.*>\(.*\)<.*,\1,' \
+         | nl -v0 -s: -ba | grep ' '$(echo "$LTOUT"|cut -d']' -f1 --complement): \
+         | cut -d: -f1 --complement
+     fi
+   done
+   #### go to index page before logoff (?)
+   gomainpage
 ;;
 
 # **** SMS ****
@@ -567,7 +630,7 @@ if [ ${#SMSGMT} -gt 0 ]; then # They have filled in the GMT option. Hopefully th
 	   OUTPUT=$(Curl -s -k -b ${COOKIEJAR} -d action=send -d panel=true \
 		-d message="${SMSTEXT}" -d bnrphonenumber="${DESTNUM}" \
 		-d day="${SMSDAY}" -d month="${SMSMONTH}" -d hour="${SMSHOUR}" \
-		-d minute="${SMSMINUTE}" -d gmt="${SMSGMT}" "${BASEURL}/websms2.php")
+		-d minute="${SMSMINUTE}" -d gmt="${SMSGMT}" $CURLEXTRA "${BASEURL}/websms2.php")
 
 else # Use the unscheduled one
 	sendsmsnow
@@ -595,7 +658,7 @@ _smsbalance)
 
 _callerids) ##Needs testing. I have only tested it with voipbuster. Fails a lot with BETA_USER=no
 	#Also improve the pipes :P
-	IDS=$(Curl -s -k -b ${COOKIEJAR} "${BASEURL}/websms2.php" \
+	IDS=$(Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/websms2.php" \
 	| perl -e 'while( <> ) { s#<tr>#\n<tr>#g; print; }' \
 	| grep -A 1 callerid | grep option \
 	|sed  -e 's/[^"]*"\([^"]*\)"[^"]*/\1 /g')
@@ -603,7 +666,7 @@ _callerids) ##Needs testing. I have only tested it with voipbuster. Fails a lot 
 ;;
 esac
 
-LOGGEDIN=$(Curl -s -k -b ${COOKIEJAR} "${BASEURL}/index.php?part=logoff")
+LOGGEDIN=$(Curl -s -k -b ${COOKIEJAR} $CURLEXTRA "${BASEURL}/index.php?part=logoff")
 
 rm ${COOKIEJAR}
 
