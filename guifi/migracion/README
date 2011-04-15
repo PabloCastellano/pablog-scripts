@@ -1,0 +1,16 @@
+Migracion de páginas en drupal a mediawiki.
+
+Necesitas:
+* Python
+* Pywikipedia
+* html2wiki (libhtml-wikiconverter-mediawiki-perl)
+* ...
+
+Configurar pywikipedia añadiendo una nueva familia con tu wiki y las credenciales. Para ello hay dos archivos:
+./generate_user_files.py
+./generate_family_file.py
+
+Ejecutar los scripts por su orden:
+1_revisions.py
+2_revisions_wikify.py
+3_revisions_import.py
