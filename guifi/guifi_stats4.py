@@ -32,7 +32,7 @@ import sys
 def NodesByDate(nodes):
 	uberNodes = []
 	for i in nodes:
-		uberNodes.append((i.attributes["created"].value, i.attributes["title"].value, i.attributes["status"].value))
+		uberNodes.append((i.attributes["created"].value, i.attributes["title"].value, i.attributes["status"].value, i.attributes["id"].value))
 		#print i.attributes["created"].value, i.attributes["title"].value
 
 	#Ordena por el segundo parametro: fecha de creacion
@@ -51,9 +51,9 @@ def recuento(uN):
 			lastdate = date1
 		
 		if i[2] != "Planned":
-			print i[2][0] + '   ' + date2 + '\t' + i[1]
+			print i[2][0] + '   ' + date2 + '\t' + i[1] + '\thttp://guifi.net/node/' + i[3]
 		else:
-			print '    ' + date2 + '\t' + i[1]
+			print '    ' + date2 + '\t' + i[1] + '\t\thttp://guifi.net/node/' + i[3]
 
 
 if len(sys.argv) != 2:
