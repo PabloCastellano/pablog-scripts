@@ -55,6 +55,9 @@ def recuento(uN):
 		else:
 			print '    ' + date2 + '\t' + i[1] + '\t\thttp://guifi.net/node/' + i[3]
 
+	print
+	print "Total: " + str(len(uN))
+
 
 if len(sys.argv) != 2:
 	print "Usage: %s <detail_file>" %(sys.argv[0])
