@@ -3,8 +3,6 @@
 # La extrae y la guarda en archivos, para su posterior tratado.
 
 import MySQLdb
-#import login
-#import wikipedia
 
 # Conectamos a la bbdd de guifi.net en la máquina virtual
 db = MySQLdb.connect("192.168.1.30", "root", "guifi", "guifi")
