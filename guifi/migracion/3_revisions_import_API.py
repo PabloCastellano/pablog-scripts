@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# Este último script se encarga de meter los datos finalmente de la forma que queremos en la base de datos de mediawiki
+#  usando la librería pywikipedia. Este proceso puede resultar muy lento por una limitación de la API aunque se hackeable.
 
 import login
 import wikipedia
@@ -25,5 +27,3 @@ for r in rev_files:
 	fd.close()
 	print "Writing rev number", r
 	page.put(txt)
-
-## Muy lento por la API

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+### html2wiki ###
 
 import os
 
@@ -10,5 +11,3 @@ for r in rev_files:
 	print "Converting", rev_file
 	command = "html2wiki --dialect MediaWiki " + rev_file + " > " + wiki_file
 	os.system(command) 
-
-## Muy lento por la API
