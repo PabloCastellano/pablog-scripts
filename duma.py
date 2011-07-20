@@ -16,8 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# BUGS: 
-# beautifulsoup solo acepta ascii, por eso lo pasa a unicode eliminando los caracteres non-ascii
 
 __version__ = 1.0
 __author__ = "Pablo Castellano <pablo@anche.no>"
@@ -65,7 +63,7 @@ lines = a.readlines()
 
 lines2=[]
 for l in lines:
-	lines2.append(unicode(l, errors='ignore'))
+	lines2.append(l.decode('latin-1'))
 
 soup = BeautifulSoup(''.join(lines2))
 td = soup.findAll('td')
