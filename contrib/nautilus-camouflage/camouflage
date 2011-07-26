@@ -1,0 +1,10 @@
+#!/bin/bash
+if ( `gconftool --get /apps/nautilus/preferences/show_desktop` == "true" ) then
+       echo 'hiding'
+       gconftool --set /apps/nautilus/preferences/show_desktop \
+                 --type boolean false
+else
+       echo 'showing'
+       gconftool --set /apps/nautilus/preferences/show_desktop \
+                 --type boolean true
+fi
