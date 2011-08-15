@@ -17,7 +17,7 @@ rev_files = os.listdir(revs_dir)
 i = 0
 while rev_files[0] != start_from: 
 	rev_files = rev_files[1:]
-	i = i+1
+	i += 1
 
 for r in rev_files:
 	page = wikipedia.Page(site, "Recortes")
