@@ -99,6 +99,14 @@ class CNMLExplorer:
 		# Working, Building, Testing, Planned.
 		return (n_working, n_building, n_testing, n_planned)
 
+	def on_filechooserdialog1_file_activated(self, widget, data=None):
+		print 'activated'
+
+	def on_imagemenuitem2_activate(self, widget, data=None):
+		dialog = self.ui.get_object("filechooserdialog1")
+		dialog.show()
+		b = dialog.get_uri()
+		print b
 
 	def on_aboutdialog1_close(self, widget, data=None):
 		self.about_ui.hide()
