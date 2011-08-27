@@ -1,0 +1,4 @@
+#!/bin/bash
+#Encontrado en http://www.ubuntu-es.org/?q=node/125850
+#Copiar a ~/.local/bin/ por ejemplo
+curl -s "http://buscon.rae.es/draeI/SrvltGUIBusUsual?LEMA=$1&origen=RAE" | html2text | head -n-2 | sed -e 's/\[Ver_artículo_enmendado\]/*\ /g' | more
