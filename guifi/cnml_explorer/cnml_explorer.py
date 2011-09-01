@@ -32,13 +32,25 @@ class CNMLExplorer:
 		self.treestore = self.ui.get_object("treestore1")
 		self.treeview = self.ui.get_object("treeview1")
 		self.statusbar = self.ui.get_object("statusbar1")
+		self.actiongroup1 = self.ui.get_object("actiongroup1")
 
+
+		self.uimanager = gtk.UIManager()
+		self.uimanager.add_ui_from_file("cnml_explorer_menu.ui")
+		self.uimanager.insert_action_group(self.actiongroup1)
+		self.menu = self.uimanager.get_widget("/KeyPopup")
+		
+		self.nodedialog = self.ui.get_object("nodeDialog")
+		
+		self.opendialog = self.ui.get_object("filechooserdialog1")
+		self.opendialog.set_action(gtk.FILE_CHOOSER_ACTION_OPEN)
+		
 		self.about_ui = self.ui.get_object("aboutdialog1")
 		with open("COPYING") as f:
 			self.about_ui.set_license(f.read())
 
 		self.completaArbol(cnmlFile)
-
+		
 
 	def completaArbol(self, cnmlFile):
 		try:
@@ -99,14 +111,33 @@ class CNMLExplorer:
 		# Working, Building, Testing, Planned.
 		return (n_working, n_building, n_testing, n_planned)
 
+	def on_action1_activate(self, action, data=None):
+		self.nodedialog.show()
+		self.nodedialog.set_title("Information about node XXX")
+
+	def on_action2_activate(self, action, data=None):
+		print 'action2'
+
+	def on_button1_clicked(self, widget, data=None):
+		self.nodedialog.hide()
+		
+	def on_treeview1_button_press_event(self, widget, data=None):
+
+		# http://www.pygtk.org/pygtk2tutorial/examples/actiongroup.py
+		if data.button == 3: # Right button
+			self.menu.popup(None, None, None, data.button, data.time)
+
 	def on_filechooserdialog1_file_activated(self, widget, data=None):
 		print 'activated'
 
 	def on_imagemenuitem2_activate(self, widget, data=None):
-		dialog = self.ui.get_object("filechooserdialog1")
-		dialog.show()
-		b = dialog.get_uri()
-		print b
+		self.opendialog.run()
+
+	def on_button3_clicked(self, widget, data=None):
+		filename = self.opendialog.get_filename()
+		print filename
+		self.opendialog.hide()
+		self.completaArbol(filename)
 
 	def on_aboutdialog1_close(self, widget, data=None):
 		self.about_ui.hide()

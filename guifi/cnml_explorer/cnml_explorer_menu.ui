@@ -1,0 +1,9 @@
+<ui>
+	<popup name="KeyPopup">
+		<menuitem action="action1"/>
+		<separator/>
+		<menuitem action="action2"/>
+		<separator/>
+	</popup>
+	
+</ui>
