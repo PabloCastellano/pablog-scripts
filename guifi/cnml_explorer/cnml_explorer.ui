@@ -137,6 +137,7 @@
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
     <property name="type_hint">dialog</property>
+    <signal name="delete-event" handler="on_button1_clicked" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox4">
         <property name="visible">True</property>
@@ -702,7 +703,7 @@ Iberian Peninsula</property>
                 <property name="headers_clickable">False</property>
                 <property name="search_column">5</property>
                 <property name="enable_grid_lines">vertical</property>
-                <signal name="button-press-event" handler="on_treeview1_button_press_event" swapped="no"/>
+                <signal name="button-release-event" handler="on_treeview1_button_release_event" swapped="no"/>
                 <child>
                   <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                     <property name="title" translatable="yes">Zona</property>

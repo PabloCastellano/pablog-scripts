@@ -34,7 +34,8 @@ class CNMLExplorer:
 		self.statusbar = self.ui.get_object("statusbar1")
 		self.actiongroup1 = self.ui.get_object("actiongroup1")
 
-
+		self.t6 = self.ui.get_object("treeviewcolumn6")
+		
 		self.uimanager = gtk.UIManager()
 		self.uimanager.add_ui_from_file("cnml_explorer_menu.ui")
 		self.uimanager.insert_action_group(self.actiongroup1)
@@ -116,17 +117,23 @@ class CNMLExplorer:
 		self.nodedialog.set_title("Information about node XXX")
 
 	def on_action2_activate(self, action, data=None):
-		print 'action2'
+		gtk.show_uri(None, "http://guifi.net/node/", gtk.get_current_event_time())
 
 	def on_button1_clicked(self, widget, data=None):
 		self.nodedialog.hide()
+		return True
+	
+	def on_treeview1_button_release_event(self, widget, data=None):
+		sel = widget.get_selection()
+		(model, it) = sel.get_selected()
 		
-	def on_treeview1_button_press_event(self, widget, data=None):
-
-		# http://www.pygtk.org/pygtk2tutorial/examples/actiongroup.py
+		col = widget.get_path_at_pos(int(data.x), int(data.y))[1]
+		
 		if data.button == 3: # Right button
-			self.menu.popup(None, None, None, data.button, data.time)
-
+			if col is self.t6 and model.get_value(it, 5) is not None: 
+				#user clicked on a node
+				self.menu.popup(None, None, None, data.button, data.time)
+	
 	def on_filechooserdialog1_file_activated(self, widget, data=None):
 		print 'activated'
 
