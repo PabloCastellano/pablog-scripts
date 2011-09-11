@@ -4,15 +4,15 @@
   <!-- interface-naming-policy project-wide -->
   <object class="GtkActionGroup" id="actiongroup1">
     <child>
-      <object class="GtkAction" id="action1">
-        <property name="label" translatable="yes">Propiedades</property>
-        <signal name="activate" handler="on_action1_activate" swapped="no"/>
-      </object>
-    </child>
-    <child>
       <object class="GtkAction" id="action2">
         <property name="label" translatable="yes">Ver en mapa</property>
         <signal name="activate" handler="on_action2_activate" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkAction" id="action1">
+        <property name="label" translatable="yes">Propiedades</property>
+        <signal name="activate" handler="on_action1_activate" swapped="no"/>
       </object>
     </child>
   </object>

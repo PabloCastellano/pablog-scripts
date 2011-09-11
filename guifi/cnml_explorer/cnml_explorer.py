@@ -141,6 +141,7 @@ class CNMLExplorer:
 
 	def on_aboutdialog1_close(self, widget, data=None):
 		self.about_ui.hide()
+		return True
 
 	def on_imagemenuitem10_activate(self, widget, data=None):
 		self.about_ui.show()
