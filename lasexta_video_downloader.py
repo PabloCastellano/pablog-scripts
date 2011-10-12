@@ -21,6 +21,7 @@
 # Example url: http://www.lasexta.com/sextatv/veranodirecto/macrobotellon_en_madrid_mientras_el_papa_duerme/260233/6563
 
 # TODO: rtmpdump -A and -B parameters should be used to download the specific portion of video but it doesn't work for me
+# TODO: Add suport for playlists like http://www.lasexta.com/sextatv/salvados/completos/salvados__domingo__25_de_septiembre/501473/1
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __date__ = "22/08/2011"
@@ -34,68 +35,70 @@ from string import hexdigits
 
 
 def parseUrl(url):
-    f = urllib.urlopen(url)
-    s = None
+	f = urllib.urlopen(url)
+	s = None
+	
+	for l in f.readlines():
+		n = l.find("_urlVideo")
+		if n != -1:
+			s = l[n:]
+			break
     
-    for l in f.readlines():
-	n = l.find("_urlVideo")
-	if n != -1:
-	    s = l[n:]
-	    break
-    
-    f.close()
-    
-    if s == None:
-	print "Sorry, no video url could be found!"
-	sys.exit(1)
-	    
-    return re.compile("^_urlVideo=([a-f0-9]+)").match(s).group(1)
+	f.close()
+	
+	if s == None:
+		print "Sorry, no video url could be found!"
+		sys.exit(1)
+	
+	return re.compile("^_urlVideo=([a-f0-9]+)").match(s).group(1)
 
 
 # From the Internets
 def HexToByte(hexStr):
-    bytes = []
-    hexStr = ''.join( hexStr.split(" ") )
-
-    for i in range(0, len(hexStr), 2):
-        bytes.append( chr( int (hexStr[i:i+2], 16 ) ) )
-
-    return ''.join( bytes )
+	bytes = []
+	hexStr = ''.join( hexStr.split(" ") )
+	
+	for i in range(0, len(hexStr), 2):
+		bytes.append( chr( int (hexStr[i:i+2], 16 ) ) )
+	
+	return ''.join( bytes )
 
 
 def isHex(hexStr):
-    for c in hexStr:
-	if c not in hexdigits:
-	    return False
-	    
-    return True
+	for c in hexStr:
+		if c not in hexdigits:
+		return False
+	
+	return True
 
 
 def decodeRTMP(Str):
-    if Str.startswith("http://") or Str.startswith("www") or Str.startswith("lasexta"):
-	Str = parseUrl(Str)
-    elif not isHex(Str):
-	print "Wrong parameter."
-	print "Usage: %s [URL|encoded string]" %sys.argv[0]
-	sys.exit(1)
+	if Str.startswith("http://") or Str.startswith("www") or Str.startswith("lasexta"):
+		Str = parseUrl(Str)
+	elif not isHex(Str):
+		print "Wrong parameter."
+		print "Usage: %s [URL|encoded string]" %sys.argv[0]
+		sys.exit(1)
 	
-    c = ARC4.new("sd4sdfkvm234")
-    d = c.decrypt(HexToByte(Str))
-    
-    print d
-    print
-    print "Use rtmpdump to download:"
-    print 'rtmpdump -o download.flv -r "%s"' %d
-    
-    
-if __name__ == "__main__":
-    
-    print "LaSexta video downloader"
-    print
+	c = ARC4.new("sd4sdfkvm234")
+	d = c.decrypt(HexToByte(Str))
 	
-    if len(sys.argv) != 2:
-	print "Usage: %s [URL|encoded string]" %sys.argv[0]
-	sys.exit(0)
+	print d
+	print
+	print "Use rtmpdump to download:"
+	print 'rtmpdump -o download.flv -r "%s"' %d
 
-    decodeRTMP(sys.argv[1])
+
+if __name__ == "__main__":
 	
+	print "LaSexta video downloader"
+	print "Copyright (C) 2011 Pablo Castellano"
+	print "This program comes with ABSOLUTELY NO WARRANTY."
+	print "This is free software, and you are welcome to redistribute it under certain conditions."
+	
+	
+	if len(sys.argv) != 2:
+		print "Usage: %s [URL|encoded string]" %sys.argv[0]
+		sys.exit(0)
+	
+	decodeRTMP(sys.argv[1])
