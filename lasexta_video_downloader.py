@@ -67,7 +67,7 @@ def HexToByte(hexStr):
 def isHex(hexStr):
 	for c in hexStr:
 		if c not in hexdigits:
-		return False
+			return False
 	
 	return True
 
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 	print "Copyright (C) 2011 Pablo Castellano"
 	print "This program comes with ABSOLUTELY NO WARRANTY."
 	print "This is free software, and you are welcome to redistribute it under certain conditions."
-	
+	print
 	
 	if len(sys.argv) != 2:
 		print "Usage: %s [URL|encoded string]" %sys.argv[0]
