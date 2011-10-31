@@ -86,7 +86,7 @@ def decodeRTMP(Str):
 	print d
 	print
 	print "Use rtmpdump to download:"
-	print 'rtmpdump -o download.flv -r "%s"' %d
+	print 'rtmpdump -m 300 -o download.flv -r "%s"' %d
 
 
 if __name__ == "__main__":
