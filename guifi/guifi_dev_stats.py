@@ -40,7 +40,6 @@ tree = MD.parse(sys.argv[1])
 devices = tree.getElementsByTagName("device")
 
 for dev in devices:
-	print dev.getAttribute("name")
-
-
-
+	typen = dev.getAttribute('type')
+	if typen == 'radio':
+		print dev.getAttribute("name")
