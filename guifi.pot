@@ -1,0 +1,4971 @@
+# $Id$
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  guifi_ahah.inc.php: n/a
+#  guifi_includes.inc.php: n/a
+#  guifi_service.inc.php: n/a
+#  guifi_users.inc.php: n/a
+#  guifi_zone.inc.php: n/a
+#  guifi_graphs.inc.php: n/a
+#  guifi.module: n/a
+#  guifi_ipv4.inc.php: n/a
+#  guifi_links.inc.php: n/a
+#  guifi_api.inc.php: n/a
+#  guifi_devices.inc.php: n/a
+#  guifi_cnml.inc.php: n/a
+#  guifi_gml.inc.php: n/a
+#  guifi_stats.inc.php: n/a
+#  guifi_tools.inc.php: n/a
+#  guifi_cron.inc.php: n/a
+#  guifi_devel.inc.php: n/a
+#  guifi_radios.inc.php: n/a
+#  guifi_node.inc.php: n/a
+#  guifi_domains.inc.php: n/a
+#  guifi_interfaces.inc.php: n/a
+#  guifi_hosts.inc.php: n/a
+#  guifi_traceroute.inc.php: n/a
+#  firmware/wrt-sveasoft-dd.inc.php: n/a
+#  guifi_networkutils.inc.php: n/a
+#  firmware/mikrotik-routeros.inc.php: n/a
+#  guifi_sql.inc.php: n/a
+#  guifi_unsolclic.inc.php: n/a
+#  guifi.info: n/a
+#  firmware/firmware-todo.inc.php: n/a
+#  firmware/kamikaze.inc.php: n/a
+#  firmware/kamikaze/ar71xx/kamikaze_ap.inc.php: n/a
+#  firmware/kamikaze/atheros/kamikaze_ap.inc.php: n/a
+#  firmware/kamikaze/broadcom/kamikaze_ap.inc.php: n/a
+#  firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php: n/a
+#  firmware/kamikaze/atheros/kamikaze_client.inc.php: n/a
+#  firmware/kamikaze/broadcom/kamikaze_client.inc.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-01-11 01:30+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: guifi_ahah.inc.php:71 guifi_includes.inc.php:1685
+msgid "Not assigned"
+msgstr ""
+
+#: guifi_ahah.inc.php:82 guifi_service.inc.php:446;469 guifi_users.inc.php:436 guifi_zone.inc.php:526
+msgid "No service"
+msgstr ""
+
+#: guifi_ahah.inc.php:82 guifi_service.inc.php:470 guifi_users.inc.php:439 guifi_zone.inc.php:529
+msgid "Take from parents"
+msgstr ""
+
+#: guifi_ahah.inc.php:137;140 guifi_graphs.inc.php:58;72 guifi_includes.inc.php:748 guifi.module:2349;2355
+msgid "at"
+msgstr ""
+
+#: guifi_ahah.inc.php:282
+msgid "Device node changed. Option not available"
+msgstr ""
+
+#: guifi_ahah.inc.php:294
+msgid "Link to device"
+msgstr ""
+
+#: guifi_ahah.inc.php:295
+msgid "Select the device which you want to link with"
+msgstr ""
+
+#: guifi_ahah.inc.php:314;435 guifi_includes.inc.php:388
+msgid "No devices available"
+msgstr ""
+
+#: guifi_ahah.inc.php:347 guifi_ipv4.inc.php:468;602 guifi_links.inc.php:92
+msgid "Network mask"
+msgstr ""
+
+#: guifi_ahah.inc.php:348
+msgid "Size of the next available set of addresses to be allocated"
+msgstr ""
+
+#: guifi_ahah.inc.php:411
+msgid "Node changed. Option not available"
+msgstr ""
+
+#: guifi_ahah.inc.php:426
+msgid "Move radio to device"
+msgstr ""
+
+#: guifi_api.inc.php:641 guifi_devices.inc.php:952
+msgid "The device %name has been DELETED by %user."
+msgstr ""
+
+#: guifi_cnml.inc.php:21 guifi_gml.inc.php:9
+msgid "Zone %zname%"
+msgstr ""
+
+#: guifi_cnml.inc.php:22 guifi_gml.inc.php:10
+msgid "You must specify which data do you want to export, the following options are available:"
+msgstr ""
+
+#: guifi_cnml.inc.php:23
+msgid "Zones"
+msgstr ""
+
+#: guifi_cnml.inc.php:23
+msgid "export zone and zone childs in CNML format"
+msgstr ""
+
+#: guifi_cnml.inc.php:24
+msgid "Zones and nodes"
+msgstr ""
+
+#: guifi_cnml.inc.php:24
+msgid "export zones and nodes in CNML format (short)"
+msgstr ""
+
+#: guifi_cnml.inc.php:25
+msgid "Detailed"
+msgstr ""
+
+#: guifi_cnml.inc.php:25
+msgid "export zones, nodes and devices in CNML format (long)"
+msgstr ""
+
+#: guifi_cnml.inc.php:27 guifi_gml.inc.php:14
+msgid "<b>IMPORTANT LEGAL NOTE:</b> This network information is under the <a href=\"http://guifi.net/ComunsSensefils/\">Comuns Sensefils</a> license, and therefore, available for any other network under the same licensing. If is not your case, you should ask for permission before using it.</a>"
+msgstr ""
+
+#: guifi_cnml.inc.php:29
+msgid "export %zname% in CNML format"
+msgstr ""
+
+#: guifi_cnml.inc.php:766 guifi.module:1603;1739
+msgid "PtP link"
+msgstr ""
+
+#: guifi_cnml.inc.php:767 guifi_devices.inc.php:1294 guifi.module:1604;1740
+msgid "ap/client"
+msgstr ""
+
+#: guifi_cnml.inc.php:768 guifi.module:1605;1741
+msgid "unknown"
+msgstr ""
+
+#: guifi_cnml.inc.php:1206 guifi_gml.inc.php:11 guifi.module:1561;1701
+msgid "Nodes"
+msgstr ""
+
+#: guifi_cnml.inc.php:1209 guifi_stats.inc.php:349;449;642;811 guifi_tools.inc.php:619
+msgid "Working nodes"
+msgstr ""
+
+#: guifi_cron.inc.php:30
+msgid "Complete trace messages (for trace purposes, to be used by developers)"
+msgstr ""
+
+#: guifi_cron.inc.php:31
+msgid "Summary of changes:"
+msgstr ""
+
+#: guifi_cron.inc.php:43
+msgid "[guifi.net notify] Report of changes at !date"
+msgstr ""
+
+#: guifi_cron.inc.php:45
+msgid "Sending a mail to: %to"
+msgstr ""
+
+#: guifi_cron.inc.php:110
+msgid "This graph server doesn't support v2.0 CNML calls syntax.\n"
+msgstr ""
+
+#: guifi_cron.inc.php:206
+msgid "Get stats failed."
+msgstr ""
+
+#: guifi_cron.inc.php:209
+msgid "Load statistics from '%server'"
+msgstr ""
+
+#: guifi_cron.inc.php:65;68;199
+msgid "guifi"
+msgstr ""
+
+#: guifi_cron.inc.php:65
+msgid "Report of changes sent to %name"
+msgstr ""
+
+#: guifi_cron.inc.php:68
+msgid "Unable to notify %name"
+msgstr ""
+
+#: guifi_cron.inc.php:199
+msgid "Loaded statistics from %name, %ndevices updated"
+msgstr ""
+
+#: guifi_devel.inc.php:21
+msgid "Add a new service"
+msgstr ""
+
+#: guifi_devel.inc.php:26
+msgid "Service ID"
+msgstr ""
+
+#: guifi_devel.inc.php:26;66
+msgid "Text"
+msgstr ""
+
+#: guifi_devel.inc.php:26;73;427 guifi_service.inc.php:772
+msgid "Description"
+msgstr ""
+
+#: guifi_devel.inc.php:26;168;427;621
+msgid "Edit"
+msgstr ""
+
+#: guifi_devel.inc.php:26;122;131;168;380;389;427;576;585;621;733;742 guifi_ipv4.inc.php:66 guifi_radios.inc.php:690 guifi_users.inc.php:91;101;425;1035
+msgid "Delete"
+msgstr ""
+
+#: guifi_devel.inc.php:37
+msgid "edit service"
+msgstr ""
+
+#: guifi_devel.inc.php:42
+msgid "delete service"
+msgstr ""
+
+#: guifi_devel.inc.php:69
+msgid "Text abbreviation of the service."
+msgstr ""
+
+#: guifi_devel.inc.php:76
+msgid "Text description of the service."
+msgstr ""
+
+#: guifi_devel.inc.php:79;339;518;692 guifi_users.inc.php:420;1026
+msgid "Save"
+msgstr ""
+
+#: guifi_devel.inc.php:80;123;381;577;734 guifi_ipv4.inc.php:67 guifi_users.inc.php:92
+msgid "Cancel"
+msgstr ""
+
+#: guifi_devel.inc.php:107
+msgid "The service !service has been created / updated by !user."
+msgstr ""
+
+#: guifi_devel.inc.php:118
+msgid "Are you sure you want to delete the service \" %service \"?"
+msgstr ""
+
+#: guifi_devel.inc.php:121;379;575;732 guifi_ipv4.inc.php:65 guifi_users.inc.php:90
+msgid "This action cannot be undone."
+msgstr ""
+
+#: guifi_devel.inc.php:139
+msgid "The service %name has been DELETED by %user."
+msgstr ""
+
+#: guifi_devel.inc.php:163
+msgid "Add a new device model"
+msgstr ""
+
+#: guifi_devel.inc.php:168
+msgid "ID Model"
+msgstr ""
+
+#: guifi_devel.inc.php:168;222;621
+msgid "Manufacturer"
+msgstr ""
+
+#: guifi_devel.inc.php:168
+msgid "Model"
+msgstr ""
+
+#: guifi_devel.inc.php:181 guifi_node.inc.php:1218 guifi_zone.inc.php:1062 guifi.module:788
+msgid "edit device"
+msgstr ""
+
+#: guifi_devel.inc.php:186 guifi_ipv4.inc.php:328 guifi_node.inc.php:1223 guifi_zone.inc.php:1068 guifi.module:797
+msgid "delete device"
+msgstr ""
+
+#: guifi_devel.inc.php:214;661 guifi_devices.inc.php:522 guifi_domains.inc.php:264 guifi_users.inc.php:340
+msgid "contact"
+msgstr ""
+
+#: guifi_devel.inc.php:218;665 guifi_devices.inc.php:526
+msgid "Mailid where changes on the device will be notified, if many, separated by ','<br />used for network administration."
+msgstr ""
+
+#: guifi_devel.inc.php:232
+msgid "Model Name"
+msgstr ""
+
+#: guifi_devel.inc.php:237
+msgid "Device model name, please, use a clear and short description."
+msgstr ""
+
+#: guifi_devel.inc.php:244
+msgid "Max Radios"
+msgstr ""
+
+#: guifi_devel.inc.php:249
+msgid "Maximum number of radios that can handle this device."
+msgstr ""
+
+#: guifi_devel.inc.php:257
+msgid "Ethernet Ports"
+msgstr ""
+
+#: guifi_devel.inc.php:262
+msgid "Number of ethernet ports on this device."
+msgstr ""
+
+#: guifi_devel.inc.php:270
+msgid "Acces Point"
+msgstr ""
+
+#: guifi_devel.inc.php:273;285;296;307
+msgid "Yes"
+msgstr ""
+
+#: guifi_devel.inc.php:273;285;296 guifi_zone.inc.php:1383
+msgid "No"
+msgstr ""
+
+#: guifi_devel.inc.php:274
+msgid "Select yes if this device can be an Access Point."
+msgstr ""
+
+#: guifi_devel.inc.php:282
+msgid "HostPot / Vlan"
+msgstr ""
+
+#: guifi_devel.inc.php:286
+msgid "Select yes if this device can be a Hostpot or can create vlans."
+msgstr ""
+
+#: guifi_devel.inc.php:294
+msgid "Statiton capable"
+msgstr ""
+
+#: guifi_devel.inc.php:298
+msgid "Select yes if this device can be a station."
+msgstr ""
+
+#: guifi_devel.inc.php:305
+msgid "Supported"
+msgstr ""
+
+#: guifi_devel.inc.php:307
+msgid "Deprecated"
+msgstr ""
+
+#: guifi_devel.inc.php:309
+msgid "Deprecated devices does not have any support and no appear on the device list select form."
+msgstr ""
+
+#: guifi_devel.inc.php:316
+msgid "Interfaces"
+msgstr ""
+
+#: guifi_devel.inc.php:321
+msgid "Device interface names for this device model. User | to split de the names, ex: wlan1|wlan2|ether1|ether2"
+msgstr ""
+
+#: guifi_devel.inc.php:328;621;681
+msgid "URL"
+msgstr ""
+
+#: guifi_devel.inc.php:333
+msgid "Url where we can see a specs from device model."
+msgstr ""
+
+#: guifi_devel.inc.php:365
+msgid "The device model !device has been created / updated by !user."
+msgstr ""
+
+#: guifi_devel.inc.php:376
+msgid "Are you sure you want to delete the device model \" %model \"?"
+msgstr ""
+
+#: guifi_devel.inc.php:397
+msgid "The device model %name has been DELETED by %user."
+msgstr ""
+
+#: guifi_devel.inc.php:422
+msgid "Add a new firmware"
+msgstr ""
+
+#: guifi_devel.inc.php:427;621
+msgid "ID"
+msgstr ""
+
+#: guifi_devel.inc.php:427 guifi_interfaces.inc.php:43 guifi_service.inc.php:304
+msgid "Name"
+msgstr ""
+
+#: guifi_devel.inc.php:427
+msgid "Relations"
+msgstr ""
+
+#: guifi_devel.inc.php:442
+msgid "edit firmware"
+msgstr ""
+
+#: guifi_devel.inc.php:447
+msgid "delete firmware"
+msgstr ""
+
+#: guifi_devel.inc.php:471
+msgid "Firmware short name"
+msgstr ""
+
+#: guifi_devel.inc.php:476
+msgid "The firmware name, please, use a clear and short name. ex: \"FirmwarevXX\" where XX = version"
+msgstr ""
+
+#: guifi_devel.inc.php:483
+msgid "Firmware long name"
+msgstr ""
+
+#: guifi_devel.inc.php:488
+msgid "The firmware description, please, use a clear and short description. ex: \"FirmwarevXX from creator\""
+msgstr ""
+
+#: guifi_devel.inc.php:509
+msgid "Device model relations"
+msgstr ""
+
+#: guifi_devel.inc.php:561
+msgid "The firmware !firmware has been created / updated by !user."
+msgstr ""
+
+#: guifi_devel.inc.php:572
+msgid "Are you sure you want to delete the firmware \" %firmware \"?"
+msgstr ""
+
+#: guifi_devel.inc.php:593
+msgid "The firmware %name has been DELETED by %user."
+msgstr ""
+
+#: guifi_devel.inc.php:616
+msgid "Add a new device manufacturer"
+msgstr ""
+
+#: guifi_devel.inc.php:632
+msgid "edit manufacturer"
+msgstr ""
+
+#: guifi_devel.inc.php:637
+msgid "delete manufacturer"
+msgstr ""
+
+#: guifi_devel.inc.php:669
+msgid "Manufacturer Name"
+msgstr ""
+
+#: guifi_devel.inc.php:674
+msgid "Manufacturer name, please, use a clear and short description."
+msgstr ""
+
+#: guifi_devel.inc.php:686
+msgid "TODO."
+msgstr ""
+
+#: guifi_devel.inc.php:718
+msgid "The device manufacturer !manufacturer has been created / updated by !user."
+msgstr ""
+
+#: guifi_devel.inc.php:729
+msgid "Are you sure you want to delete the device manufacturer \" %manufacturer \"?"
+msgstr ""
+
+#: guifi_devel.inc.php:750
+msgid "The device manufacturer %manufacturer has been DELETED by %user."
+msgstr ""
+
+#: guifi_devices.inc.php:20
+msgid "Device (%num) does not exist."
+msgstr ""
+
+#: guifi_devices.inc.php:295;364
+msgid "You are not authorized to edit this device"
+msgstr ""
+
+#: guifi_devices.inc.php:301;878 guifi_domains.inc.php:98;688 guifi_hosts.inc.php:269;285 guifi_includes.inc.php:698;1665;1682;1711;1727 guifi_links.inc.php:269;309 guifi_service.inc.php:466
+msgid "Reset"
+msgstr ""
+
+#: guifi_devices.inc.php:308;907 guifi_domains.inc.php:105;717
+msgid "Save & continue edit"
+msgstr ""
+
+#: guifi_devices.inc.php:309;316;912 guifi_domains.inc.php:106;109;722
+msgid "Save & exit"
+msgstr ""
+
+#: guifi_devices.inc.php:381
+msgid "The node has not a valid email address as a contact. Using your email as a default. Change the contact mail address if necessary."
+msgstr ""
+
+#: guifi_devices.inc.php:459
+msgid "adding a new %device at %node"
+msgstr ""
+
+#: guifi_devices.inc.php:464
+msgid "edit device %dname"
+msgstr ""
+
+#: guifi_devices.inc.php:471
+msgid "Device name, status and main settings"
+msgstr ""
+
+#: guifi_devices.inc.php:480 guifi_node.inc.php:874 guifi_tools.inc.php:499 guifi_traceroute.inc.php:507 guifi_users.inc.php:282;304;857
+msgid "Node"
+msgstr ""
+
+#: guifi_devices.inc.php:504
+msgid "nick"
+msgstr ""
+
+#: guifi_devices.inc.php:508
+msgid "The name of the device.<br />Used as a hostname, SSID, etc..."
+msgstr ""
+
+#: guifi_devices.inc.php:512 guifi_includes.inc.php:566 guifi_links.inc.php:148 guifi_node.inc.php:883 guifi_service.inc.php:163 guifi_traceroute.inc.php:511 guifi_users.inc.php:276;299
+msgid "Status"
+msgstr ""
+
+#: guifi_devices.inc.php:516
+msgid "Current status of this device."
+msgstr ""
+
+#: guifi_devices.inc.php:533
+msgid "Log Server"
+msgstr ""
+
+#: guifi_devices.inc.php:534
+msgid "If you have a log server for mikrotik (dude), add your ip."
+msgstr ""
+
+#: guifi_devices.inc.php:541
+msgid "Server which collects traffic and availability data"
+msgstr ""
+
+#: guifi_devices.inc.php:544
+msgid "Default"
+msgstr ""
+
+#: guifi_devices.inc.php:544 guifi_includes.inc.php:792 guifi_ipv4.inc.php:339
+msgid "None"
+msgstr ""
+
+#: guifi_devices.inc.php:545
+msgid "If not specified, inherits zone properties."
+msgstr ""
+
+#: guifi_devices.inc.php:570 guifi_domains.inc.php:385
+msgid "Comments"
+msgstr ""
+
+#: guifi_devices.inc.php:572
+msgid "This text will be displayed as an information of the device."
+msgstr ""
+
+#: guifi_devices.inc.php:608 guifi_node.inc.php:446 guifi_service.inc.php:438
+msgid "Nick already in use."
+msgstr ""
+
+#: guifi_devices.inc.php:626
+msgid "IP %ipv4 already taken in the database. Choose another or leave the address blank."
+msgstr ""
+
+#: guifi_devices.inc.php:638
+msgid "Interface name %name duplicated"
+msgstr ""
+
+#: guifi_devices.inc.php:704
+msgid "Radio# %id has been moved to radio# %id2 at device %dname"
+msgstr ""
+
+#: guifi_devices.inc.php:755
+msgid "The device %name has been CREATED by %user."
+msgstr ""
+
+#: guifi_devices.inc.php:759
+msgid "The device %name has been UPDATED by %user."
+msgstr ""
+
+#: guifi_devices.inc.php:838
+msgid "Netmask on remote link %nname - %type was adjusted to %mask"
+msgstr ""
+
+#: guifi_devices.inc.php:886 guifi_domains.inc.php:696
+msgid "Ignore & back to main form"
+msgstr ""
+
+#: guifi_devices.inc.php:894
+msgid "Select device & back to main form"
+msgstr ""
+
+#: guifi_devices.inc.php:902 guifi_domains.inc.php:712
+msgid "Validate"
+msgstr ""
+
+#: guifi_devices.inc.php:923
+msgid "Are you sure you want to delete this device?"
+msgstr ""
+
+#: guifi_devices.inc.php:925
+msgid "WARNING: This action cannot be undone. The device and it's related information will be <strong>permanently deleted</strong>, that includes:<ul><li>The device</li><li>The related interfaces</li><li>The links where this device is present</li></ul>If you are really sure that you want to delete this information, press \"Confirm delete\"."
+msgstr ""
+
+#: guifi_devices.inc.php:930 guifi_domains.inc.php:740
+msgid "Confirm delete"
+msgstr ""
+
+#: guifi_devices.inc.php:934
+msgid "Delete device: (%name)"
+msgstr ""
+
+#: guifi_devices.inc.php:1002
+msgid "You are not allowed to update this node."
+msgstr ""
+
+#: guifi_devices.inc.php:1014
+msgid "Add a new device"
+msgstr ""
+
+#: guifi_devices.inc.php:1015
+msgid "Type of device to be created"
+msgstr ""
+
+#: guifi_devices.inc.php:1022 guifi_domains.inc.php:889;952
+msgid "add"
+msgstr ""
+
+#: guifi_devices.inc.php:1054;1082
+msgid "DSL information & MRTG parameters"
+msgstr ""
+
+#: guifi_devices.inc.php:1061 guifi_service.inc.php:280
+msgid "Download"
+msgstr ""
+
+#: guifi_devices.inc.php:1064 guifi_service.inc.php:283
+msgid "Download bandwidth"
+msgstr ""
+
+#: guifi_devices.inc.php:1068 guifi_service.inc.php:287
+msgid "Upload"
+msgstr ""
+
+#: guifi_devices.inc.php:1071 guifi_service.inc.php:290
+msgid "Upload bandwidth"
+msgstr ""
+
+#: guifi_devices.inc.php:1097
+msgid "MRTG config"
+msgstr ""
+
+#: guifi_devices.inc.php:1161
+msgid "ssid"
+msgstr ""
+
+#: guifi_devices.inc.php:1161
+msgid "mode"
+msgstr ""
+
+#: guifi_devices.inc.php:1161
+msgid "protocol"
+msgstr ""
+
+#: guifi_devices.inc.php:1161
+msgid "ch"
+msgstr ""
+
+#: guifi_devices.inc.php:1161
+msgid "wireless mac"
+msgstr ""
+
+#: guifi_devices.inc.php:1162
+msgid "clients"
+msgstr ""
+
+#: guifi_devices.inc.php:1169
+msgid "bandwidth"
+msgstr ""
+
+#: guifi_devices.inc.php:1171;1174
+msgid "SNMP index to graph"
+msgstr ""
+
+#: guifi_devices.inc.php:1182 guifi_node.inc.php:1091
+msgid "graphs provided from"
+msgstr ""
+
+#: guifi_devices.inc.php:1188
+msgid "IP address & MAC"
+msgstr ""
+
+#: guifi_devices.inc.php:1193
+msgid "status &#038; availability"
+msgstr ""
+
+#: guifi_devices.inc.php:1234 guifi_domains.inc.php:998
+msgid "Not found"
+msgstr ""
+
+#: guifi_devices.inc.php:1241
+msgid "Node:"
+msgstr ""
+
+#: guifi_devices.inc.php:1241
+msgid "Device:"
+msgstr ""
+
+#: guifi_devices.inc.php:1252
+msgid "traffic overview"
+msgstr ""
+
+#: guifi_devices.inc.php:1253
+msgid "device graphs"
+msgstr ""
+
+#: guifi_devices.inc.php:1260;1396 guifi_tools.inc.php:18
+msgid "id"
+msgstr ""
+
+#: guifi_devices.inc.php:1260;1408 guifi_ipv4.inc.php:249 guifi_node.inc.php:1202 guifi_service.inc.php:582;599;785
+msgid "type"
+msgstr ""
+
+#: guifi_devices.inc.php:1260;1396
+msgid "ip address"
+msgstr ""
+
+#: guifi_devices.inc.php:1260
+msgid "netmask"
+msgstr ""
+
+#: guifi_devices.inc.php:1260 guifi_tools.inc.php:110
+msgid "mac"
+msgstr ""
+
+#: guifi_devices.inc.php:1262
+msgid "interfaces information"
+msgstr ""
+
+#: guifi_devices.inc.php:1265
+msgid "services information"
+msgstr ""
+
+#: guifi_devices.inc.php:1272 guifi_service.inc.php:747
+msgid "View device %dname"
+msgstr ""
+
+#: guifi_devices.inc.php:1289;1291;1395;1404;1406 guifi_node.inc.php:1300;1302 guifi.module:594;851
+msgid "links"
+msgstr ""
+
+#: guifi_devices.inc.php:1293
+msgid "bridge wds/p2p"
+msgstr ""
+
+#: guifi_devices.inc.php:1295
+msgid "cable"
+msgstr ""
+
+#: guifi_devices.inc.php:1319;1327;1448;1456 guifi_node.inc.php:1351;1359
+msgid "N"
+msgstr ""
+
+#: guifi_devices.inc.php:1320;1449 guifi_node.inc.php:1352
+msgid "NE"
+msgstr ""
+
+#: guifi_devices.inc.php:1321;1450 guifi_node.inc.php:1353
+msgid "E"
+msgstr ""
+
+#: guifi_devices.inc.php:1322;1451 guifi_node.inc.php:1354
+msgid "SE"
+msgstr ""
+
+#: guifi_devices.inc.php:1323;1452 guifi_node.inc.php:1355
+msgid "S"
+msgstr ""
+
+#: guifi_devices.inc.php:1324;1453 guifi_node.inc.php:1356
+msgid "SW"
+msgstr ""
+
+#: guifi_devices.inc.php:1325;1454 guifi_node.inc.php:1357
+msgid "W"
+msgstr ""
+
+#: guifi_devices.inc.php:1326;1455 guifi_node.inc.php:1358
+msgid "NW"
+msgstr ""
+
+#: guifi_devices.inc.php:1395
+msgid "Totals"
+msgstr ""
+
+#: guifi_devices.inc.php:1395;1396;1408;1478 guifi_node.inc.php:1304;1393 guifi.module:1663;1799
+msgid "kms."
+msgstr ""
+
+#: guifi_devices.inc.php:1396 guifi_tools.inc.php:20;110
+msgid "interface"
+msgstr ""
+
+#: guifi_devices.inc.php:1396 guifi_node.inc.php:1201 guifi_service.inc.php:726 guifi_tools.inc.php:20;110
+msgid "device"
+msgstr ""
+
+#: guifi_devices.inc.php:1396 guifi_node.inc.php:1080 guifi_tools.inc.php:20;110
+msgid "node"
+msgstr ""
+
+#: guifi_devices.inc.php:1396;1408 guifi_node.inc.php:1204;1304 guifi_service.inc.php:726 guifi_zone.inc.php:1380
+msgid "status"
+msgstr ""
+
+#: guifi_devices.inc.php:1396;1408
+msgid "routing"
+msgstr ""
+
+#: guifi_devices.inc.php:1396;1408 guifi_node.inc.php:1304
+msgid "az."
+msgstr ""
+
+#: guifi_devices.inc.php:1408
+msgid "linked devices"
+msgstr ""
+
+#: guifi_devices.inc.php:1408 guifi_node.inc.php:1203;1304
+msgid "ip"
+msgstr ""
+
+#: guifi_devices.inc.php:1478 guifi_node.inc.php:1393
+msgid "Total:"
+msgstr ""
+
+#: guifi_domains.inc.php:20
+msgid "Domain (%num) does not exist."
+msgstr ""
+
+#: guifi_domains.inc.php:93;166
+msgid "You are not authorized to edit this domain"
+msgstr ""
+
+#: guifi_domains.inc.php:182
+msgid "The service has not a valid email address as a contact. Using your email as a default. Change the contact mail address if necessary."
+msgstr ""
+
+#: guifi_domains.inc.php:210
+msgid "adding a new type %domain at %node"
+msgstr ""
+
+#: guifi_domains.inc.php:215
+msgid "edit domain %dname"
+msgstr ""
+
+#: guifi_domains.inc.php:222
+msgid "Domain name main settings"
+msgstr ""
+
+#: guifi_domains.inc.php:253
+msgid "Domain Name"
+msgstr ""
+
+#: guifi_domains.inc.php:256
+msgid "The Domain Name"
+msgstr ""
+
+#: guifi_domains.inc.php:268
+msgid "Mails where changes on the domain will be notified, if many, separated by ','"
+msgstr ""
+
+#: guifi_domains.inc.php:270
+msgid "used for network administration."
+msgstr ""
+
+#: guifi_domains.inc.php:277
+msgid "Set the Nameserver IP Address"
+msgstr ""
+
+#: guifi_domains.inc.php:283
+msgid "External scope: Put the Internet IP Address of NameServer."
+msgstr ""
+
+#: guifi_domains.inc.php:295
+msgid "Advanced domain name settings"
+msgstr ""
+
+#: guifi_domains.inc.php:303;877;936 firmware/wrt-sveasoft-dd.inc.php:359
+msgid "Management"
+msgstr ""
+
+#: guifi_domains.inc.php:306
+msgid "Choose <strong>Automatic</strong> if you want to use your domain management with the utility for servers \"DNSServices\""
+msgstr ""
+
+#: guifi_domains.inc.php:308
+msgid "Choose <strong>Manual</strong>, if you just want to keep track of your domain/hosts here but want to do the management in your server manually."
+msgstr ""
+
+#: guifi_domains.inc.php:312
+msgid "Public domain"
+msgstr ""
+
+#: guifi_domains.inc.php:315
+msgid "Choose <strong>Yes</strong> if you want your domain/subdomain can be delegated subdomains from other users. (Ex: DELEGATED.yourdomain.net."
+msgstr ""
+
+#: guifi_domains.inc.php:317
+msgid "Choose <strong>No</strong> if your domain/subdomain is private and you do not want to allow delegates subdomains."
+msgstr ""
+
+#: guifi_domains.inc.php:322
+msgid "Transfer Options"
+msgstr ""
+
+#: guifi_domains.inc.php:324
+msgid "Allow to be enslaved (Recommended)"
+msgstr ""
+
+#: guifi_domains.inc.php:324
+msgid "Allow Forward"
+msgstr ""
+
+#: guifi_domains.inc.php:324
+msgid "Disabled"
+msgstr ""
+
+#: guifi_domains.inc.php:325
+msgid "<strong>Ensalved</strong>, Allow other DNS servers on the network have an exact copy of the domain, so, if the original DNS does not work, can access to the hosts."
+msgstr ""
+
+#: guifi_domains.inc.php:327
+msgid "<strong>Forward</strong>, Allow other DNS servers on the network to forward the request to the master server transparently saving bandwidth."
+msgstr ""
+
+#: guifi_domains.inc.php:329
+msgid "<strong>Disabled</strong>, If you select this option, the management of your domain may not be transferred in any way, your domain will not be visible to other network servers."
+msgstr ""
+
+#: guifi_domains.inc.php:334
+msgid "Default Domain IPv4 Address"
+msgstr ""
+
+#: guifi_domains.inc.php:337
+msgid "Ex: domain.net without hostname resolve this IPv4 Address, tends to be the same address as hostname: www."
+msgstr ""
+
+#: guifi_domains.inc.php:339;349
+msgid "leave it blank if not needed."
+msgstr ""
+
+#: guifi_domains.inc.php:344
+msgid "Default Domain IPv6 Address"
+msgstr ""
+
+#: guifi_domains.inc.php:347
+msgid "Ex: domain.net without hostname resolve this IPv6 Address, tends to be the same address as hostname: www."
+msgstr ""
+
+#: guifi_domains.inc.php:355
+msgid "External Mailservers MX "
+msgstr ""
+
+#: guifi_domains.inc.php:357
+msgid "Separated by ','. Put them here only if the mail servers are external, if they are not, leave it blank."
+msgstr ""
+
+#: guifi_domains.inc.php:359
+msgid "Internal MailServers should be configured in the advanced options of the hosts."
+msgstr ""
+
+#: guifi_domains.inc.php:364
+msgid "External Namservers "
+msgstr ""
+
+#: guifi_domains.inc.php:366
+msgid "Separated by ','. Put external nameserver IP address if you need it, if they are not, leave it blank."
+msgstr ""
+
+#: guifi_domains.inc.php:368
+msgid "Internal domain Nameservers should be configured in the advanced options of the hosts."
+msgstr ""
+
+#: guifi_domains.inc.php:387
+msgid "This text will be displayed as an information of the domain."
+msgstr ""
+
+#: guifi_domains.inc.php:408
+msgid "Error: <strong> %name </strong> - Domain Name can only contain lowercase letters, numbers, dashes and dots."
+msgstr ""
+
+#: guifi_domains.inc.php:419
+msgid "Domain Name already in use in scope: %scope."
+msgstr ""
+
+#: guifi_domains.inc.php:438
+msgid "Error!  you renamed the domain / subdomain: <strong>%name</strong> This domain contains delegations, such <strong>%dlgdomain</strong>."
+msgstr ""
+
+#: guifi_domains.inc.php:459
+msgid "Subdomain name <strong>%hostname</strong> already in use as <strong>HOSTNAME</strong> from master domain : <strong>%domain</strong>"
+msgstr ""
+
+#: guifi_domains.inc.php:461
+msgid " Delete hostame first if you want use this name as delegated domain."
+msgstr ""
+
+#: guifi_domains.inc.php:467
+msgid "Subdomain name <strong>%alias</strong> already in use as <strong>ALIAS</strong> from hostname: <strong>%hostname</strong>  on master domain : <strong>%domain</strong>"
+msgstr ""
+
+#: guifi_domains.inc.php:469
+msgid "Delete alias first if you want use this name as delegated domain."
+msgstr ""
+
+#: guifi_domains.inc.php:486
+msgid "Server <strong>%nick</strong> does not have an IPv4 address. Please, check it."
+msgstr ""
+
+#: guifi_domains.inc.php:501
+msgid "Hostname Error! There is already a delegate domain with this name: <strong>%hostname.%mname</strong>."
+msgstr ""
+
+#: guifi_domains.inc.php:506
+msgid "Error! Hostname: <strong>%hostname</strong> can only contain lowercase letters, numbers, dashes and dots."
+msgstr ""
+
+#: guifi_domains.inc.php:511
+msgid "Error! Hostname: <strong>%hostname</strong> cannot canotain dot at the end of the name."
+msgstr ""
+
+#: guifi_domains.inc.php:515
+msgid "Error!! Hostname: <strong>%host</strong> duplicated."
+msgstr ""
+
+#: guifi_domains.inc.php:529
+msgid "Alias Error! There is already a delegate domain with this name: <strong>%alias</strong>."
+msgstr ""
+
+#: guifi_domains.inc.php:535
+msgid "Error! Alias: <strong>%alias</strong> can only contain lowercase letters, numbers, dashes and dots."
+msgstr ""
+
+#: guifi_domains.inc.php:543
+msgid "Error! Alias: <strong>%alias</strong> This is no a valid host name, You should write something like this: <strong>%aliasdomain.xx.</strong> for an external aliases"
+msgstr ""
+
+#: guifi_domains.inc.php:546
+msgid "Error!! Hostname <strong>%host</strong> does not have an IP address and contains aliases, must put a DOT \"<strong>.</strong>\" at the end of the alias domain name if the alias points to an external domain. ex: \" externalhost.dyndns.org<strong>.</strong> \".<strong>ONLY ONE</strong> external domain alias allowed"
+msgstr ""
+
+#: guifi_domains.inc.php:549
+msgid "Error!! Hostname <strong>%host</strong> have an IP address and contains aliases that point to an external domain, you should decide one thing or another but not both at once "
+msgstr ""
+
+#: guifi_domains.inc.php:552
+msgid "Error!! Hostname <strong>%host</strong> has more that one alias pointing to an external domainmain. You can define only one alias in that case."
+msgstr ""
+
+#: guifi_domains.inc.php:559
+msgid "Error!! Can't use your own Domain/Subdomain as external domain."
+msgstr ""
+
+#: guifi_domains.inc.php:562;572
+msgid "Error!! Alias: <strong>%alias</strong> duplicated."
+msgstr ""
+
+#: guifi_domains.inc.php:575
+msgid "Error!! Alias or Hostname: <strong>%aliashost</strong> alredy exists as hostname or alias!!"
+msgstr ""
+
+#: guifi_domains.inc.php:583
+msgid "Error!! MX Priority: <strong>%mxprior</strong> duplicated."
+msgstr ""
+
+#: guifi_domains.inc.php:589
+msgid "Error!! empty IPv4/6 ADDRESS and ALIAS for hostname: <strong>%hostname</strong>"
+msgstr ""
+
+#: guifi_domains.inc.php:598
+msgid "Entered MX value is not multple than 10."
+msgstr ""
+
+#: guifi_domains.inc.php:661
+msgid "The domain %name has been CREATED by %user."
+msgstr ""
+
+#: guifi_domains.inc.php:665
+msgid "The domain %name has been UPDATED by %user."
+msgstr ""
+
+#: guifi_domains.inc.php:704
+msgid "Select domain & back to main form"
+msgstr ""
+
+#: guifi_domains.inc.php:733
+msgid "Are you sure you want to delete this domain?"
+msgstr ""
+
+#: guifi_domains.inc.php:735
+msgid "WARNING: This action cannot be undone. The domain and it's related information will be <strong>permanently deleted</strong>, that includes:<ul><li>The domain</li><li>The related hosts</li><li>The related delegations</li></ul>If you are really sure that you want to delete this information, press \"Confirm delete\"."
+msgstr ""
+
+#: guifi_domains.inc.php:744
+msgid "Delete domain: (%name)"
+msgstr ""
+
+#: guifi_domains.inc.php:762
+msgid "The domain %name has been DELETED by %user."
+msgstr ""
+
+#: guifi_domains.inc.php:815
+msgid "You are not allowed to create a domain on this service."
+msgstr ""
+
+#: guifi_domains.inc.php:831
+msgid "Select new domain type"
+msgstr ""
+
+#: guifi_domains.inc.php:855
+msgid "Add a new domain"
+msgstr ""
+
+#: guifi_domains.inc.php:856
+msgid "Insert domain name"
+msgstr ""
+
+#: guifi_domains.inc.php:870;929 guifi_service.inc.php:785
+msgid "Scope"
+msgstr ""
+
+#: guifi_domains.inc.php:905
+msgid "Add a new delegated Domain Name"
+msgstr ""
+
+#: guifi_domains.inc.php:906
+msgid "Just the hostname (HOSTNAME.domain.com), master domain will be added before"
+msgstr ""
+
+#: guifi_domains.inc.php:986
+msgid "Service:"
+msgstr ""
+
+#: guifi_domains.inc.php:987
+msgid "Domain:"
+msgstr ""
+
+#: guifi_domains.inc.php:988
+msgid "Scope:"
+msgstr ""
+
+#: guifi_domains.inc.php:1016
+msgid "Delegation"
+msgstr ""
+
+#: guifi_domains.inc.php:1016;1022 guifi_hosts.inc.php:224
+msgid "IPv4 Address"
+msgstr ""
+
+#: guifi_domains.inc.php:1016
+msgid "Nameserver"
+msgstr ""
+
+#: guifi_domains.inc.php:1018
+msgid "Delegations"
+msgstr ""
+
+#: guifi_domains.inc.php:1022
+msgid "HostName"
+msgstr ""
+
+#: guifi_domains.inc.php:1022
+msgid "Alias"
+msgstr ""
+
+#: guifi_domains.inc.php:1022 guifi_hosts.inc.php:234
+msgid "IPv6 Address"
+msgstr ""
+
+#: guifi_domains.inc.php:1022
+msgid "Namserver"
+msgstr ""
+
+#: guifi_domains.inc.php:1022
+msgid "MailServer"
+msgstr ""
+
+#: guifi_domains.inc.php:1022 guifi_hosts.inc.php:135
+msgid "MX Priority"
+msgstr ""
+
+#: guifi_domains.inc.php:1024
+msgid "Hostnames"
+msgstr ""
+
+#: guifi_domains.inc.php:1030
+msgid "View domain %dname"
+msgstr ""
+
+#: guifi_gml.inc.php:11
+msgid "export zone nodes in gml format"
+msgstr ""
+
+#: guifi_gml.inc.php:12
+msgid "Links"
+msgstr ""
+
+#: guifi_gml.inc.php:12
+msgid "export zone links in gml format"
+msgstr ""
+
+#: guifi_gml.inc.php:13
+msgid "The <a href=\"http://opengis.net/gml/\">GML</a> is a Markup Language XML for Geography described at the <a href=\"http://www.opengeospatial.org/\">Open Geospatial Consortium</a>"
+msgstr ""
+
+#: guifi_gml.inc.php:16
+msgid "export %zname% in GML format"
+msgstr ""
+
+#: guifi_graphs.inc.php:29
+msgid "This node has the graphs disabled."
+msgstr ""
+
+#: guifi_graphs.inc.php:38;193
+msgid "This device has the graphs disabled."
+msgstr ""
+
+#: guifi_graphs.inc.php:47
+msgid "Here you have a detailed view of the available information for several periods of time (daily, weekly, monthly and yearly). You can obtain a detailed graph for a given period of time by entering the period in the boxes below."
+msgstr ""
+
+#: guifi_graphs.inc.php:59
+msgid "The clients graph displays the top clients by transit."
+msgstr ""
+
+#: guifi_graphs.inc.php:64
+msgid "Supernode graph displays the transit of each radio."
+msgstr ""
+
+#: guifi_graphs.inc.php:68
+msgid "The radio graph show in &#038; out transit."
+msgstr ""
+
+#: guifi_graphs.inc.php:71
+msgid "The ping graph displays the latency and availability. High latency usually means bad connection. Yellow means % of failed pings, could be some yellow on the graphs, but must not reach value of 100, if the value reaches 100, that means that the radio is offline."
+msgstr ""
+
+#: guifi_graphs.inc.php:92 guifi_traceroute.inc.php:348
+msgid "From:"
+msgstr ""
+
+#: guifi_graphs.inc.php:95 guifi_traceroute.inc.php:374
+msgid "To:"
+msgstr ""
+
+#: guifi_graphs.inc.php:104
+msgid "customized graph"
+msgstr ""
+
+#: guifi_graphs.inc.php:107
+msgid "day"
+msgstr ""
+
+#: guifi_graphs.inc.php:109
+msgid "week"
+msgstr ""
+
+#: guifi_graphs.inc.php:111
+msgid "month"
+msgstr ""
+
+#: guifi_graphs.inc.php:113
+msgid "year"
+msgstr ""
+
+#: guifi_graphs.inc.php:119;120
+msgid "graph details for"
+msgstr ""
+
+#: guifi_hosts.inc.php:14
+msgid "No hosts"
+msgstr ""
+
+#: guifi_hosts.inc.php:30
+msgid "Host Name's for this domain"
+msgstr ""
+
+#: guifi_hosts.inc.php:43
+msgid "Aliases (CNAME)"
+msgstr ""
+
+#: guifi_hosts.inc.php:46
+msgid "Host aliases. Save or press \"Preview\" to get more entries"
+msgstr ""
+
+#: guifi_hosts.inc.php:60
+msgid "Enter the host alias. ex: www<br> Must put a DOT \"<strong>.</strong>\" at the end of the domain name if the alias points to an external domain. ex: \"externalhost.dyndns.org<strong>.</strong>\". <strong>ONLY ONE</strong> external domain alias allowed"
+msgstr ""
+
+#: guifi_hosts.inc.php:67
+msgid "CNAME"
+msgstr ""
+
+#: guifi_hosts.inc.php:85
+msgid "Select these options only if this feature has made by this host.\n                                   <br><b>NS</b>: Selected as default on host 'ns1'. This is your primary NameServer forced, cannot uncheck it.\n                                   <br><b>MX</b>: Choose this option if this host has to perform tasks of <b>MailHost</b> server. Select, then Save and edit again to set priority on a new field."
+msgstr ""
+
+#: guifi_hosts.inc.php:91
+msgid "Select these options only if this feature has made by this host.\n                                   <br><b>NS</b>: Choose this option if this host has to perform tasks of <b>NameServer</b>.\n                                   <br><b>MX</b>: Choose this option if this host has to perform tasks of <b>MailHost</b> server. Select, then Save and edit again to set priority on a new field."
+msgstr ""
+
+#: guifi_hosts.inc.php:100
+msgid "Advanced settings"
+msgstr ""
+
+#: guifi_hosts.inc.php:120
+msgid "Options"
+msgstr ""
+
+#: guifi_hosts.inc.php:139
+msgid "One can have several mail servers, with priorities of 10, 20 and so on. A mail server attempting to deliver to example.org would first try the highest priority MX (the record with the lowest priority number), then the second highest, etc, until the mail can be properly delivered. Must be a multiple of 10 and can not be repeated."
+msgstr ""
+
+#: guifi_hosts.inc.php:151
+msgid "Delete host"
+msgstr ""
+
+#: guifi_hosts.inc.php:170
+msgid "Add New Host"
+msgstr ""
+
+#: guifi_hosts.inc.php:192
+msgid "IPv4:"
+msgstr ""
+
+#: guifi_hosts.inc.php:197
+msgid "IPv6:"
+msgstr ""
+
+#: guifi_hosts.inc.php:201
+msgid "Host:"
+msgstr ""
+
+#: guifi_hosts.inc.php:217
+msgid "Host Name"
+msgstr ""
+
+#: guifi_hosts.inc.php:228;238
+msgid "Leave it blank if you want to use an alias (CNAME ) to an external domain.<br> ex: hostname is an alias of hostname.dyndns.org."
+msgstr ""
+
+#: guifi_hosts.inc.php:229;239
+msgid "<br>This address is usually the same IP as the domain NameServer."
+msgstr ""
+
+#: guifi_hosts.inc.php:277
+msgid "Invalid %ipv4 address"
+msgstr ""
+
+#: guifi_hosts.inc.php:293
+msgid "Invalid %ipv6 address"
+msgstr ""
+
+#: guifi_hosts.inc.php:327
+msgid " %host added"
+msgstr ""
+
+#: guifi_hosts.inc.php:337
+msgid "Hostname <strong>%hostname</strong> has been deleted."
+msgstr ""
+
+#: guifi_hosts.inc.php:13
+msgid "1 host"
+msgid_plural "@count hosts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: guifi_includes.inc.php:121 guifi_ipv4.inc.php:248 guifi.module:915
+msgid "hosts"
+msgstr ""
+
+#: guifi_includes.inc.php:124
+msgid "0 - all hosts"
+msgstr ""
+
+#: guifi_includes.inc.php:231
+msgid "backbone"
+msgstr ""
+
+#: guifi_includes.inc.php:240 guifi_node.inc.php:987
+msgid "kms"
+msgstr ""
+
+#: guifi_includes.inc.php:389
+msgid "There are no devices to link within the given criteria, you can use the filters to get more results."
+msgstr ""
+
+#: guifi_includes.inc.php:402
+msgid "select the device which do you like to link with"
+msgstr ""
+
+#: guifi_includes.inc.php:486
+msgid "Filters"
+msgstr ""
+
+#: guifi_includes.inc.php:495
+msgid "Distance from"
+msgstr ""
+
+#: guifi_includes.inc.php:500
+msgid "List starts at this distance"
+msgstr ""
+
+#: guifi_includes.inc.php:509
+msgid "until"
+msgstr ""
+
+#: guifi_includes.inc.php:514
+msgid "...and finishes at this distance"
+msgstr ""
+
+#: guifi_includes.inc.php:524
+msgid "Stop list at"
+msgstr ""
+
+#: guifi_includes.inc.php:528
+msgid "Max. # of rows to list"
+msgstr ""
+
+#: guifi_includes.inc.php:537
+msgid "Search string"
+msgstr ""
+
+#: guifi_includes.inc.php:541
+msgid "Zone, node or device contains this string"
+msgstr ""
+
+#: guifi_includes.inc.php:551
+msgid "Only Supernodes"
+msgstr ""
+
+#: guifi_includes.inc.php:555
+msgid "Search only for supernodes?"
+msgstr ""
+
+#: guifi_includes.inc.php:562;583
+msgid "All"
+msgstr ""
+
+#: guifi_includes.inc.php:570
+msgid "Status of the node"
+msgstr ""
+
+#: guifi_includes.inc.php:580 guifi_node.inc.php:884
+msgid "Azimuth"
+msgstr ""
+
+#: guifi_includes.inc.php:584 guifi_node.inc.php:906;914
+msgid "North"
+msgstr ""
+
+#: guifi_includes.inc.php:585 guifi_node.inc.php:908
+msgid "East"
+msgstr ""
+
+#: guifi_includes.inc.php:586 guifi_node.inc.php:910
+msgid "South"
+msgstr ""
+
+#: guifi_includes.inc.php:587 guifi_node.inc.php:912
+msgid "West"
+msgstr ""
+
+#: guifi_includes.inc.php:589
+msgid "List nodes at the selected orientation."
+msgstr ""
+
+#: guifi_includes.inc.php:684
+msgid "No special characters allowed for nick name, use just 7 bits chars."
+msgstr ""
+
+#: guifi_includes.inc.php:688
+msgid "Nick name have to be a single word."
+msgstr ""
+
+#: guifi_includes.inc.php:692
+msgid "You have to specify a nick."
+msgstr ""
+
+#: guifi_includes.inc.php:705
+msgid "Error in ipv4 address (%addr), use \"10.138.0.1\" format."
+msgstr ""
+
+#: guifi_includes.inc.php:932
+msgid "Error: trying to search for a network for unknown node or zone"
+msgstr ""
+
+#: guifi_includes.inc.php:936
+msgid "Error: trying to search for a network of unknown size"
+msgstr ""
+
+#: guifi_includes.inc.php:940
+msgid "Error: trying to search for a network for unknown type"
+msgstr ""
+
+#: guifi_includes.inc.php:974
+msgid "Finding if %mask is available at %zone, elapsed: %secs"
+msgstr ""
+
+#: guifi_includes.inc.php:999
+msgid "Found %ip/%rmask available at %netbase/%amask, got from %zone, elapsed: %secs"
+msgstr ""
+
+#: guifi_includes.inc.php:1011
+msgid "A new network (%base / %mask) has been allocated for zone %name, got from %name2 by %user."
+msgstr ""
+
+#: guifi_includes.inc.php:1049
+msgid "Unable to find space at %zone, will look at parents, elapsed: %secs"
+msgstr ""
+
+#: guifi_includes.inc.php:1195
+msgid "Network %net/%mask is full"
+msgstr ""
+
+#: guifi_includes.inc.php:1292
+msgid "BASIC"
+msgstr ""
+
+#: guifi_includes.inc.php:1293
+msgid "TRACE"
+msgstr ""
+
+#: guifi_includes.inc.php:1294
+msgid "FULL"
+msgstr ""
+
+#: guifi_includes.inc.php:1384
+msgid "live ping/traceroute to %device"
+msgstr ""
+
+#: guifi_includes.inc.php:1634
+msgid "A notification will be sent to: %to"
+msgstr ""
+
+#: guifi_includes.inc.php:1656 guifi_tools.inc.php:445
+msgid "%email is not valid"
+msgstr ""
+
+#: guifi_includes.inc.php:1671
+msgid "Error in MAC address (%mac), use 99:99:99:99:99:99 format."
+msgstr ""
+
+#: guifi_includes.inc.php:1705
+msgid "Server name %name not valid."
+msgstr ""
+
+#: guifi_includes.inc.php:1721
+msgid "Node name %name not valid."
+msgstr ""
+
+#: guifi_includes.inc.php:1738
+msgid "Device name %name not valid."
+msgstr ""
+
+#: guifi_interfaces.inc.php:18
+msgid "Connection to AP"
+msgstr ""
+
+#: guifi_interfaces.inc.php:48
+msgid "Will rename the current interface name."
+msgstr ""
+
+#: guifi_interfaces.inc.php:56
+msgid "Link to another device at the node using a private network"
+msgstr ""
+
+#: guifi_interfaces.inc.php:69
+msgid "Allocate a Public Subnetwork to the interface"
+msgstr ""
+
+#: guifi_interfaces.inc.php:88
+msgid "New interface"
+msgstr ""
+
+#: guifi_interfaces.inc.php:89
+msgid "Save to database to add links or allocate subnetworks"
+msgstr ""
+
+#: guifi_interfaces.inc.php:100 guifi_radios.inc.php:644
+msgid "Add WDS/P2P link to extend the backbone"
+msgstr ""
+
+#: guifi_interfaces.inc.php:107 guifi_ipv4.inc.php:438
+msgid "Deleted"
+msgstr ""
+
+#: guifi_interfaces.inc.php:118
+msgid "Delete interface"
+msgstr ""
+
+#: guifi_interfaces.inc.php:148
+msgid "Create a simple (ap/client) link to an Access Point"
+msgstr ""
+
+#: guifi_interfaces.inc.php:154
+msgid "address(es)"
+msgstr ""
+
+#: guifi_interfaces.inc.php:176
+msgid "No interfaces"
+msgstr ""
+
+#: guifi_interfaces.inc.php:179
+msgid "1 interface"
+msgstr ""
+
+#: guifi_interfaces.inc.php:182 guifi.module:827
+msgid "interfaces"
+msgstr ""
+
+#: guifi_interfaces.inc.php:196
+msgid "Cable connections section"
+msgstr ""
+
+#: guifi_interfaces.inc.php:212
+msgid "Add Interface for cable connections"
+msgstr ""
+
+#: guifi_interfaces.inc.php:237
+msgid "New subnetwork %net/%mask will be allocated."
+msgstr ""
+
+#: guifi_interfaces.inc.php:284 guifi_radios.inc.php:1467
+msgid "Unable to create link, no networks available"
+msgstr ""
+
+#: guifi_ipv4.inc.php:20
+msgid "Adding an ipv4 network range"
+msgstr ""
+
+#: guifi_ipv4.inc.php:36
+msgid "The network %base/%mask (%type) has been DELETED by %user."
+msgstr ""
+
+#: guifi_ipv4.inc.php:63
+msgid "Are you sure you want to delete the network range %base/%mask?"
+msgstr ""
+
+#: guifi_ipv4.inc.php:84
+msgid "public - for any device available to everyone"
+msgstr ""
+
+#: guifi_ipv4.inc.php:85
+msgid "backbone - used for internal management, links..."
+msgstr ""
+
+#: guifi_ipv4.inc.php:131
+msgid "It was not possible to find %type space for %mask"
+msgstr ""
+
+#: guifi_ipv4.inc.php:149
+msgid "Network base IPv4 address"
+msgstr ""
+
+#: guifi_ipv4.inc.php:154
+msgid "A valid base ipv4 network address."
+msgstr ""
+
+#: guifi_ipv4.inc.php:159 guifi_tools.inc.php:252
+msgid "Mask"
+msgstr ""
+
+#: guifi_ipv4.inc.php:163
+msgid "The mask of the network. The number of valid hosts of each masks is displayed in the list box."
+msgstr ""
+
+#: guifi_ipv4.inc.php:173
+msgid "Network type"
+msgstr ""
+
+#: guifi_ipv4.inc.php:177
+msgid "The type of usage that this network will be used for."
+msgstr ""
+
+#: guifi_ipv4.inc.php:182
+msgid "Submit"
+msgstr ""
+
+#: guifi_ipv4.inc.php:201
+msgid "You must specify a base network for the zone."
+msgstr ""
+
+#: guifi_ipv4.inc.php:205
+msgid "You must specify a valid ipv4 notation."
+msgstr ""
+
+#: guifi_ipv4.inc.php:209
+msgid "You must specify a valid ipv4 network base address. Base address for:"
+msgstr ""
+
+#: guifi_ipv4.inc.php:212
+msgid "is"
+msgstr ""
+
+#: guifi_ipv4.inc.php:222
+msgid "Network already in use."
+msgstr ""
+
+#: guifi_ipv4.inc.php:231
+msgid "Only ad-hoc/mesh or root zones can have ad-hoc/mesh ranges assigned"
+msgstr ""
+
+#: guifi_ipv4.inc.php:236
+msgid "You must specify the protocol for backbone ranges on ad-hoc/mesh zones"
+msgstr ""
+
+#: guifi_ipv4.inc.php:246 guifi_networkutils.inc.php:120
+msgid "network"
+msgstr ""
+
+#: guifi_ipv4.inc.php:247
+msgid "start / end"
+msgstr ""
+
+#: guifi_ipv4.inc.php:250
+msgid "min / max"
+msgstr ""
+
+#: guifi_ipv4.inc.php:251
+msgid "ips used"
+msgstr ""
+
+#: guifi_ipv4.inc.php:252
+msgid "used %"
+msgstr ""
+
+#: guifi_ipv4.inc.php:256
+msgid "operations"
+msgstr ""
+
+#: guifi_ipv4.inc.php:269
+msgid "There is no zones to look at"
+msgstr ""
+
+#: guifi_ipv4.inc.php:323
+msgid "edit network"
+msgstr ""
+
+#: guifi_ipv4.inc.php:356
+msgid "The network %base/%mask (%type) has been CREATED by %user."
+msgstr ""
+
+#: guifi_ipv4.inc.php:362
+msgid "The network %base/%mask (%type) has been UPDATED by %user."
+msgstr ""
+
+#: guifi_ipv4.inc.php:412;576 guifi_radios.inc.php:661;666
+msgid "link(s)"
+msgstr ""
+
+#: guifi_ipv4.inc.php:422
+msgid "Link to another device using a public IPv4 address"
+msgstr ""
+
+#: guifi_ipv4.inc.php:460;488;594;613 guifi_links.inc.php:69
+msgid "Local IPv4"
+msgstr ""
+
+#: guifi_ipv4.inc.php:509
+msgid "Delete address"
+msgstr ""
+
+#: guifi_ipv4.inc.php:651
+msgid "Main public address"
+msgstr ""
+
+#: guifi_ipv4.inc.php:652
+msgid "wLan/Lan public IP address is required. No delete allowed."
+msgstr ""
+
+#: guifi_ipv4.inc.php:655
+msgid "Can't delete this address. The device should have at least one public IP address."
+msgstr ""
+
+#: guifi_ipv4.inc.php:666
+msgid "Delete ipv4 address"
+msgstr ""
+
+#: guifi_links.inc.php:81;120
+msgid "Remote IPv4"
+msgstr ""
+
+#: guifi_links.inc.php:138
+msgid "Routing"
+msgstr ""
+
+#: guifi_links.inc.php:167
+msgid "Remote interface"
+msgstr ""
+
+#: guifi_links.inc.php:195
+msgid "Delete link with"
+msgstr ""
+
+#: guifi_links.inc.php:257
+msgid "%type link with %node/%device deleted."
+msgstr ""
+
+#: guifi_links.inc.php:293
+msgid "Error in linked ipv4 addresses (%addr1/%mask - %addr2), not at same subnet."
+msgstr ""
+
+#: guifi_links.inc.php:348
+msgid "Ip address: %ip is already taken on another device!!"
+msgstr ""
+
+#: guifi_node.inc.php:44 guifi_zone.inc.php:863
+msgid "Home"
+msgstr ""
+
+#: guifi_node.inc.php:45 guifi_zone.inc.php:864
+msgid "Main menu"
+msgstr ""
+
+#: guifi_node.inc.php:117
+msgid "<nodename>"
+msgstr ""
+
+#: guifi_node.inc.php:173 guifi_service.inc.php:104
+msgid "Nick"
+msgstr ""
+
+#: guifi_node.inc.php:179
+msgid "Unique identifier for this node. Avoid generic names such 'MyNode', use something that really identifies your node.<br />Short name, single word with no spaces, 7-bit chars only, will be used for  hostname, reports, etc."
+msgstr ""
+
+#: guifi_node.inc.php:184 guifi_service.inc.php:119
+msgid "Contact"
+msgstr ""
+
+#: guifi_node.inc.php:190
+msgid "Who did possible this node or who to contact with regarding this node if it is distinct of the owner of this page. Use valid emails, if you like to have more than one, separated by commas.'"
+msgstr ""
+
+#: guifi_node.inc.php:196
+msgid "Node settings"
+msgstr ""
+
+#: guifi_node.inc.php:207 guifi_zone.inc.php:369
+msgid "default graphs server"
+msgstr ""
+
+#: guifi_node.inc.php:214
+msgid "Select the <em>graph server</em> to be used at this node.<br />You can find the <em>graph server</em> by introducing part of the id number, zone name or graph server name. A list with all matching values with a maximum of 50 values will be created.<br />You can refine the text to find your choice."
+msgstr ""
+
+#: guifi_node.inc.php:223
+msgid "It's supposed to be a stable online node?"
+msgstr ""
+
+#: guifi_node.inc.php:227
+msgid "Yes, is intended to be kept always on,  avalable for extending the mesh"
+msgstr ""
+
+#: guifi_node.inc.php:228
+msgid "I'm sorry. Will be connected just when I'm online"
+msgstr ""
+
+#: guifi_node.inc.php:230
+msgid "That helps while planning a mesh network. We should know which locations are likely available to provide stable links."
+msgstr ""
+
+#: guifi_node.inc.php:238
+msgid "License and usage agreement"
+msgstr ""
+
+#: guifi_node.inc.php:240
+msgid "You must accept this agreement to be authorized to create new nodes."
+msgstr ""
+
+#: guifi_node.inc.php:251
+msgid "Yes, I have read this and accepted"
+msgstr ""
+
+#: guifi_node.inc.php:284
+msgid "Node postion settings"
+msgstr ""
+
+#: guifi_node.inc.php:293 guifi_zone.inc.php:445
+msgid "Map"
+msgstr ""
+
+#: guifi_node.inc.php:294
+msgid "Select the point where the node has to be placed."
+msgstr ""
+
+#: guifi_node.inc.php:313 guifi_zone.inc.php:472;500
+msgid "Longitude"
+msgstr ""
+
+#: guifi_node.inc.php:315
+msgid "degrees (decimal values allowed)"
+msgstr ""
+
+#: guifi_node.inc.php:317
+msgid "minutes"
+msgstr ""
+
+#: guifi_node.inc.php:319
+msgid "seconds"
+msgstr ""
+
+#: guifi_node.inc.php:354 guifi_zone.inc.php:482;511
+msgid "Latitude"
+msgstr ""
+
+#: guifi_node.inc.php:390
+msgid "Zone description"
+msgstr ""
+
+#: guifi_node.inc.php:395
+msgid "Zone, address, neighborhood. Something that describes your area within your location.<br />If you don't know your lat/lon, please provide street and number or crossing street."
+msgstr ""
+
+#: guifi_node.inc.php:401
+msgid "Antenna elevation"
+msgstr ""
+
+#: guifi_node.inc.php:407
+msgid "Antenna height over the floor level."
+msgstr ""
+
+#: guifi_node.inc.php:429
+msgid "You must read and accept the license terms and conditions to be allowed to create nodes."
+msgstr ""
+
+#: guifi_node.inc.php:436 guifi_zone.inc.php:619
+msgid "Zone nick has been set to:"
+msgstr ""
+
+#: guifi_node.inc.php:479
+msgid "Can't be assigned to root zone, please assign the node to an appropiate zone."
+msgstr ""
+
+#: guifi_node.inc.php:485
+msgid "Can't be assigned to parent zone, please assign the node to an final zone."
+msgstr ""
+
+#: guifi_node.inc.php:492
+msgid "Elevation must be above the floor! :)"
+msgstr ""
+
+#: guifi_node.inc.php:496
+msgid "Do you mean that you are flying over the earth??? :)"
+msgstr ""
+
+#: guifi_node.inc.php:529
+msgid "The node %name has been CREATED by %user."
+msgstr ""
+
+#: guifi_node.inc.php:582
+msgid "The node %name has been UPDATED by %user."
+msgstr ""
+
+#: guifi_node.inc.php:600
+msgid "The node %name has been DELETED by %user."
+msgstr ""
+
+#: guifi_node.inc.php:692
+msgid "distances map from"
+msgstr ""
+
+#: guifi_node.inc.php:698
+msgid "Click on the map to get a new path profile to check the Line Of Sight<br />Click on the path profile to see the point on the map"
+msgstr ""
+
+#: guifi_node.inc.php:701
+msgid "Distance:"
+msgstr ""
+
+#: guifi_node.inc.php:701
+msgid "Azimuth:"
+msgstr ""
+
+#: guifi_node.inc.php:701
+msgid "degrees"
+msgstr ""
+
+#: guifi_node.inc.php:723
+msgid "distances from"
+msgstr ""
+
+#: guifi_node.inc.php:808;1028
+msgid "Next page"
+msgstr ""
+
+#: guifi_node.inc.php:810;1016
+msgid "Previous page"
+msgstr ""
+
+#: guifi_node.inc.php:855
+msgid "No nodes found. The list is empty"
+msgstr ""
+
+#: guifi_node.inc.php:856
+msgid "Th given query has returned no rows."
+msgstr ""
+
+#: guifi_node.inc.php:857
+msgid "Use the filters to get some results"
+msgstr ""
+
+#: guifi_node.inc.php:875 guifi_tools.inc.php:493 guifi_zone.inc.php:195
+msgid "Zone"
+msgstr ""
+
+#: guifi_node.inc.php:882
+msgid "Distance"
+msgstr ""
+
+#: guifi_node.inc.php:891
+msgid "Heights image"
+msgstr ""
+
+#: guifi_node.inc.php:892
+msgid "Click over the image to view in large format"
+msgstr ""
+
+#: guifi_node.inc.php:907
+msgid "North East"
+msgstr ""
+
+#: guifi_node.inc.php:909
+msgid "South East"
+msgstr ""
+
+#: guifi_node.inc.php:911
+msgid "South West"
+msgstr ""
+
+#: guifi_node.inc.php:913
+msgid "North West"
+msgstr ""
+
+#: guifi_node.inc.php:997
+msgid "Click to view in large format"
+msgstr ""
+
+#: guifi_node.inc.php:1081
+msgid "zone (mode)"
+msgstr ""
+
+#: guifi_node.inc.php:1082
+msgid "position (lat/lon)"
+msgstr ""
+
+#: guifi_node.inc.php:1083
+msgid "meters above the ground"
+msgstr ""
+
+#: guifi_node.inc.php:1084
+msgid "available for mesh &#038; status"
+msgstr ""
+
+#: guifi_node.inc.php:1101
+msgid "%node data"
+msgstr ""
+
+#: guifi_node.inc.php:1119 guifi_zone.inc.php:593;1421
+msgid "Sorry, your browser can't display the embedded map"
+msgstr ""
+
+#: guifi_node.inc.php:1185
+msgid "graph overview @ %node"
+msgstr ""
+
+#: guifi_node.inc.php:1205
+msgid "last available"
+msgstr ""
+
+#: guifi_node.inc.php:1206 guifi.module:811
+msgid "unsolclic"
+msgstr ""
+
+#: guifi_node.inc.php:1230
+msgid "trace routes, discover services from this device"
+msgstr ""
+
+#: guifi_node.inc.php:1236
+msgid "Get radio configuration with singleclick"
+msgstr ""
+
+#: guifi_node.inc.php:1257 guifi.module:586
+msgid "devices"
+msgstr ""
+
+#: guifi_node.inc.php:1262
+msgid "This node does not have any device"
+msgstr ""
+
+#: guifi_node.inc.php:1266
+msgid "devices @ %node"
+msgstr ""
+
+#: guifi_node.inc.php:1284
+msgid "links @ %node"
+msgstr ""
+
+#: guifi_node.inc.php:1304
+msgid "linked nodes (device)"
+msgstr ""
+
+#: guifi_node.inc.php:1396
+msgid "No links defined"
+msgstr ""
+
+#: guifi_radios.inc.php:25
+msgid "Device model, firmware & MAC address"
+msgstr ""
+
+#: guifi_radios.inc.php:34
+msgid "Radio Model"
+msgstr ""
+
+#: guifi_radios.inc.php:38
+msgid "Select the readio model that do you have."
+msgstr ""
+
+#: guifi_radios.inc.php:56
+msgid "Device MAC Address"
+msgstr ""
+
+#: guifi_radios.inc.php:62
+msgid "Base/Main MAC Address.<br />Some configurations won't work if is blank"
+msgstr ""
+
+#: guifi_radios.inc.php:72
+msgid "No radios"
+msgstr ""
+
+#: guifi_radios.inc.php:87
+msgid "Wireless radios section"
+msgstr ""
+
+#: guifi_radios.inc.php:135
+msgid "Add a public network range to the wLan for clients"
+msgstr ""
+
+#: guifi_radios.inc.php:142
+msgid "Add a Hotspot for guests"
+msgstr ""
+
+#: guifi_radios.inc.php:156
+msgid "Delete radio"
+msgstr ""
+
+#: guifi_radios.inc.php:164
+msgid "Move radio to another device"
+msgstr ""
+
+#: guifi_radios.inc.php:179
+msgid "Move radio up"
+msgstr ""
+
+#: guifi_radios.inc.php:188
+msgid "Move radio down"
+msgstr ""
+
+#: guifi_radios.inc.php:218
+msgid "Add wireless radio to this device"
+msgstr ""
+
+#: guifi_radios.inc.php:250
+msgid "Ad-hoc mode for mesh"
+msgstr ""
+
+#: guifi_radios.inc.php:269
+msgid "New radio (mode)"
+msgstr ""
+
+#: guifi_radios.inc.php:276
+msgid "Add new radio"
+msgstr ""
+
+#: guifi_radios.inc.php:285
+msgid "Usage:<br />Choose <strong>wireless client</strong> mode for a normal station with full access to the network. That's the right choice in general.<br />Use the other available options only for the appropiate cases and being sure of what you are doing and what does it means. Note that you might require to be authorized by networks administrators for doing this.<br />Youwill not be able to define you link and get connected to the network until you add at least one radio."
+msgstr ""
+
+#: guifi_radios.inc.php:301 guifi.module:350;358
+msgid "Firmware"
+msgstr ""
+
+#: guifi_radios.inc.php:308
+msgid "Used for automatic configuration."
+msgstr ""
+
+#: guifi_radios.inc.php:317;469
+msgid "Channel"
+msgstr ""
+
+#: guifi_radios.inc.php:321
+msgid "Select the channel where this radio will operate."
+msgstr ""
+
+#: guifi_radios.inc.php:338
+msgid "Radio #"
+msgstr ""
+
+#: guifi_radios.inc.php:339;665
+msgid "interface(s)"
+msgstr ""
+
+#: guifi_radios.inc.php:370
+msgid "Radio main settings (SSID, MAC, Channel...)"
+msgstr ""
+
+#: guifi_radios.inc.php:379
+msgid "MAC"
+msgstr ""
+
+#: guifi_radios.inc.php:386
+msgid "Wireless MAC Address.<br />Some configurations won't work if is blank"
+msgstr ""
+
+#: guifi_radios.inc.php:396;452
+msgid "SSID"
+msgstr ""
+
+#: guifi_radios.inc.php:402
+msgid "SSID to identify this radio signal."
+msgstr ""
+
+#: guifi_radios.inc.php:408;460
+msgid "Protocol"
+msgstr ""
+
+#: guifi_radios.inc.php:412
+msgid "Select the protocol where this radio will operate."
+msgstr ""
+
+#: guifi_radios.inc.php:430
+msgid "Clients accepted?"
+msgstr ""
+
+#: guifi_radios.inc.php:434
+msgid "Do this radio accept connections from clients?"
+msgstr ""
+
+#: guifi_radios.inc.php:448
+msgid "Will take it from the connected AP."
+msgstr ""
+
+#: guifi_radios.inc.php:490
+msgid "Antenna settings"
+msgstr ""
+
+#: guifi_radios.inc.php:499
+msgid "Type (angle)"
+msgstr ""
+
+#: guifi_radios.inc.php:503
+msgid "Angle (depends on the type of antena you will use)"
+msgstr ""
+
+#: guifi_radios.inc.php:510
+msgid "Gain"
+msgstr ""
+
+#: guifi_radios.inc.php:514
+msgid "Gain (Db)"
+msgstr ""
+
+#: guifi_radios.inc.php:521
+msgid "Degrees (º)"
+msgstr ""
+
+#: guifi_radios.inc.php:526
+msgid "Azimuth (0-360º)"
+msgstr ""
+
+#: guifi_radios.inc.php:533
+msgid "Connector"
+msgstr ""
+
+#: guifi_radios.inc.php:541
+msgid "Examples:<br />MiniPci: Main/Aux<br />Linksys: Right/Left<br />Nanostation: Internal/External"
+msgstr ""
+
+#: guifi_radios.inc.php:634
+msgid "Delete Hotspot"
+msgstr ""
+
+#: guifi_radios.inc.php:733
+msgid "This firmware with this radio model is NOT supported."
+msgstr ""
+
+#: guifi_radios.inc.php:764
+msgid "Radio #%old moved to #%new."
+msgstr ""
+
+#: guifi_radios.inc.php:777
+msgid "Unable to allocate new range, no networks available"
+msgstr ""
+
+#: guifi_radios.inc.php:803
+msgid "wLan with %net/%mask added at radio#%radio"
+msgstr ""
+
+#: guifi_radios.inc.php:821
+msgid "Hotspot added at radio#%radio"
+msgstr ""
+
+#: guifi_radios.inc.php:922
+msgid "MESH"
+msgstr ""
+
+#: guifi_radios.inc.php:974
+msgid "Radio %ssid added in mode %mode."
+msgstr ""
+
+#: guifi_radios.inc.php:986
+msgid "Radio#%num has been deleted."
+msgstr ""
+
+#: guifi_radios.inc.php:1040
+msgid "Choose an AP from the list to link with %hostname"
+msgstr ""
+
+#: guifi_radios.inc.php:1097;1194
+msgid "Network was full, looking for more networks available..."
+msgstr ""
+
+#: guifi_radios.inc.php:1119;1215
+msgid "Got IP address %net/%mask"
+msgstr ""
+
+#: guifi_radios.inc.php:1355
+msgid "Choose an AP from the list to link with %ssid"
+msgstr ""
+
+#: guifi_radios.inc.php:71
+msgid "1 radio"
+msgid_plural "@count radios"
+msgstr[0] ""
+msgstr[1] ""
+
+#: guifi_service.inc.php:70
+msgid "<service>"
+msgstr ""
+
+#: guifi_service.inc.php:85
+msgid "Service type"
+msgstr ""
+
+#: guifi_service.inc.php:112
+msgid "Unique identifier for this service. Avoid generic names such 'Disk Server', use something that really describes what is doing and how can be distinguished from the other similar services.<br />Short name, single word with no spaces, 7-bit chars only."
+msgstr ""
+
+#: guifi_service.inc.php:125
+msgid "Who did possible this service or who to contact with regarding this service if it is distinct of the owner of this page."
+msgstr ""
+
+#: guifi_service.inc.php:133 guifi_tools.inc.php:487 guifi_traceroute.inc.php:363;396;506 guifi_users.inc.php:859 firmware/mikrotik-routeros.inc.php:56
+msgid "Device"
+msgstr ""
+
+#: guifi_service.inc.php:139
+msgid "Where it runs."
+msgstr ""
+
+#: guifi_service.inc.php:145 guifi_tools.inc.php:505 guifi_traceroute.inc.php:410
+msgid "Service"
+msgstr ""
+
+#: guifi_service.inc.php:148
+msgid "Type of service"
+msgstr ""
+
+#: guifi_service.inc.php:156
+msgid "service_type"
+msgstr ""
+
+#: guifi_service.inc.php:166 guifi_users.inc.php:862
+msgid "Current status"
+msgstr ""
+
+#: guifi_service.inc.php:175
+msgid "settings"
+msgstr ""
+
+#: guifi_service.inc.php:186
+msgid "Inbound mail server"
+msgstr ""
+
+#: guifi_service.inc.php:193
+msgid "Where email clients have to be configured for getting email messages"
+msgstr ""
+
+#: guifi_service.inc.php:197
+msgid "Outbound mail server"
+msgstr ""
+
+#: guifi_service.inc.php:202
+msgid "Where email clients have to be configured for sending email messages"
+msgstr ""
+
+#: guifi_service.inc.php:206
+msgid "Webmail url"
+msgstr ""
+
+#: guifi_service.inc.php:211
+msgid "URL for accessing to this mail server, if there is"
+msgstr ""
+
+#: guifi_service.inc.php:215
+msgid "Admin web interface"
+msgstr ""
+
+#: guifi_service.inc.php:220
+msgid "Where to create/edit/delete users, change passwords, etc..."
+msgstr ""
+
+#: guifi_service.inc.php:226
+msgid "Dial prefix"
+msgstr ""
+
+#: guifi_service.inc.php:231
+msgid "Dial prefix for calling this server extensions"
+msgstr ""
+
+#: guifi_service.inc.php:235
+msgid "Incoming calls"
+msgstr ""
+
+#: guifi_service.inc.php:240
+msgid "Server or IP address where the calls have to be sent"
+msgstr ""
+
+#: guifi_service.inc.php:244;271
+msgid "Protocols"
+msgstr ""
+
+#: guifi_service.inc.php:253;263;608
+msgid "IP address or hostname"
+msgstr ""
+
+#: guifi_service.inc.php:298
+msgid "Proxy federation"
+msgstr ""
+
+#: guifi_service.inc.php:300
+msgid "Allow login of users from OUT federated proxys"
+msgstr ""
+
+#: guifi_service.inc.php:300
+msgid "Allow proxy users to use other IN federated proxys"
+msgstr ""
+
+#: guifi_service.inc.php:311
+msgid "Port"
+msgstr ""
+
+#: guifi_service.inc.php:318 guifi_tools.inc.php:260 guifi_traceroute.inc.php:510
+msgid "Type"
+msgstr ""
+
+#: guifi_service.inc.php:326
+msgid "version"
+msgstr ""
+
+#: guifi_service.inc.php:329
+msgid "version of the CNML services"
+msgstr ""
+
+#: guifi_service.inc.php:333;343;621
+msgid "url"
+msgstr ""
+
+#: guifi_service.inc.php:337
+msgid "Base url to call CNML services"
+msgstr ""
+
+#: guifi_service.inc.php:359
+msgid "Managed domains"
+msgstr ""
+
+#: guifi_service.inc.php:364
+msgid "URL pointing to the website homepage"
+msgstr ""
+
+#: guifi_service.inc.php:369
+msgid "IRC server hostname"
+msgstr ""
+
+#: guifi_service.inc.php:392
+msgid "Save or press \"Preview\" to get more entries"
+msgstr ""
+
+#: guifi_service.inc.php:428
+msgid "Service nick has been set to:"
+msgstr ""
+
+#: guifi_service.inc.php:479
+msgid "Service %name not valid."
+msgstr ""
+
+#: guifi_service.inc.php:506
+msgid "The service %name has been CREATED by %user."
+msgstr ""
+
+#: guifi_service.inc.php:533
+msgid "Service %nick has been deleted by %user"
+msgstr ""
+
+#: guifi_service.inc.php:566
+msgid "The service %name has been UPDATED by %user."
+msgstr ""
+
+#: guifi_service.inc.php:581;726
+msgid "service"
+msgstr ""
+
+#: guifi_service.inc.php:586
+msgid "device & status"
+msgstr ""
+
+#: guifi_service.inc.php:593
+msgid "inbound and outbound servers"
+msgstr ""
+
+#: guifi_service.inc.php:594
+msgid "webmail and admin url"
+msgstr ""
+
+#: guifi_service.inc.php:597
+msgid "bandwidth (Down/Up)"
+msgstr ""
+
+#: guifi_service.inc.php:598
+msgid "proxy name &#038; port"
+msgstr ""
+
+#: guifi_service.inc.php:600;601 guifi.module:727
+msgid "federation"
+msgstr ""
+
+#: guifi_service.inc.php:601
+msgid "This proxy is not federated yet"
+msgstr ""
+
+#: guifi_service.inc.php:604
+msgid "ftphost"
+msgstr ""
+
+#: guifi_service.inc.php:605;613
+msgid "supported protocols"
+msgstr ""
+
+#: guifi_service.inc.php:611
+msgid "dial prefix and incoming calls"
+msgstr ""
+
+#: guifi_service.inc.php:628
+msgid "homepages"
+msgstr ""
+
+#: guifi_service.inc.php:640
+msgid "ircs"
+msgstr ""
+
+#: guifi_service.inc.php:647
+msgid "domains"
+msgstr ""
+
+#: guifi_service.inc.php:676;719;741
+msgid "by zone"
+msgstr ""
+
+#: guifi_service.inc.php:680;717;736
+msgid "by node"
+msgstr ""
+
+#: guifi_service.inc.php:683;713;745
+msgid "by device"
+msgstr ""
+
+#: guifi_service.inc.php:726 guifi_stats.inc.php:346;446;536;639;808;945;1067
+msgid "zone"
+msgstr ""
+
+#: guifi_service.inc.php:729
+msgid "There are no services defined at the database"
+msgstr ""
+
+#: guifi_service.inc.php:732
+msgid "Services of %node (%by)"
+msgstr ""
+
+#: guifi_service.inc.php:737
+msgid "services @ %node"
+msgstr ""
+
+#: guifi_service.inc.php:776;821;831
+msgid "service information"
+msgstr ""
+
+#: guifi_service.inc.php:785
+msgid "Domain"
+msgstr ""
+
+#: guifi_service.inc.php:793 guifi.module:884
+msgid "edit domain"
+msgstr ""
+
+#: guifi_service.inc.php:798 guifi.module:893
+msgid "delete domain"
+msgstr ""
+
+#: guifi_sql.inc.php:254
+msgid "UPDATED"
+msgstr ""
+
+#: guifi_sql.inc.php:312
+msgid "Domain %id-%name at node %nname deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:326
+msgid "Device (%type) %id-%name at node %nname deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:350
+msgid "Radio (%mode-%protocol) %id-%rc %ssid at device %dname deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:369
+msgid "interface (%type) %id - %rc at device %dname deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:385
+msgid "address (%addr) at device %dname deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:407
+msgid "link %id-%did (%type) at %nname-%dname deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:503
+msgid "User %id-%name deleted."
+msgstr ""
+
+#: guifi_sql.inc.php:549
+msgid "There was nothing to delete at %table with (%where)"
+msgstr ""
+
+#: guifi_stats.inc.php:66
+msgid "Mode:"
+msgstr ""
+
+#: guifi_stats.inc.php:149
+msgid "1 Growth chart"
+msgstr ""
+
+#: guifi_stats.inc.php:150
+msgid "2 Annual increment"
+msgstr ""
+
+#: guifi_stats.inc.php:151
+msgid "3 Monthly average"
+msgstr ""
+
+#: guifi_stats.inc.php:152
+msgid "4 Last year"
+msgstr ""
+
+#: guifi_stats.inc.php:153
+msgid "5.3 Nodes per month, avr. 3m."
+msgstr ""
+
+#: guifi_stats.inc.php:154
+msgid "5.6 Nodes per month, avr. 6m."
+msgstr ""
+
+#: guifi_stats.inc.php:155
+msgid "5.12 Nodes per month, avr. 12m."
+msgstr ""
+
+#: guifi_stats.inc.php:156
+msgid "6 Zones"
+msgstr ""
+
+#: guifi_stats.inc.php:157
+msgid "7 Largest annual increase"
+msgstr ""
+
+#: guifi_stats.inc.php:161;162
+msgid "link:"
+msgstr ""
+
+#: guifi_stats.inc.php:163;164
+msgid "image:"
+msgstr ""
+
+#: guifi_stats.inc.php:165
+msgid "options:"
+msgstr ""
+
+#: guifi_stats.inc.php:344;346
+msgid "Growth chart"
+msgstr ""
+
+#: guifi_stats.inc.php:348;448;810
+msgid "Years"
+msgstr ""
+
+#: guifi_stats.inc.php:444;446
+msgid "Annual increment"
+msgstr ""
+
+#: guifi_stats.inc.php:534;536
+msgid "Monthly average"
+msgstr ""
+
+#: guifi_stats.inc.php:538;641
+msgid "Months"
+msgstr ""
+
+#: guifi_stats.inc.php:539
+msgid "% Working nodes"
+msgstr ""
+
+#: guifi_stats.inc.php:637;639;943;945
+msgid "Last year"
+msgstr ""
+
+#: guifi_stats.inc.php:1065;1067
+msgid "Largest annual increase"
+msgstr ""
+
+#: guifi_stats.inc.php:1070
+msgid "% increase"
+msgstr ""
+
+#: guifi_stats.inc.php:1092
+msgid "statistics"
+msgstr ""
+
+#: guifi_stats.inc.php:1096 guifi_tools.inc.php:639
+msgid "working nodes"
+msgstr ""
+
+#: guifi_tools.inc.php:15
+msgid "Query result for \"ipv4 LIKE %ipv4\""
+msgstr ""
+
+#: guifi_tools.inc.php:19
+msgid "nipv4"
+msgstr ""
+
+#: guifi_tools.inc.php:20
+msgid "mask"
+msgstr ""
+
+#: guifi_tools.inc.php:36;48;61;125;138
+msgid "Orphan"
+msgstr ""
+
+#: guifi_tools.inc.php:79
+msgid "Network IPv4 address"
+msgstr ""
+
+#: guifi_tools.inc.php:90;166
+msgid "Get information"
+msgstr ""
+
+#: guifi_tools.inc.php:107
+msgid "Query result for \"mac LIKE %mac\""
+msgstr ""
+
+#: guifi_tools.inc.php:155
+msgid "MAC address"
+msgstr ""
+
+#: guifi_tools.inc.php:192
+msgid "Got & sorted %num ips in %secs seconds"
+msgstr ""
+
+#: guifi_tools.inc.php:211
+msgid "Got %base/%net in %secs seconds"
+msgstr ""
+
+#: guifi_tools.inc.php:216
+msgid "Total elapsed was %secs seconds"
+msgstr ""
+
+#: guifi_tools.inc.php:227
+msgid "Space found at %net"
+msgstr ""
+
+#: guifi_tools.inc.php:230
+msgid "Was not possible to find %type space for %mask"
+msgstr ""
+
+#: guifi_tools.inc.php:236
+msgid "Find available space for a subnetwork"
+msgstr ""
+
+#: guifi_tools.inc.php:237
+msgid "Performance"
+msgstr ""
+
+#: guifi_tools.inc.php:256
+msgid "The mask of the network to search for. The number of the available hosts of each masks is displayed in the list box."
+msgstr ""
+
+#: guifi_tools.inc.php:264
+msgid "The type of network addresses you are looking for. <ul><li><em>public:</em> is for addresses which will allow the users connect to the services, therefore must be unique across all the network and assigned with care for not being wasted.</li><li><em>backbone:</em> internal addresses for network operation, could be shared across distinct network segments, do not neet to be known as a service address to the users</li></ul>"
+msgstr ""
+
+#: guifi_tools.inc.php:269
+msgid "Allocate"
+msgstr ""
+
+#: guifi_tools.inc.php:274
+msgid "If yes, the network found will be allocated at the database being assigned to the zone"
+msgstr ""
+
+#: guifi_tools.inc.php:277
+msgid "Find space for the subnetwork"
+msgstr ""
+
+#: guifi_tools.inc.php:308
+msgid "Report for notification having LIKE \"%mail\""
+msgstr ""
+
+#: guifi_tools.inc.php:311
+msgid "table"
+msgstr ""
+
+#: guifi_tools.inc.php:311
+msgid "notification"
+msgstr ""
+
+#: guifi_tools.inc.php:311
+msgid "title"
+msgstr ""
+
+#: guifi_tools.inc.php:383
+msgid "e-mail address"
+msgstr ""
+
+#: guifi_tools.inc.php:401
+msgid "Search"
+msgstr ""
+
+#: guifi_tools.inc.php:421
+msgid "New e-mail address"
+msgstr ""
+
+#: guifi_tools.inc.php:434
+msgid "Replace with"
+msgstr ""
+
+#: guifi_tools.inc.php:450
+msgid "%email is equal to current value"
+msgstr ""
+
+#: guifi_tools.inc.php:481
+msgid "User"
+msgstr ""
+
+#: guifi_tools.inc.php:538
+msgid "The notification %notify for %type %title has been CHANGED to %new by %user."
+msgstr ""
+
+#: guifi_tools.inc.php:563
+msgid "Queue is empty"
+msgstr ""
+
+#: guifi_tools.inc.php:567
+msgid "Notifications sent at %date"
+msgstr ""
+
+#: guifi_tools.inc.php:570
+msgid "Messages to be sent."
+msgstr ""
+
+#: guifi_tools.inc.php:595
+msgid "CNML Graph server"
+msgstr ""
+
+#: guifi_tools.inc.php:602
+msgid "CNML graph server to load statistics from. Should support remote calls in v2 syntax."
+msgstr ""
+
+#: guifi_tools.inc.php:604 guifi.module:294
+msgid "Load statistics"
+msgstr ""
+
+#: guifi_tools.inc.php:619 guifi_zone.inc.php:1335 guifi.module:1644;1780
+msgid "Total"
+msgstr ""
+
+#: guifi_tools.inc.php:619
+msgid "Dif"
+msgstr ""
+
+#: guifi_tools.inc.php:619
+msgid "Alert"
+msgstr ""
+
+#: guifi_tools.inc.php:640
+msgid "nodes with working devices"
+msgstr ""
+
+#: guifi_tools.inc.php:640
+msgid "nodes without devices"
+msgstr ""
+
+#: guifi_tools.inc.php:641
+msgid "nodes with work radio devices"
+msgstr ""
+
+#: guifi_tools.inc.php:641
+msgid "nodes without radio devices"
+msgstr ""
+
+#: guifi_traceroute.inc.php:10;30
+msgid "Target device not specified."
+msgstr ""
+
+#: guifi_traceroute.inc.php:17
+msgid "Live ping from %from (%ipf) to %dest (%ipd)"
+msgstr ""
+
+#: guifi_traceroute.inc.php:37
+msgid "Live traceroute from %from (%ipf) to %dest (%ipd)"
+msgstr ""
+
+#: guifi_traceroute.inc.php:69
+msgid "%cmd failed."
+msgstr ""
+
+#: guifi_traceroute.inc.php:71
+msgid "output"
+msgstr ""
+
+#: guifi_traceroute.inc.php:237
+msgid "%results routes found. %explored routes analyzed in %secs seconds"
+msgstr ""
+
+#: guifi_traceroute.inc.php:243
+msgid "Note that this is a software traceroute generated by the information currently available at the database, it might be distinct than the real routes at the network, however this information could be helpful in cleaning the data and network planning."
+msgstr ""
+
+#: guifi_traceroute.inc.php:259
+msgid "Route from !oname to !dname, !hops hops, cost !cost"
+msgstr ""
+
+#: guifi_traceroute.inc.php:300
+msgid "Software traceroute result from %from to %to"
+msgstr ""
+
+#: guifi_traceroute.inc.php:309
+msgid "Route Level: Importance of the route depending on the cost and proximity to the main route"
+msgstr ""
+
+#: guifi_traceroute.inc.php:310
+msgid "main"
+msgstr ""
+
+#: guifi_traceroute.inc.php:354
+msgid "To find the device, you can write some letters to find the available devices in the database."
+msgstr ""
+
+#: guifi_traceroute.inc.php:370
+msgid "Search for a device to trace the route from."
+msgstr ""
+
+#: guifi_traceroute.inc.php:383
+msgid "Explore service !service"
+msgstr ""
+
+#: guifi_traceroute.inc.php:392
+msgid "Choose between tracing a route to a known device, or discover services by selecting a service type. Yo use only one option at a time, and then press the <em>\"Get traceroute\"</em> button to get the list of possible known routes ordered by best route first."
+msgstr ""
+
+#: guifi_traceroute.inc.php:402
+msgid "Target device to trace the route to."
+msgstr ""
+
+#: guifi_traceroute.inc.php:407
+msgid "<select one from this list>"
+msgstr ""
+
+#: guifi_traceroute.inc.php:413
+msgid "Type of service to be discovered"
+msgstr ""
+
+#: guifi_traceroute.inc.php:419
+msgid "Get traceroute"
+msgstr ""
+
+#: guifi_traceroute.inc.php:431
+msgid "You must select either a service to discover or a device destination"
+msgstr ""
+
+#: guifi_traceroute.inc.php:435
+msgid "You must select a service to discover or a device destination, not both"
+msgstr ""
+
+#: guifi_traceroute.inc.php:500
+msgid "Total distance %tDist kms., %hops hops"
+msgstr ""
+
+#: guifi_traceroute.inc.php:508
+msgid "In address"
+msgstr ""
+
+#: guifi_traceroute.inc.php:509
+msgid "Out address"
+msgstr ""
+
+#: guifi_traceroute.inc.php:512
+msgid "Kms"
+msgstr ""
+
+#: guifi_unsolclic.inc.php:14
+msgid "ERROR: I do need a firmware selected at the radio web interface: "
+msgstr ""
+
+#: guifi_unsolclic.inc.php:17
+msgid "Generated for:"
+msgstr ""
+
+#: guifi_unsolclic.inc.php:36
+msgid "ERROR: Radio is in client mode but has no AP selected, please add a link to the AP at: "
+msgstr ""
+
+#: guifi_users.inc.php:87
+msgid "Are you sure you want to delete the user %username?"
+msgstr ""
+
+#: guifi_users.inc.php:108
+msgid "User %username deleted by %user."
+msgstr ""
+
+#: guifi_users.inc.php:188
+msgid "New password for user !username at guifi.net"
+msgstr ""
+
+#: guifi_users.inc.php:235
+msgid "edit user"
+msgstr ""
+
+#: guifi_users.inc.php:238
+msgid "add user"
+msgstr ""
+
+#: guifi_users.inc.php:245
+msgid "Firstname"
+msgstr ""
+
+#: guifi_users.inc.php:260
+msgid "Lastname"
+msgstr ""
+
+#: guifi_users.inc.php:264
+msgid "The real user name (Lastname)."
+msgstr ""
+
+#: guifi_users.inc.php:270
+msgid "The resulting username."
+msgstr ""
+
+#: guifi_users.inc.php:313
+msgid "Current password"
+msgstr ""
+
+#: guifi_users.inc.php:320;489;1031
+msgid "Reset password"
+msgstr ""
+
+#: guifi_users.inc.php:332
+msgid "Set a new password"
+msgstr ""
+
+#: guifi_users.inc.php:333
+msgid "To change/set the current user password, enter the new password in both fields."
+msgstr ""
+
+#: guifi_users.inc.php:352 guifi.module:496;578;819
+msgid "services"
+msgstr ""
+
+#: guifi_users.inc.php:362;373
+msgid "proxy"
+msgstr ""
+
+#: guifi_users.inc.php:386
+msgid "content filters"
+msgstr ""
+
+#: guifi_users.inc.php:403
+msgid "Authoring information"
+msgstr ""
+
+#: guifi_users.inc.php:410
+msgid "Authored by"
+msgstr ""
+
+#: guifi_users.inc.php:414
+msgid "Leave blank for %anonymous."
+msgstr ""
+
+#: guifi_users.inc.php:414
+msgid "Anonymous"
+msgstr ""
+
+#: guifi_users.inc.php:485
+msgid "Invalid user name."
+msgstr ""
+
+#: guifi_users.inc.php:492
+msgid "You need to specify the current password to submit any change"
+msgstr ""
+
+#: guifi_users.inc.php:495
+msgid "Unable to submit changes: Password failure."
+msgstr ""
+
+#: guifi_users.inc.php:501
+msgid "Firstname field cannot be blank ."
+msgstr ""
+
+#: guifi_users.inc.php:504
+msgid "Lastname field cannot be blank ."
+msgstr ""
+
+#: guifi_users.inc.php:629
+msgid "Set the device and link Online, confirm MAC & approve user."
+msgstr ""
+
+#: guifi_users.inc.php:655
+msgid "Change & Save users Status."
+msgstr ""
+
+#: guifi_users.inc.php:707 guifi_zone.inc.php:1085
+msgid "Connect to the device on a new window"
+msgstr ""
+
+#: guifi_users.inc.php:723
+msgid "Queue of pending users @"
+msgstr ""
+
+#: guifi_users.inc.php:829
+msgid "add a comment"
+msgstr ""
+
+#: guifi_users.inc.php:832
+msgid "Add a comment to the page of this node"
+msgstr ""
+
+#: guifi_users.inc.php:856
+msgid "Username"
+msgstr ""
+
+#: guifi_users.inc.php:858
+msgid "User status"
+msgstr ""
+
+#: guifi_users.inc.php:860
+msgid "IP v4 address"
+msgstr ""
+
+#: guifi_users.inc.php:861
+msgid "Status & MAC"
+msgstr ""
+
+#: guifi_users.inc.php:912
+msgid "Users @"
+msgstr ""
+
+#: guifi_users.inc.php:934
+msgid "Users"
+msgstr ""
+
+#: guifi_users.inc.php:988;1009
+msgid "Edit selected user"
+msgstr ""
+
+#: guifi_users.inc.php:993
+msgid "There are no users to list at"
+msgstr ""
+
+#: guifi_users.inc.php:999;1016
+msgid "Add user"
+msgstr ""
+
+#: guifi_users.inc.php:1011
+msgid "You must select a user from the list"
+msgstr ""
+
+#: guifi_users.inc.php:1071
+msgid "%user saved. Note that in some cases the change will not take effect until after some time."
+msgstr ""
+
+#: guifi_users.inc.php:1074
+msgid "The user !username has been UPDATED by !user."
+msgstr ""
+
+#: guifi_users.inc.php:1134
+msgid "there are no users at this proxy"
+msgstr ""
+
+#: guifi_users.inc.php:163;172
+msgid "user"
+msgstr ""
+
+#: guifi_users.inc.php:163
+msgid "Password mailed to %name for %email."
+msgstr ""
+
+#: guifi_users.inc.php:172
+msgid "Error mailing password to %name at %email."
+msgstr ""
+
+#: guifi_zone.inc.php:141
+msgid "(root zone)"
+msgstr ""
+
+#: guifi_zone.inc.php:182
+msgid "Select to navigate through the available zones, only parent, peer and child zones are shown in the list.<br />By selecting any other zone, the list will be refreshed with the corresponding parents, peers and childs."
+msgstr ""
+
+#: guifi_zone.inc.php:184
+msgid "<strong>Attention!</strong>: The currently selected zone has childs, click to view"
+msgstr ""
+
+#: guifi_zone.inc.php:189
+msgid "Parent zone"
+msgstr ""
+
+#: guifi_zone.inc.php:192
+msgid "Default zone for new nodes"
+msgstr ""
+
+#: guifi_zone.inc.php:272
+msgid "Short abreviation"
+msgstr ""
+
+#: guifi_zone.inc.php:278
+msgid "Single word, 7-bits characters. Used while default values as hostname, SSID, etc..."
+msgstr ""
+
+#: guifi_zone.inc.php:283
+msgid "Zone dynamic mesh mode"
+msgstr ""
+
+#: guifi_zone.inc.php:286
+msgid "infrastructure"
+msgstr ""
+
+#: guifi_zone.inc.php:286
+msgid "ad-hoc"
+msgstr ""
+
+#: guifi_zone.inc.php:301;924
+msgid "Time zone"
+msgstr ""
+
+#: guifi_zone.inc.php:309
+msgid "Zone homepage"
+msgstr ""
+
+#: guifi_zone.inc.php:314
+msgid "URL of the local community homepage, if exists. Useful for those who want to use this site just for network administration, but have their own portal."
+msgstr ""
+
+#: guifi_zone.inc.php:319
+msgid "email notification"
+msgstr ""
+
+#: guifi_zone.inc.php:325
+msgid "Mails where changes at the zone will be notified. Useful for decentralized administration. If more than one, separated by ','"
+msgstr ""
+
+#: guifi_zone.inc.php:332
+msgid "Zone services"
+msgstr ""
+
+#: guifi_zone.inc.php:352;903
+msgid "default proxy"
+msgstr ""
+
+#: guifi_zone.inc.php:386
+msgid "Zone global network parameters"
+msgstr ""
+
+#: guifi_zone.inc.php:392
+msgid "zone global network parameters"
+msgstr ""
+
+#: guifi_zone.inc.php:397;920
+msgid "DNS Servers"
+msgstr ""
+
+#: guifi_zone.inc.php:402
+msgid "The Name Servers of this zone, will inherit parent DNS servers if blank. Separated by \",\"."
+msgstr ""
+
+#: guifi_zone.inc.php:407;921
+msgid "NTP Servers"
+msgstr ""
+
+#: guifi_zone.inc.php:412
+msgid "The network time protocol (clock) servers of this zone, will inherit parent NTP servers if blank. Separated by \",\"."
+msgstr ""
+
+#: guifi_zone.inc.php:417
+msgid "OSPF zone id"
+msgstr ""
+
+#: guifi_zone.inc.php:423
+msgid "The id that will be used when creating configuration files for the OSPF routing protocol so all the routers within the zone will share a dynamic routing table."
+msgstr ""
+
+#: guifi_zone.inc.php:430
+msgid "Zone mapping parameters"
+msgstr ""
+
+#: guifi_zone.inc.php:437
+msgid "zone mapping parameters"
+msgstr ""
+
+#: guifi_zone.inc.php:446
+msgid "Drag the South-West/North-East corners over the map to change the zone boundaries."
+msgstr ""
+
+#: guifi_zone.inc.php:459
+msgid "Bottom-left (SW) corner"
+msgstr ""
+
+#: guifi_zone.inc.php:460
+msgid "Coordinates (Lon/Lat) of the bottom-left (South-West) corner of the map."
+msgstr ""
+
+#: guifi_zone.inc.php:488
+msgid "Upper-right (NE) corner"
+msgstr ""
+
+#: guifi_zone.inc.php:489
+msgid "Coordinates (Lon/Lat) of the upper-right (North-East) corner of the map."
+msgstr ""
+
+#: guifi_zone.inc.php:561
+msgid "View the map in full screen and rich mode"
+msgstr ""
+
+#: guifi_zone.inc.php:562
+msgid "Select the lens controls to zoom in/out or re-center the map at the clicked position. If the image has enough high resolution, you can add a node at the red star position by using the link that will appear."
+msgstr ""
+
+#: guifi_zone.inc.php:601
+msgid "You must specify a title for the zone."
+msgstr ""
+
+#: guifi_zone.inc.php:627
+msgid "Latitude must be specified."
+msgstr ""
+
+#: guifi_zone.inc.php:630
+msgid "Latitude must be numeric"
+msgstr ""
+
+#: guifi_zone.inc.php:632
+msgid "Latitude must be between -90 and 90."
+msgstr ""
+
+#: guifi_zone.inc.php:638
+msgid "Longitude must be specified."
+msgstr ""
+
+#: guifi_zone.inc.php:641
+msgid "Longitude must be numeric"
+msgstr ""
+
+#: guifi_zone.inc.php:643
+msgid "Longitude must be between -180 and 180."
+msgstr ""
+
+#: guifi_zone.inc.php:649
+msgid "No special characters allowed for OSPF id, use just 7 bits chars."
+msgstr ""
+
+#: guifi_zone.inc.php:654
+msgid "OSPF zone id have to be a single word."
+msgstr ""
+
+#: guifi_zone.inc.php:659
+msgid "You have to specify at least one notification email address."
+msgstr ""
+
+#: guifi_zone.inc.php:663
+msgid "Error while validating email address"
+msgstr ""
+
+#: guifi_zone.inc.php:680
+msgid "The root zone is already set to \"%s\". Only one root zone can be present at the database. Delete/change the actual root zone before assigning a new one or choose another parent."
+msgstr ""
+
+#: guifi_zone.inc.php:694
+msgid "You can't use a child zone <strong>%child</strong> from %zone as master!!!"
+msgstr ""
+
+#: guifi_zone.inc.php:701
+msgid "Master zone can't be set to itself"
+msgstr ""
+
+#: guifi_zone.inc.php:705
+msgid "Longitude: Min should be less than Max"
+msgstr ""
+
+#: guifi_zone.inc.php:708
+msgid "Latitude: Min should be less than Max"
+msgstr ""
+
+#: guifi_zone.inc.php:730
+msgid "A new zone %nick-%name has been created"
+msgstr ""
+
+#: guifi_zone.inc.php:775
+msgid "Zone %nick-%name has been updated"
+msgstr ""
+
+#: guifi_zone.inc.php:795
+msgid "FATAL ERROR: Can't delete a zone which have networks allocated. Database broken. Contact your system administrator"
+msgstr ""
+
+#: guifi_zone.inc.php:804
+msgid "FATAL ERROR: Can't delete a zone with nodes. Database broken. Contact your system administrator"
+msgstr ""
+
+#: guifi_zone.inc.php:814
+msgid "ALERT: Zone %nick-%name has been deleted, but have errors:"
+msgstr ""
+
+#: guifi_zone.inc.php:830
+msgid "Zone %nick-%name has been deleted"
+msgstr ""
+
+#: guifi_zone.inc.php:900
+msgid "zone name"
+msgstr ""
+
+#: guifi_zone.inc.php:902
+msgid "homepage"
+msgstr ""
+
+#: guifi_zone.inc.php:913
+msgid "default graph server"
+msgstr ""
+
+#: guifi_zone.inc.php:918
+msgid "network global information"
+msgstr ""
+
+#: guifi_zone.inc.php:919
+msgid "Mode"
+msgstr ""
+
+#: guifi_zone.inc.php:922
+msgid "OSPF zone"
+msgstr ""
+
+#: guifi_zone.inc.php:1102
+msgid "Pending/to review"
+msgstr ""
+
+#: guifi_zone.inc.php:1108
+msgid "Availability"
+msgstr ""
+
+#: guifi_zone.inc.php:1322
+msgid "Nodes listed at"
+msgstr ""
+
+#: guifi_zone.inc.php:1330 guifi.module:1249
+msgid "Zone name"
+msgstr ""
+
+#: guifi_zone.inc.php:1331
+msgid "Online"
+msgstr ""
+
+#: guifi_zone.inc.php:1332
+msgid "Planned"
+msgstr ""
+
+#: guifi_zone.inc.php:1333
+msgid "Building"
+msgstr ""
+
+#: guifi_zone.inc.php:1334
+msgid "Testing"
+msgstr ""
+
+#: guifi_zone.inc.php:1377
+msgid "nick (shortname)"
+msgstr ""
+
+#: guifi_zone.inc.php:1378
+msgid "supernode"
+msgstr ""
+
+#: guifi_zone.inc.php:1379
+msgid "area"
+msgstr ""
+
+#: guifi_zone.inc.php:1441
+msgid "add network"
+msgstr ""
+
+#: guifi_zone.inc.php:1445
+msgid "zone and zone parent(s) network allocation(s)"
+msgstr ""
+
+#: guifi_zone.inc.php:1449
+msgid "zone child(s) network allocation(s)"
+msgstr ""
+
+#: guifi_zone.inc.php:1467
+msgid "zone information"
+msgstr ""
+
+#: guifi_zone.inc.php:1485
+msgid "zone statistics"
+msgstr ""
+
+#: guifi.module:65
+msgid "check if data must be refreshed"
+msgstr ""
+
+#: guifi.module:1180
+msgid "View node %node at %zone"
+msgstr ""
+
+#: guifi.module:1185
+msgid "View map for %zone"
+msgstr ""
+
+#: guifi.module:1193
+msgid "View services for node %node at %zone"
+msgstr ""
+
+#: guifi.module:1201
+msgid "View map of %zone"
+msgstr ""
+
+#: guifi.module:1209
+msgid "View services for %zone"
+msgstr ""
+
+#: guifi.module:1217
+msgid "View %type service at %zone"
+msgstr ""
+
+#: guifi.module:1245
+msgid "guifi.net zone"
+msgstr ""
+
+#: guifi.module:1247
+msgid "Create a community, area or zone. A typical zone hierarchy can be related to the territory (Country/Region/City...) but not have to, i.e. a single city can have many groups or communities with distinct IP addressing policies.<br />Every zone will have it's own page so it can be used as the homepage of that community.<br />The zones must belong at least to the root zone, but can also belong to other zones, so in that way a hierarchy is created.<br />Every zone have its own properties like maps or ip ranges and every node will have to be assigned to an existing zone, and will inherit the zone properties like his IP address and drawn in the corresponding map.<br />If zone properties are leaved blank, will inherit the parent zone properties."
+msgstr ""
+
+#: guifi.module:1251
+msgid "Information about this zone"
+msgstr ""
+
+#: guifi.module:1254
+msgid "guifi.net node"
+msgstr ""
+
+#: guifi.module:1261
+msgid "Location name"
+msgstr ""
+
+#: guifi.module:1263
+msgid "Information about this location"
+msgstr ""
+
+#: guifi.module:1266
+msgid "guifi.net service"
+msgstr ""
+
+#: guifi.module:1268;1292
+msgid "Create a service. A service is any resource available on the network that should be listed in the content directory of the site, like a web server, internet proxy,ntp, instant messaging, voip gateway, etc... ."
+msgstr ""
+
+#: guifi.module:1270
+msgid "Service name"
+msgstr ""
+
+#: guifi.module:1272
+msgid "Information about this service"
+msgstr ""
+
+#: guifi.module:1282
+msgid "Manage the guifi.net, a mesh network community."
+msgstr ""
+
+#: guifi.module:1284
+msgid "Select an operation from the menus to manage zones."
+msgstr ""
+
+#: guifi.module:1286
+msgid "Enter de zone information."
+msgstr ""
+
+#: guifi.module:1288
+msgid "Create a node. A node is a physical location (will be dynamically drawed on the maps using lat/lon coordinates) where there are network devices, servers, etc.<br />Every node have to assigned to a guifi zone."
+msgstr ""
+
+#: guifi.module:1290
+msgid "Create a community, area or zone. A typical zone hierarchy can be related to the territory (Country/Region/City...) but not have to, i.e. a single city can have many groups or communities with distinct IP addressing policies.<br />Every zone will have its own page so it can be used as the homepage of that community.<br />The zones must belong at least to the root zone, but can also belong to other zones, so in that way a hierarchy is created.<br />Every zone have its own properties like maps or ip ranges and every node will have to be assigned to an existing zone, and will inherit the zone properties like its IP address and will be drawn in the corresponding map.<br />If zone properties are leaved blank, will inherit the parent zone properties."
+msgstr ""
+
+#: guifi.module:1322
+msgid "License agreement"
+msgstr ""
+
+#: guifi.module:1323
+msgid "By creating this node, you accept the <a href=\"http://guifi.net/WirelessWCL_EN\">Wireless commons license.</a><br />Note that this database is intended for supporting a real network. It will assign ip addresses and show the network information in various formats, so might be <b>not</b> the right place for submitting ficticious data or just have fun. If you want to run tests or do some self training, be sure you are doing it at some of the <a href=\"http://test.guifi.net\">test sites</a>.<br />Your access to this site might be banned or your data might be deleted if inappropiate use is detected.<br />You will be always responsible of the information you give, agree to make it publicly available and you will be able to modify or delete it, network administrators can also update or delete your data.<br />If you want to promote your role within the community you can ask for it contacting the current administrators and they will grant the privileges that you qualify for."
+msgstr ""
+
+#: guifi.module:1326
+msgid "Agreement &#038; help message when creating new nodes, users will not be able to create nodes unless they accept this message."
+msgstr ""
+
+#: guifi.module:1331
+msgid "Block title"
+msgstr ""
+
+#: guifi.module:1333
+msgid "Network statistics"
+msgstr ""
+
+#: guifi.module:1336
+msgid "Title of guifi block..."
+msgstr ""
+
+#: guifi.module:1341;104
+msgid "Forums"
+msgstr ""
+
+#: guifi.module:1346
+msgid "URL for the forums, leave it blank if none."
+msgstr ""
+
+#: guifi.module:1351
+msgid "FAQ root page"
+msgstr ""
+
+#: guifi.module:1356
+msgid "URL for FAQ, leave it blank if none."
+msgstr ""
+
+#: guifi.module:1361;127
+msgid "Documentation"
+msgstr ""
+
+#: guifi.module:1366
+msgid "URL for the Guide/Documentation of how to use this site, leave it blank if none."
+msgstr ""
+
+#: guifi.module:1371
+msgid "Limit of items listed on every page"
+msgstr ""
+
+#: guifi.module:1376
+msgid "Number of rows to be displayed as default on every page report..."
+msgstr ""
+
+#: guifi.module:1381
+msgid "Default contact"
+msgstr ""
+
+#: guifi.module:1386
+msgid "An email will be submitted to this address when no contact address is present."
+msgstr ""
+
+#: guifi.module:1391
+msgid "Send notifications every"
+msgstr ""
+
+#: guifi.module:1395;1413
+msgid "Never (disabled)"
+msgstr ""
+
+#: guifi.module:1396;1414
+msgid "Every cron"
+msgstr ""
+
+#: guifi.module:1397;1415
+msgid "Hourly"
+msgstr ""
+
+#: guifi.module:1398;1416
+msgid "Every 2 hours"
+msgstr ""
+
+#: guifi.module:1399;1417
+msgid "Every 6 hours"
+msgstr ""
+
+#: guifi.module:1400;1418
+msgid "Every 12 hours"
+msgstr ""
+
+#: guifi.module:1401;1419
+msgid "Daily"
+msgstr ""
+
+#: guifi.module:1402;1420
+msgid "Every other day"
+msgstr ""
+
+#: guifi.module:1403;1421
+msgid "Weekly"
+msgstr ""
+
+#: guifi.module:1404
+msgid "When the notification messages queue will be delivered, if set to \"Never\", no messages will be post at the queue."
+msgstr ""
+
+#: guifi.module:1409
+msgid "Load statsitics every"
+msgstr ""
+
+#: guifi.module:1422
+msgid "When the graphs servers will be asked for providing statistics."
+msgstr ""
+
+#: guifi.module:1427
+msgid "Hotspot SSID"
+msgstr ""
+
+#: guifi.module:1429
+msgid "HotSpot"
+msgstr ""
+
+#: guifi.module:1432
+msgid "SSID name for the hotspot open access for guests"
+msgstr ""
+
+#: guifi.module:1437
+msgid "Log level"
+msgstr ""
+
+#: guifi.module:1441
+msgid "Trace log level to screen:<ol><li><em>None</em>, normal operation</li><li><em>Basic</em>, general messages</li><li><em>Trace</em>, provides follow-up of functions being executed (for developers)</li><li><em>Full</em>, dumps variable values (very long, for fine debug)</li></ol>Change the log level to figure out whats happening."
+msgstr ""
+
+#: guifi.module:1446
+msgid "Key for Google Maps API"
+msgstr ""
+
+#: guifi.module:1451
+msgid "If not present, Google Maps API will be disabled.<br />Get it at: "
+msgstr ""
+
+#: guifi.module:1458
+msgid "URL for WMS service"
+msgstr ""
+
+#: guifi.module:1463
+msgid "URL to call to get WMS guifi mapping services"
+msgstr ""
+
+#: guifi.module:1468
+msgid "URL for maps module"
+msgstr ""
+
+#: guifi.module:1473
+msgid "Base URL for the mapping GIS application (guifimaps)"
+msgstr ""
+
+#: guifi.module:1478
+msgid "Decimal separator"
+msgstr ""
+
+#: guifi.module:1483
+msgid "Decimal character for formatting numbers"
+msgstr ""
+
+#: guifi.module:1488
+msgid "Thousands separator"
+msgstr ""
+
+#: guifi.module:1493
+msgid "Thousands separator for formatting numbers"
+msgstr ""
+
+#: guifi.module:1506
+msgid "network facts"
+msgstr ""
+
+#: guifi.module:1512
+msgid "Number of items"
+msgstr ""
+
+#: guifi.module:1523
+msgid "List of guifi nodes"
+msgstr ""
+
+#: guifi.module:1571;1711
+msgid "node list and maps..."
+msgstr ""
+
+#: guifi.module:1574;1714
+msgid "Go to the list of nodes root page and their maps."
+msgstr ""
+
+#: guifi.module:1576
+msgid "Node counters obtained in %secs seconds"
+msgstr ""
+
+#: guifi.module:1662;1798
+msgid "Wireless<br />links"
+msgstr ""
+
+#: guifi.module:1665
+msgid "Link counters obtained in %secs seconds"
+msgstr ""
+
+#: guifi.module:1812
+msgid "create mrtg config"
+msgstr ""
+
+#: guifi.module:1815
+msgid "get an mrtg configuration file for this zone"
+msgstr ""
+
+#: guifi.module:1821
+msgid "guifiproxy"
+msgstr ""
+
+#: guifi.module:1823;1045
+msgid "export zone proxy services in csv format"
+msgstr ""
+
+#: guifi.module:1825;1841
+msgid "CNML"
+msgstr ""
+
+#: guifi.module:1827;1031;1038
+msgid "export zone in CNML format"
+msgstr ""
+
+#: guifi.module:1829
+msgid "gml"
+msgstr ""
+
+#: guifi.module:1831;1068;1075
+msgid "export zone in gml format"
+msgstr ""
+
+#: guifi.module:1834
+msgid "budgets"
+msgstr ""
+
+#: guifi.module:1836
+msgid "view budgets for this zone"
+msgstr ""
+
+#: guifi.module:1843
+msgid "export node in CNML format"
+msgstr ""
+
+#: guifi.module:1898;2178
+msgid "You do not have any active items."
+msgstr ""
+
+#: guifi.module:1974
+msgid "%net/%mask is overlapped by %net2/%mask2!!"
+msgstr ""
+
+#: guifi.module:1981
+msgid "Database Overlap check in %secs"
+msgstr ""
+
+#: guifi.module:2007
+msgid "The device %name has been DELETED by purge process because was orphan of node."
+msgstr ""
+
+#: guifi.module:2018
+msgid "%ndev orphan devices purged in %secs"
+msgstr ""
+
+#: guifi.module:2030
+msgid "The Radio id: %id has been DELETED by purge process because was orphan of device."
+msgstr ""
+
+#: guifi.module:2038
+msgid "%radio orphan radios purged in %secs"
+msgstr ""
+
+#: guifi.module:2050
+msgid "The Interface id: %id has been DELETED by purge process because was orphan of device/radio."
+msgstr ""
+
+#: guifi.module:2057
+msgid "%interface orphan interfaces purged in %secs"
+msgstr ""
+
+#: guifi.module:2070
+msgid "The IPV4 address: %address has been DELETED by purge process because was orphan of device/radio."
+msgstr ""
+
+#: guifi.module:2077
+msgid "%ipv4 orphan ipv4 purged in %secs"
+msgstr ""
+
+#: guifi.module:2093
+msgid "The UNPAIRED link id: %link has been DELETED by purge process because was orphan of device id %device."
+msgstr ""
+
+#: guifi.module:2100
+msgid "%link unpaired link purged in %secs"
+msgstr ""
+
+#: guifi.module:2111
+msgid "The link id: %link has been DELETED by purge process because was orphan of device id %device."
+msgstr ""
+
+#: guifi.module:2118
+msgid "%link orphan link purged in %secs"
+msgstr ""
+
+#: guifi.module:2138
+msgid "The user %name has been DELETED by purge process because was orphan of node."
+msgstr ""
+
+#: guifi.module:2148
+msgid "%user orphan users purged in %secs"
+msgstr ""
+
+#: guifi.module:2157
+msgid "Database purgued in %secs"
+msgstr ""
+
+#: guifi.module:2314
+msgid "Show descriptions"
+msgstr ""
+
+#: guifi.module:2314
+msgid "Expand layout to include descriptions."
+msgstr ""
+
+#: guifi.module:2318
+msgid "Hide descriptions"
+msgstr ""
+
+#: guifi.module:2318
+msgid "Compact layout by hiding descriptions."
+msgstr ""
+
+#: guifi.module:2345
+msgid "email contact (available if you are logged in)"
+msgstr ""
+
+#: guifi.module:2348
+msgid "created by"
+msgstr ""
+
+#: guifi.module:2351
+msgid "managed by"
+msgstr ""
+
+#: guifi.module:2354
+msgid "updated by"
+msgstr ""
+
+#: guifi.module:2357
+msgid "contact information"
+msgstr ""
+
+#: guifi.module:2379;45
+msgid "guifi.net configuration"
+msgstr ""
+
+#: guifi.module:1301
+msgid "administer guifi zones"
+msgstr ""
+
+#: guifi.module:1302
+msgid "administer guifi networks"
+msgstr ""
+
+#: guifi.module:1303
+msgid "administer guifi users"
+msgstr ""
+
+#: guifi.module:1304
+msgid "administer guifi dns"
+msgstr ""
+
+#: guifi.module:1305
+msgid "guifi module developer"
+msgstr ""
+
+#: guifi.module:1306
+msgid "create guifi zones"
+msgstr ""
+
+#: guifi.module:1307
+msgid "create guifi nodes"
+msgstr ""
+
+#: guifi.module:1308
+msgid "create guifi dns"
+msgstr ""
+
+#: guifi.module:1309
+msgid "edit own guifi zones"
+msgstr ""
+
+#: guifi.module:1310
+msgid "edit own guifi nodes"
+msgstr ""
+
+#: guifi.module:1311
+msgid "edit own guifi dns"
+msgstr ""
+
+#: guifi.module:46
+msgid "Configure guifi.net module"
+msgstr ""
+
+#: guifi.module:54
+msgid "guifi.net main page"
+msgstr ""
+
+#: guifi.module:55;74
+msgid "Main menu for guifi.net network management and utilities"
+msgstr ""
+
+#: guifi.module:73
+msgid "guifi.net menus"
+msgstr ""
+
+#: guifi.module:80
+msgid "Compact mode"
+msgstr ""
+
+#: guifi.module:88
+msgid "Main navigation options"
+msgstr ""
+
+#: guifi.module:89
+msgid "The most important options to browse and use this site"
+msgstr ""
+
+#: guifi.module:95
+msgid "Browse the network"
+msgstr ""
+
+#: guifi.module:96
+msgid "Browse the network zones starting from the root zone"
+msgstr ""
+
+#: guifi.module:105
+msgid "Do you have questions? Browse the questions or post your own question to the forums"
+msgstr ""
+
+#: guifi.module:111
+msgid "Create a node"
+msgstr ""
+
+#: guifi.module:112
+msgid "Join to the network by creating your node"
+msgstr ""
+
+#: guifi.module:119
+msgid "FAQ"
+msgstr ""
+
+#: guifi.module:120
+msgid "Browse the most common questions"
+msgstr ""
+
+#: guifi.module:128
+msgid "Browse the guide and documentation"
+msgstr ""
+
+#: guifi.module:136
+msgid "Data to review and Pending actions"
+msgstr ""
+
+#: guifi.module:137
+msgid "Clean and review the database and take the appropriate pending actions"
+msgstr ""
+
+#: guifi.module:143
+msgid "Users queue"
+msgstr ""
+
+#: guifi.module:144
+msgid "Track the users assigned to nodes detected as active, and therefore pending for approval"
+msgstr ""
+
+#: guifi.module:150
+msgid "Node queue"
+msgstr ""
+
+#: guifi.module:151
+msgid "Track the status of the not active nodes, pending for getting connected"
+msgstr ""
+
+#: guifi.module:157
+msgid "Availability report"
+msgstr ""
+
+#: guifi.module:158
+msgid "Report of the status and availability of all nodes"
+msgstr ""
+
+#: guifi.module:164
+msgid "Data review"
+msgstr ""
+
+#: guifi.module:173
+msgid "IP and Network management tools"
+msgstr ""
+
+#: guifi.module:174
+msgid "Utilities toolset for various network addressing and management"
+msgstr ""
+
+#: guifi.module:180
+msgid "Search IPv4"
+msgstr ""
+
+#: guifi.module:181
+msgid "Query information about assigned IPv4 addresses"
+msgstr ""
+
+#: guifi.module:188
+msgid "Available subnetwork range"
+msgstr ""
+
+#: guifi.module:189
+msgid "Search for a not used range of network addresses at the database"
+msgstr ""
+
+#: guifi.module:204
+msgid "Search MAC"
+msgstr ""
+
+#: guifi.module:205
+msgid "Query information about existing MAC addresses"
+msgstr ""
+
+#: guifi.module:212
+msgid "Find/Replace contact emails"
+msgstr ""
+
+#: guifi.module:213
+msgid "Search and update existing notification e-mail addresses in all tables."
+msgstr ""
+
+#: guifi.module:220
+msgid "Traceroute"
+msgstr ""
+
+#: guifi.module:221
+msgid "Software traceroute. Find out possible routes between devices or discover the closest services."
+msgstr ""
+
+#: guifi.module:228
+msgid "live ping"
+msgstr ""
+
+#: guifi.module:229
+msgid "ping to address"
+msgstr ""
+
+#: guifi.module:236
+msgid "live traceroute"
+msgstr ""
+
+#: guifi.module:237
+msgid "traceroute to device"
+msgstr ""
+
+#: guifi.module:244
+msgid "OSPF Routing Map"
+msgstr ""
+
+#: guifi.module:245;253
+msgid "Routing areas map."
+msgstr ""
+
+#: guifi.module:252
+msgid "All Routing Map"
+msgstr ""
+
+#: guifi.module:261
+msgid "Routing Map"
+msgstr ""
+
+#: guifi.module:270
+msgid "Administration tools"
+msgstr ""
+
+#: guifi.module:271
+msgid "Utilities for administrators, use with care, regular users shouldn't have this block."
+msgstr ""
+
+#: guifi.module:277
+msgid "Send notifications"
+msgstr ""
+
+#: guifi.module:278
+msgid "Flush the notification queue by sending all pending messages"
+msgstr ""
+
+#: guifi.module:285
+msgid "View notifications"
+msgstr ""
+
+#: guifi.module:286
+msgid "View the notification queue by printing all pending messages on the screen, this will not flush the queue"
+msgstr ""
+
+#: guifi.module:295
+msgid "Load statistics from remote CNML graph servers into the database"
+msgstr ""
+
+#: guifi.module:302
+msgid "guifi.net settings"
+msgstr ""
+
+#: guifi.module:303
+msgid "Change the settings for \"guifi.net\" module "
+msgstr ""
+
+#: guifi.module:313
+msgid "Development tools"
+msgstr ""
+
+#: guifi.module:314
+msgid "Utilities for developers, experimental or under texting, use with care, regular users shouldn't have this block."
+msgstr ""
+
+#: guifi.module:320;328
+msgid "Device Models"
+msgstr ""
+
+#: guifi.module:321
+msgid "A full list of devices we use in the network, add, edit or delete it."
+msgstr ""
+
+#: guifi.module:335;343
+msgid "Services"
+msgstr ""
+
+#: guifi.module:336
+msgid "A full list of services we use in the network, add, edit or delete it."
+msgstr ""
+
+#: guifi.module:351
+msgid "A full list of firmware we use in the devices, add, edit or delete it."
+msgstr ""
+
+#: guifi.module:365;373
+msgid "Manufacturers"
+msgstr ""
+
+#: guifi.module:366
+msgid "A full list of manufacturers that made the devices usedon our network, add, edit or delete it."
+msgstr ""
+
+#: guifi.module:380
+msgid "counters"
+msgstr ""
+
+#: guifi.module:381
+msgid "get statistics/counters from the network"
+msgstr ""
+
+#: guifi.module:388
+msgid "purge"
+msgstr ""
+
+#: guifi.module:389
+msgid "purge orphan data"
+msgstr ""
+
+#: guifi.module:396
+msgid "overlap"
+msgstr ""
+
+#: guifi.module:397
+msgid "check for overlapping routes."
+msgstr ""
+
+#: guifi.module:405;406
+msgid "Statistics"
+msgstr ""
+
+#: guifi.module:412
+msgid "History map"
+msgstr ""
+
+#: guifi.module:413
+msgid "Display guifi.net network history map."
+msgstr ""
+
+#: guifi.module:420
+msgid "Node statistics"
+msgstr ""
+
+#: guifi.module:428;435
+msgid "stats charts"
+msgstr ""
+
+#: guifi.module:456
+msgid "nodes"
+msgstr ""
+
+#: guifi.module:464
+msgid "map"
+msgstr ""
+
+#: guifi.module:472;570;663;835;907
+msgid "data"
+msgstr ""
+
+#: guifi.module:480
+msgid "availability"
+msgstr ""
+
+#: guifi.module:488
+msgid "pending/review"
+msgstr ""
+
+#: guifi.module:504;1089
+msgid "networks"
+msgstr ""
+
+#: guifi.module:513
+msgid "suppliers"
+msgstr ""
+
+#: guifi.module:521
+msgid "users queue"
+msgstr ""
+
+#: guifi.module:529
+msgid "add ipv4 network"
+msgstr ""
+
+#: guifi.module:537
+msgid "edit ipv4 network"
+msgstr ""
+
+#: guifi.module:545
+msgid "delete ipv4 network"
+msgstr ""
+
+#: guifi.module:556
+msgid "distances"
+msgstr ""
+
+#: guifi.module:563
+msgid "profiles map"
+msgstr ""
+
+#: guifi.module:602;843
+msgid "graphs"
+msgstr ""
+
+#: guifi.module:610
+msgid "users"
+msgstr ""
+
+#: guifi.module:685;719
+msgid "passwd"
+msgstr ""
+
+#: guifi.module:693;735
+msgid "federated"
+msgstr ""
+
+#: guifi.module:701;743
+msgid "federated_md5"
+msgstr ""
+
+#: guifi.module:709;751
+msgid "ldif"
+msgstr ""
+
+#: guifi.module:772
+msgid "add device"
+msgstr ""
+
+#: guifi.module:780
+msgid "view device"
+msgstr ""
+
+#: guifi.module:806;902
+msgid "all"
+msgstr ""
+
+#: guifi.module:859
+msgid "traceroute"
+msgstr ""
+
+#: guifi.module:868
+msgid "add domain"
+msgstr ""
+
+#: guifi.module:876
+msgid "view domain"
+msgstr ""
+
+#: guifi.module:923
+msgid "delegations"
+msgstr ""
+
+#: guifi.module:932
+msgid "Javascript Add WDS"
+msgstr ""
+
+#: guifi.module:938
+msgid "Javascript Select Firmware by Model"
+msgstr ""
+
+#: guifi.module:944
+msgid "Javascript Select Channel by protocol"
+msgstr ""
+
+#: guifi.module:951
+msgid "Javascript Select Zone"
+msgstr ""
+
+#: guifi.module:957
+msgid "Javascript Select Device"
+msgstr ""
+
+#: guifi.module:963
+msgid "Javascript Select Node"
+msgstr ""
+
+#: guifi.module:970
+msgid "Javascript Select Device by node/zone/device nickname"
+msgstr ""
+
+#: guifi.module:977
+msgid "Javascript Select Service"
+msgstr ""
+
+#: guifi.module:984
+msgid "Javascript Select Server"
+msgstr ""
+
+#: guifi.module:991
+msgid "Javascript Move Device"
+msgstr ""
+
+#: guifi.module:997
+msgid "Javascript Add Interface"
+msgstr ""
+
+#: guifi.module:1003
+msgid "Javascript Add Public Subnetwork Mask"
+msgstr ""
+
+#: guifi.module:1009
+msgid "Javascript Add Wireless Radio"
+msgstr ""
+
+#: guifi.module:1015
+msgid "Javascript Add Domain"
+msgstr ""
+
+#: guifi.module:1022
+msgid "Javascript Add Cable Link"
+msgstr ""
+
+#: guifi.module:1082
+msgid "generate mrtg config file"
+msgstr ""
+
+#: guifi.module:1097
+msgid "display detailed node graphs"
+msgstr ""
+
+#: guifi.module:1107
+msgid "guifi.net API"
+msgstr ""
+
+#: guifi.module:1108
+msgid "Public API for guifi.net network management"
+msgstr ""
+
+#: guifi.info:0;0
+msgid "guifi.net"
+msgstr ""
+
+#: guifi.info:0
+msgid "Main module for guifi.net provisioning system for wireless networks and communities."
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:9
+msgid "This firmware configuration is under construction or not yet started development."
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:10
+msgid "If you want to collaborate and contribute with code to make it work,"
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:11
+msgid "please subscibre to our development lists at:"
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:12
+msgid "https://lists.guifi.net/listinfo/guifi-rdes"
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:13
+msgid "The source for this application can be downloaded from the GIT repository:"
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:14
+msgid "https://gitorious.org/guifi/drupal-guifi"
+msgstr ""
+
+#: firmware/firmware-todo.inc.php:15
+msgid "Contributions are always welcome!"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:68
+msgid "NTPClient Settings"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:98
+msgid "System Settings"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:125
+msgid "SNMP Settings"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:138
+msgid "LLDP Settings"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:160
+msgid "File /etc/passwd"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:209
+msgid "TFTP method:"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:217
+msgid "Web Browser method:"
+msgstr ""
+
+#: firmware/kamikaze.inc.php:225
+msgid "Put the mouse cursor over the link. Right click the link and select \"Save Link/Target As...\" to save to your Desktop."
+msgstr ""
+
+#: firmware/kamikaze.inc.php:234 firmware/wrt-sveasoft-dd.inc.php:652
+msgid "end of script and reboot"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:52
+msgid "Configuration for RouterOS 4.7 and newer 4.x"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:58
+msgid "Methods to upload/execute this script:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:59
+msgid "1.-As a script. Upload this output as a script either with:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:60
+msgid "a.Winbox (with Linux, wine required)"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:61
+msgid "b.Terminal (telnet, ssh...)"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:62
+msgid "Then execute the script with:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:63
+msgid ">&nbsp;/system script run script_name"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:64
+msgid "2.-Imported file:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:65
+msgid "Save this output to a file, then upload it to the router"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:66
+msgid "using ftp using a name like \"script_name.rsc\"."
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:67
+msgid "(note that extension \".rsc\" is required)"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:68
+msgid "Run the import file using the command:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:69
+msgid ">&nbsp;/import script_name"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:70
+msgid "3.-Telnet cut&paste:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:71
+msgid "Open a terminal session, and cut&paste this output"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:72
+msgid "directly on the terminal input."
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:74
+msgid "Notes:"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:75
+msgid "-routing-test package is required if you use RouterOSv2.9 , be sure you have it enabled at system packages"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:76
+msgid "-wlans should be enabled manually, be sure to set the correct antenna (a or b)"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:77
+msgid "&nbsp;&nbsp;according in how did you connect the cable to the miniPCI. Keep the"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:78
+msgid "&nbsp;&nbsp;power at the minimum possible and check the channel."
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:79
+msgid "-The script doesn't reset the router, you might have to do it manually"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:80
+msgid "-You must have write access to the router"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:81
+msgid "-MAC access (winbox, MAC telnet...) method is recommended"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:82
+msgid "&nbsp;&nbsp;(the script reconfigures some IP addresses, so communication can be lost)"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:83
+msgid "-No changes are done in user passwords on the device"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:84
+msgid "-A Read Only guest account with no password will be created to allow guest access"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:85
+msgid "&nbsp;&nbsp;to the router with no danger of damage but able to see the config."
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:86
+msgid "-Be sure that all packages are activated."
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:87
+msgid "-Don't run the script from telnet and being connected through an IP connection at"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:88
+msgid "&nbsp;&nbsp;the wLan/Lan interface: This interface will be destroyed during the script."
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:128
+msgid "Bandwidth-server"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:145
+msgid "Graphing"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:152
+msgid "Ip for ServerLogs"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:165
+msgid "Remove current wLan/Lan bridge if exists"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:175
+msgid "Construct main bridge on wlan1 &#038; ether1"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:279
+msgid "Remove all existing wds interfaces"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:490
+msgid "Other cable connections"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:536
+msgid "Internal addresses NAT"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:556
+msgid "BGP Routing"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:557
+msgid "BGP & OSPF Filters"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:572
+msgid "BGP instance"
+msgstr ""
+
+#: firmware/mikrotik-routeros.inc.php:590
+msgid "OSPF Routing"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:98
+msgid "Gateway routing"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:107
+msgid "Firewall enabled"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:117
+msgid "Firewall disabled"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:287
+msgid "Global network parameters"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:369
+msgid "This is just a fake key. You must install a trusted key if you like to have you router managed externally"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:389
+msgid "AP mode"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:403
+msgid "Client mode"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:430
+msgid "WARNING: AP MAC not set"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:573
+msgid "WDS Links for"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:602
+msgid "Free WDS slots"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:604
+msgid "free"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:618;625
+msgid "######################################################"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:619
+msgid "WARNING! this unsolclic is for use only on DD-WRT v23beta2 firmware's."
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:620
+msgid "DD-WRT V23sp2 or V24 contains some changes in the user authentification method"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:621
+msgid "V23beta2 uses plain-text password and V23sp2 and v24 need the password to be crypted!!"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:622
+msgid "You may lose access to your device, you will be warned."
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:623
+msgid "Some parts of unsolclic v23Beta2 can be reused in V23sp2/v24 if you want to test, replace"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:624
+msgid "the password line: nvram set http_passwd=\"guifi\" to nvram set http_passwd=\"\" before"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:628
+msgid "open a telnet/ssh session on your device and run the script below."
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:629
+msgid "Note: Use Status/Wireless survey to verify that you have the"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:630
+msgid "antenna plugged in the right connector. The right antena is probably"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:631
+msgid "the one which is at the right, looking the WRT54G from the front"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:632
+msgid "(where it have the leds). If needed, change the antenna connector"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:633
+msgid "at Wireless->Advanced Settings."
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:634
+msgid "Security notes:"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:635
+msgid "Once this script is executes, the router password for root/admin users is \"guifi\""
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:636
+msgid "You must change this password if you want to keep it secret. If you like to still"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:637
+msgid "be managed externally, you must install a trusted ssh key. Upon request, your setup"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:638
+msgid "might be asked for being inspected to check the Wireless Commons compliance."
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:639
+msgid "No firewall rules are allowed in the public network area."
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:640
+msgid "By being in client mode, the router has the firewall enabled to distinguish between"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:641
+msgid "private and public areas, and only SNMP, ssh and https 8080 ports are enabled"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:642
+msgid "for external administration. Everything else is closed, therefore you might"
+msgstr ""
+
+#: firmware/wrt-sveasoft-dd.inc.php:643
+msgid "have to open ports to share resources."
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:28 firmware/kamikaze/atheros/kamikaze_ap.inc.php:28
+msgid "Wireless Settings"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:163 firmware/kamikaze/atheros/kamikaze_ap.inc.php:157
+msgid "Network Settings"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:267 firmware/kamikaze/atheros/kamikaze_ap.inc.php:274
+msgid "Firewall Settings"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:347
+msgid "DHCP Static Leases"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:415 firmware/kamikaze/atheros/kamikaze_ap.inc.php:382
+msgid "DHCP Settings"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:501 firmware/kamikaze/atheros/kamikaze_ap.inc.php:445 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:157 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:287
+msgid "File /etc/quagga/zebra.conf"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:510 firmware/kamikaze/atheros/kamikaze_ap.inc.php:452 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:164 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:294
+msgid "File /etc/quagga/ospfd.conf"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:558 firmware/kamikaze/atheros/kamikaze_ap.inc.php:501 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:189 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:339
+msgid "File /etc/quagga/bgpd.conf"
+msgstr ""
+
+#: firmware/kamikaze/ar71xx/kamikaze_ap.inc.php:628 firmware/kamikaze/atheros/kamikaze_ap.inc.php:572 firmware/kamikaze/atheros/kamikaze_client.inc.php:166 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:246 firmware/kamikaze/broadcom/kamikaze_client.inc.php:162 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:470
+msgid "File /etc/opkg.conf"
+msgstr ""
+
+#: firmware/kamikaze/atheros/kamikaze_client.inc.php:81 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:79 firmware/kamikaze/broadcom/kamikaze_client.inc.php:80 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:205
+msgid "File /etc/config/network"
+msgstr ""
+
+#: firmware/kamikaze/atheros/kamikaze_client.inc.php:105 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:102 firmware/kamikaze/broadcom/kamikaze_client.inc.php:102 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:28
+msgid "File /etc/config/wireless"
+msgstr ""
+
+#: firmware/kamikaze/atheros/kamikaze_client.inc.php:153 firmware/kamikaze/broadcom/kamikaze_ap.inc.php:234 firmware/kamikaze/broadcom/kamikaze_client.inc.php:150 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:399
+msgid "File /etc/config/firewall"
+msgstr ""
+
+#: firmware/kamikaze/broadcom/kamikaze_ap.inc.php:296;301 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:516
+msgid "File /etc/config/luci_ethers"
+msgstr ""
+
+#: firmware/kamikaze/broadcom/kamikaze_ap.inc.php:337 firmware/kamikaze/ixp4xx/kamikaze_ap.inc.php:531
+msgid "File /etc/config/dhcp"
+msgstr ""
