@@ -17,15 +17,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-#from mechanize import Request
-#from mechanize import urlopen
-import mechanize
-import re
-
 #### Configure
 USERNAME = ''
 PASSWORD = ''
 ### End configure
+
+import mechanize
+import re
+
+__version__ = 0.2
+__author__ = "Pablo Castellano <pablo@anche.no>"
+__license__ = "GNU GPLv3+"
 
 URL1 = 'https://delicious.com/login#'
 DAT1 = 'username=%s&password=%s' %(USERNAME, PASSWORD)
