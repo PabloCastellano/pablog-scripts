@@ -24,10 +24,8 @@
 
 # Related RFCs: 2047, 2044, 1522
 
-# TODO:
-# Nested payloads - payloads can be multipart too
 
-__version__ = 0.4
+__version__ = 1.0
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
 
@@ -39,6 +37,65 @@ import sys
 import email
 
 
+BLACKLIST = ('signature.asc')
+VERBOSE = 1
+
+attachments = 0 #Count extracted attachment
+
+# Search for filename or find recursively if it's multipart
+def extract_attachment(payload):
+	global attachments
+	filename = payload.get_filename()
+
+	if filename is not None:
+		print "\nAttachment found!"
+		if filename.find('=?') != -1:
+			ll = email.header.decode_header(filename)
+			filename = ""
+			for l in ll:
+				filename = filename + l[0]
+			
+		if filename in BLACKLIST:
+			if (VERBOSE >= 1):
+				print "Skipping %s (blacklist)\n" %filename
+			return
+
+		# Puede no venir especificado el nombre del archivo??		
+	#	if filename is None:
+	#		filename = "unknown_%d_%d.txt" %(i, p)
+
+		content = payload.as_string()
+		# Skip headers, go to the content
+		fh = content.find('\n\n')
+		content = content[fh:]
+
+		# if it's base64....
+		if payload.get('Content-Transfer-Encoding') == 'base64':
+			content = base64.decodestring(content)
+		# quoted-printable
+		# what else? ...
+
+		print "Extracting %s (%d bytes)\n" %(filename, len(content))
+
+		try:
+			#FIX: dont overwrite (e.g. signature.asc is very common)
+	#		fp = open(filename, "w")
+			fp = open(str(i) + "_" + filename, "w")
+			fp.write(content)
+		except IOError:
+			print "Aborted, IOError!!!"
+			sys.exit(2)
+		finally:
+			fp.close()	
+
+		attachments = attachments + 1
+	else:
+		if payload.is_multipart():
+			for payl in payload.get_payload():
+				extract_attachment(payl)
+
+
+###
 if len(sys.argv) < 2 or len(sys.argv) > 3:
 	print "Usage: %s <mbox_file> [directory]" %sys.argv[0]
 	sys.exit(0)
@@ -58,19 +115,14 @@ if len(sys.argv) == 3:
 
 mb = mailbox.mbox(filename)
 nmes = len(mb)
-attachments = 0 #Count extracted attachment
 
 os.chdir(directory)
 
 for i in range(len(mb)):
-	print "Analyzing message number", i
-	mes = mb.get_message(i)
-	
-	# Puede tener adjunto sin ser multipart?!
-	if not mes.is_multipart():
-		#print "Not multipart, skip"
-		continue
+	if (VERBOSE >= 2):
+		print "Analyzing message number", i
 
+	mes = mb.get_message(i)
 	em = email.message_from_string(mes.as_string())
 
 	subject = em.get('Subject')
@@ -87,59 +139,17 @@ for i in range(len(mb)):
 		for l in ll:
 			em_from = em_from + l[0]
 
-	print "%s - From: %s" %(subject, em_from)
-	payloads = em.get_payload()
-	npay = len(payloads)
+	if (VERBOSE >= 2):
+		print "%s - From: %s" %(subject, em_from)
 
-	for p in range(npay):
-		payl = payloads[p]
-		filename = payl.get_filename()
-		if filename is None:
-			#print "No attachment in payload %d, skip" %p
-			continue
-
-		if filename.find('=?') != -1:
-			ll = email.header.decode_header(filename)
-			filename = ""
-			for l in ll:
-				filename = filename + l[0]
-			
-		print "\nAttachment found!"
-
-		# Puede no venir especificado el nombre del archivo??		
-#		if filename is None:
-#			filename = "unknown_%d_%d.txt" %(i, p)
-
-		content = payl.as_string()
-		# Skip headers
-		fh = content.find('\n\n')
-		content = content[fh:]
-
-		# if base64....
-		if payl.get('Content-Transfer-Encoding') == 'base64':
-			content = base64.decodestring(content)
-		# quoted-printable
-		# what else? ...
-
-		print "Extracting %d bytes to %s\n" %(len(content), filename)
-
-		try:
-			#FIX: dont overwrite (e.g. signature.asc is very common)
-#			fp = open(filename, "w")
-			fp = open(str(i) + "_" + filename, "w")
-			fp.write(content)
-		except IOError:
-			print "Aborted, IOError!!!"
-			sys.exit(2)
-		finally:
-			fp.close()	
-
-		attachments = attachments + 1
-
-		#fp = open(filename+"_decoded.txt", "w")
-		#fp.write(base64.b64decode(content))
-		#fp.close()
+	filename = mes.get_filename()
+	
+	# Puede tener filename siendo multipart???
+	if em.is_multipart():
+		for payl in em.get_payload():
+			extract_attachment(payl)
+	else:
+		extract_attachment(em)
 
 print "\n--------------"
 print "Total attachments extracted: ", attachments
-
