@@ -24,7 +24,10 @@
 
 # Related RFCs: 2047, 2044, 1522
 
-__version__ = 0.2
+# TODO:
+# Nested payloads - payloads can be multipart too
+
+__version__ = 0.4
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
 
@@ -33,6 +36,8 @@ import mailbox
 import base64
 import os
 import sys
+import email
+
 
 if len(sys.argv) < 2 or len(sys.argv) > 3:
 	print "Usage: %s <mbox_file> [directory]" %sys.argv[0]
@@ -61,74 +66,70 @@ for i in range(len(mb)):
 	print "Analyzing message number", i
 	mes = mb.get_message(i)
 	
-#	em = email.message_from_string(mes.as_string())
-#	pay1=em.get_payloads()[1]
-#	pay.get_filename()
-#	pay1.get_params() #??¿?¿? No todos
-# 	pay1.get_param("Content-Disposition") # Nada
-#	pay1.get('Content-Disposition')
-#	pay1.get_params(header='content-disposition')
-#	[('attachment', ''), ('filename', '=?ISO-8859-1?Q?ACTA_DE_LA_REUNI=D3N_INTERREGIONAL_DE_DINAMIZACI=D3N_24_y_29?=\n =?ISO-8859-1?Q?_JULIO=2Edoc?=')]
-#	email.header.decode_header(name1)
-
 	# Puede tener adjunto sin ser multipart?!
 	if not mes.is_multipart():
-		print "Not multipart, skip"
+		#print "Not multipart, skip"
 		continue
 
-	payloads = mes.get_payload()
+	em = email.message_from_string(mes.as_string())
+
+	subject = em.get('Subject')
+	if subject.find('=?') != -1:
+		ll = email.header.decode_header(subject)
+		subject = ""
+		for l in ll:
+			subject = subject + l[0]
+
+	em_from = em.get('From')
+	if em_from.find('=?') != -1:
+		ll = email.header.decode_header(em_from)
+		em_from = ""
+		for l in ll:
+			em_from = em_from + l[0]
+
+	print "%s - From: %s" %(subject, em_from)
+	payloads = em.get_payload()
 	npay = len(payloads)
+
 	for p in range(npay):
-		has_attachment = True
 		payl = payloads[p]
-		content = payl.as_string()
-		lines = content.splitlines()
-
-		dict_headers = dict()
-		for li in lines:
-			if li == '':
-				break
-			headers = li.split("; ")
-			if '' in headers:
-				headers.remove('')
-			for h in headers:
-				values = h.split(": ")
-				if len(values) == 1:
-					values = h.split('=')
-					if len(values) == 1:
-						print "Aborting. Unknown format: "
-						print h
-						sys.exit(1)
-				if '' in values:
-					values.remove('')
-
-				dict_headers[values[0].lstrip()] = values[-1]
-
-		has_attachment = dict_headers.get('Content-Disposition') == 'attachment'
-
-		if not has_attachment:
-			print "No attachment, skip"
+		filename = payl.get_filename()
+		if filename is None:
+			#print "No attachment in payload %d, skip" %p
 			continue
 
-		filename = dict_headers.get("filename")
-		if filename.startswith('"'):
-			filename = filename[1:-1]
-		
-		if filename is None:
-			filename = "unknown_%d_%d.txt" %(i, p)
+		if filename.find('=?') != -1:
+			ll = email.header.decode_header(filename)
+			filename = ""
+			for l in ll:
+				filename = filename + l[0]
+			
+		print "\nAttachment found!"
 
-		print "Writing %d bytes to %s" %(len(content), filename)
-		#file1_idx = file1.find('\n\n')
-		#file1 = file1[file1_idx+2:]
+		# Puede no venir especificado el nombre del archivo??		
+#		if filename is None:
+#			filename = "unknown_%d_%d.txt" %(i, p)
+
+		content = payl.as_string()
+		# Skip headers
+		fh = content.find('\n\n')
+		content = content[fh:]
+
+		# if base64....
+		if payl.get('Content-Transfer-Encoding') == 'base64':
+			content = base64.decodestring(content)
+		# quoted-printable
+		# what else? ...
+
+		print "Extracting %d bytes to %s\n" %(len(content), filename)
+
 		try:
 			#FIX: dont overwrite (e.g. signature.asc is very common)
-			fp = open(filename, "w")
+#			fp = open(filename, "w")
+			fp = open(str(i) + "_" + filename, "w")
 			fp.write(content)
 		except IOError:
-			print 'headers'
-			print '---------'
-			print dict_headers
-			print "Aborted"
+			print "Aborted, IOError!!!"
 			sys.exit(2)
 		finally:
 			fp.close()	
@@ -139,6 +140,6 @@ for i in range(len(mb)):
 		#fp.write(base64.b64decode(content))
 		#fp.close()
 
-print "--------------"
+print "\n--------------"
 print "Total attachments extracted: ", attachments
 
