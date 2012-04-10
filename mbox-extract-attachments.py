@@ -25,7 +25,7 @@
 # Related RFCs: 2047, 2044, 1522
 
 
-__version__ = 1.0
+__version__ = 1.1
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
 
@@ -37,14 +37,15 @@ import sys
 import email
 
 
-BLACKLIST = ('signature.asc')
+BLACKLIST = ('signature.asc', 'message-footer.txt', 'smime.p7s')
 VERBOSE = 1
 
 attachments = 0 #Count extracted attachment
+skipped = 0
 
 # Search for filename or find recursively if it's multipart
 def extract_attachment(payload):
-	global attachments
+	global attachments, skipped
 	filename = payload.get_filename()
 
 	if filename is not None:
@@ -56,6 +57,7 @@ def extract_attachment(payload):
 				filename = filename + l[0]
 			
 		if filename in BLACKLIST:
+			skipped = skipped + 1
 			if (VERBOSE >= 1):
 				print "Skipping %s (blacklist)\n" %filename
 			return
@@ -77,10 +79,15 @@ def extract_attachment(payload):
 
 		print "Extracting %s (%d bytes)\n" %(filename, len(content))
 
+		n = 1
+		orig_filename = filename
+		while os.path.exists(filename):
+			filename = orig_filename + "." + str(n)
+			n = n+1
+
 		try:
-			#FIX: dont overwrite (e.g. signature.asc is very common)
-	#		fp = open(filename, "w")
-			fp = open(str(i) + "_" + filename, "w")
+			fp = open(filename, "w")
+#			fp = open(str(i) + "_" + filename, "w")
 			fp.write(content)
 		except IOError:
 			print "Aborted, IOError!!!"
@@ -152,4 +159,5 @@ for i in range(len(mb)):
 		extract_attachment(em)
 
 print "\n--------------"
-print "Total attachments extracted: ", attachments
+print "Total attachments extracted:", attachments
+print "Total attachments skipped:", skipped
