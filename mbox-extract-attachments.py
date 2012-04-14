@@ -25,9 +25,10 @@
 # Related RFCs: 2047, 2044, 1522
 
 
-__version__ = 1.1
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
+__version__ = 1.2
+__date__ = "12/04/2012"
 
 
 import mailbox
@@ -103,6 +104,12 @@ def extract_attachment(payload):
 
 
 ###
+print "Extract attachments from mbox files"
+print "Copyright (C) 2012 Pablo Castellano"
+print "This program comes with ABSOLUTELY NO WARRANTY."
+print "This is free software, and you are welcome to redistribute it under certain conditions."
+print
+
 if len(sys.argv) < 2 or len(sys.argv) > 3:
 	print "Usage: %s <mbox_file> [directory]" %sys.argv[0]
 	sys.exit(0)
