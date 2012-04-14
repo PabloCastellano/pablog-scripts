@@ -22,12 +22,19 @@
 # Example url_list: http://www.lasexta.com/sextatv/salvados/completos/salvados__domingo__25_de_septiembre/501473/1
 
 # TODO: rtmpdump -A and -B parameters should be used to download the specific portion of video but it doesn't work for me
+# TODO: Parece que desde marzo de 2012 han dejado de alojar ellos mismos los vídeos (solo los nuevos, los antiguos siguen igual)
+#       y ahora usan Akamai, que implementa varios sistemas de autenticación tal como se puede leer aqui:
+#       http://www.akamai.com/dl/feature_sheets/FS_edgesuite_accesscontrol.pdf
+#       Un ejemplo de este tipo de urls es:
+# 	http://www.lasexta.com/sextatv/salvados/completos/salvados_en_cuba__recortando_la_revolucion/595863/1
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.5
+__version__ = 0.6
 __date__ = "14/04/2012"
 
+RTMP_URL = "rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/"
+#"rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/PPD0000884012601_SALVADOS_126_25_03_2012_21_31_47_Ipad.mp4"
 
 from Crypto.Cipher import ARC4
 import sys
@@ -106,7 +113,7 @@ def decodeRTMP(url):
 		print 'rtmpdump -m 300 -o %s -r "%s"' %(filename, plain_url)
 
 	else: #url_list
-		print "URL intermedia: %s\n" %plain_url
+#		print "URL intermedia: %s\n" %plain_url
 		import xml.dom.minidom as MD
 		f = urllib.urlopen(plain_url)
 		xmlString = f.read()
@@ -118,6 +125,7 @@ def decodeRTMP(url):
 
 		# No todos los videos tienen version HD
 		hayHD = nodesUrlHD != []
+		versionAkamai = nodesUrl[0].childNodes[0].nodeValue.startswith('http')
 
 		print "La url contiene varios %d videos:" %len(nodesUrl)
 		for i in range(len(nodesUrl)):
@@ -126,8 +134,12 @@ def decodeRTMP(url):
 			print "(%d/%d) Descripción: %s" %(i+1, len(nodesUrl), title)
 			print plain_url
 			filename = plain_url.split('?')[0].split('/')[-1]
+			if versionAkamai:
+				filename = plain_url.split('?')[0].split('/')[-2]
+				plain_url = RTMP_URL + filename
+				print plain_url
 			print 'rtmpdump -m 300 -o %s -r "%s"' %(filename, plain_url)
-			if hayHD:
+			if hayHD and not versionAkamai:
 				encoded_url = nodesUrlHD[i].childNodes[0].nodeValue
 				c = ARC4.new("sd4sdfkvm234")
         			plain_urlHD = c.decrypt(HexToByte(encoded_url))
@@ -136,6 +148,10 @@ def decodeRTMP(url):
 				print 'VERSION HD:'
 				print 'rtmpdump -m 300 -o %s -r "%s"' %(filenameHD, plain_urlHD)
 			print
+
+		if versionAkamai:
+			print "Ten en cuenta que ahora lasexta.com usan un nuevo metodo para alojar los videos que no está soportado completamente por este script"
+			print "La url que has introducido pertenece este tipo."
 
 ###
 if __name__ == "__main__":
