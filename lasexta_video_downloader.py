@@ -17,6 +17,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Supported domains:
+# * http://www.lasextanoticias.com
+# * http://www.lasexta.com
+# * Maybe others...
+
 # Example encoded string: 7077f50772d81456186cf91ab66e6b8ec99250629a403fed91a4101a7dae78a2eb3e18f9ee6e9912b4809d74ca39b992ec1c7a3e422e92643de8eb5f1ec3ebf30e01a412a99c209f31d9dfad606a85d8f7bb8c557d95ebd95f0080744a40bccd505996bd5058106ff400ee3cd2a20929beee4ae3da536d3867bdc25f4083b267fd3ed24656761be8313dac245ccf0c07125079535739368d41
 # Example url: http://www.lasexta.com/sextatv/veranodirecto/macrobotellon_en_madrid_mientras_el_papa_duerme/260233/6563
 # Example url_list: http://www.lasexta.com/sextatv/salvados/completos/salvados__domingo__25_de_septiembre/501473/1
@@ -30,7 +35,7 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.6
+__version__ = 0.6.1
 __date__ = "14/04/2012"
 
 RTMP_URL = "rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/"
@@ -107,11 +112,12 @@ def decodeRTMP(url):
 
 	if t==1:
 		print plain_url
+		versionAkamai = plain_url.startswith('http')
 		filename = plain_url.split('?')[0].split('/')[-1]
 		print
 		print "Use rtmpdump to download:"
 		print 'rtmpdump -m 300 -o %s -r "%s"' %(filename, plain_url)
-
+	
 	else: #url_list
 #		print "URL intermedia: %s\n" %plain_url
 		import xml.dom.minidom as MD
@@ -147,11 +153,11 @@ def decodeRTMP(url):
 				print plain_urlHD
 				print 'VERSION HD:'
 				print 'rtmpdump -m 300 -o %s -r "%s"' %(filenameHD, plain_urlHD)
-			print
 
-		if versionAkamai:
-			print "Ten en cuenta que ahora lasexta.com usan un nuevo metodo para alojar los videos que no está soportado completamente por este script"
-			print "La url que has introducido pertenece este tipo."
+	if versionAkamai:
+		print
+		print "Ten en cuenta que ahora lasexta.com usan un nuevo metodo para alojar los videos que no está soportado completamente por este script"
+		print "La url que has introducido pertenece este tipo."
 
 ###
 if __name__ == "__main__":
