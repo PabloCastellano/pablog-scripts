@@ -35,8 +35,8 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.6.1
-__date__ = "14/04/2012"
+__version__ = '0.6.2'
+__date__ = "16/04/2012"
 
 RTMP_URL = "rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/"
 #"rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/PPD0000884012601_SALVADOS_126_25_03_2012_21_31_47_Ipad.mp4"
@@ -162,7 +162,7 @@ def decodeRTMP(url):
 ###
 if __name__ == "__main__":
 	
-	print "LaSexta video downloader"
+	print "LaSexta video downloader v%s" %__version__
 	print "Copyright (C) 2011-2012 Pablo Castellano"
 	print "This program comes with ABSOLUTELY NO WARRANTY."
 	print "This is free software, and you are welcome to redistribute it under certain conditions."
