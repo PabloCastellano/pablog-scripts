@@ -25,11 +25,11 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.2
+__version__ = 0.3
 __date__ = "27/04/2012"
 
 
-SUPPORTED_SITES = ('abc', 'publico', 'economista', 'cs', 'ep')
+SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press'}
 
 import re
 import sys
@@ -41,9 +41,9 @@ def getCite(url, t):
 		print "URL looks wrong :?"
 		sys.exit(1)
 	
-	if t not in SUPPORTED_SITES:
+	if t not in SUPPORTED_SITES.keys():
 		print "Unsupported site. Please choose one from:"
-		print SUPPORTED_SITES
+		print SUPPORTED_SITES.keys()
 		return
 
 	f = urllib.urlopen(url)
@@ -57,7 +57,7 @@ def getCite(url, t):
 	elif t == 'publico':
 		titulo = re.search('<title>(.*)</title>', ll).group(1)
 		fecha = re.search('<span class="fecha">(.*)</span>', ll).group(1)
-		fecha_act = re.search('Actualizado: <span class="fecha">(.*)</span>', ll).group(1)
+#		fecha_act = re.search('Actualizado: <span class="fecha">(.*)</span>', ll).group(1)
 	elif t == 'economista':
 		titulo = re.search('<title>(.*)</title>', ll).group(1)
 		fecha = re.search('<div class="f-fecha">(.*) -', ll).group(1)
@@ -74,7 +74,7 @@ def getCite(url, t):
 		titulo = htmlparser.unescape(titulo)
 		fecha = url.split('/')[-1].split('-')[-1][:8]
 
-	print "* \"-frase-\"\n** [%s %s], %s" %(url, titulo, fecha)
+	print "* \"-frase-\"\n** [%s %s], %s, %s" %(url, titulo, SUPPORTED_SITES[t], fecha)
 
 
 if __name__ == "__main__":
