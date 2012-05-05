@@ -21,14 +21,15 @@
 # http://www.publico.es/espana/423455/wert-la-victoria-del-pp-no-fue-solo-por-mayoria-absoluta-sino-universal
 # http://www.eleconomista.es/noticias/noticias/3780127/02/12/WertNo-estamos-para-gastar-40000-millones-de-euros-en-estudiantes-que-dejan-la-carrera-amedias.html
 # http://www.cadenaser.com/sociedad/audios/wert-fuera-opositor-estaria-dando-saltos-alegria-han-restituido-temario-llevo-trabajando-anos/csrcsrpor/20120208csrcsrsoc_8/Aes/ #no viene fecha?
+# http://www.europapress.es/economia/noticia-alonso-pp-advierte-sindicatos-manifestaciones-no-crean-empleos-les-invita-trabajar-serio-20120211141205.htm
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.1
+__version__ = 0.2
 __date__ = "27/04/2012"
 
 
-SUPPORTED_SITES = ('abc', 'publico', 'economista', 'cs')
+SUPPORTED_SITES = ('abc', 'publico', 'economista', 'cs', 'ep')
 
 import re
 import sys
@@ -66,7 +67,12 @@ def getCite(url, t):
 			fecha = url.split('/')[-3][:8]
 		else:
 			fecha = url.split('/')[-2][:8]
-
+	elif t == 'ep':
+		titulo = re.search('<title>\r\n\t(.*)\r\n</title>', ll).group(1).decode('latin-1')
+		import HTMLParser
+		htmlparser = HTMLParser.HTMLParser()
+		titulo = htmlparser.unescape(titulo)
+		fecha = url.split('/')[-1].split('-')[-1][:8]
 
 	print "* \"-frase-\"\n** [%s %s], %s" %(url, titulo, fecha)
 
