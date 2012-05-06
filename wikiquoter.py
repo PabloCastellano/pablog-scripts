@@ -25,8 +25,8 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.3
-__date__ = "27/04/2012"
+__version__ = 0.4
+__date__ = "06/05/2012"
 
 
 SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press'}
@@ -37,14 +37,14 @@ import urllib
 
 
 def getCite(url, t):
-	if not (url.startswith("http://") or url.startswith("www")):
-		print "URL looks wrong :?"
-		sys.exit(1)
-	
 	if t not in SUPPORTED_SITES.keys():
 		print "Unsupported site. Please choose one from:"
 		print SUPPORTED_SITES.keys()
 		return
+
+	if not (url.startswith("http://") or url.startswith("www")):
+		print "URL looks wrong :?"
+		sys.exit(1)
 
 	f = urllib.urlopen(url)
 
@@ -74,7 +74,7 @@ def getCite(url, t):
 		titulo = htmlparser.unescape(titulo)
 		fecha = url.split('/')[-1].split('-')[-1][:8]
 
-	print "* \"-frase-\"\n** [%s %s], %s, %s" %(url, titulo, SUPPORTED_SITES[t], fecha)
+	print "* \"-frase-\"\n** Fuente: [%s %s], %s, %s" %(url, titulo, SUPPORTED_SITES[t], fecha)
 
 
 if __name__ == "__main__":
