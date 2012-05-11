@@ -25,7 +25,6 @@ import urllib
 #from string import find
 import re
 from sys import exit
-from os import system
 from BeautifulSoup import BeautifulSoup
 import getpass
 

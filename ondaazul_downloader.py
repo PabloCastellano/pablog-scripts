@@ -24,13 +24,8 @@ __license__ = "GNU GPLv3+"
 __version__ = 0.1
 __date__ = "14/04/2012"
 
-
 import sys
-
 import urllib
-import re
-from string import hexdigits
-import xml.dom.minidom as MD
 
 
 def getURL(url):

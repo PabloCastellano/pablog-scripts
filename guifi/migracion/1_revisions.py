@@ -3,7 +3,6 @@
 # La extrae y la guarda en archivos, para su posterior tratado.
 
 import web
-import MySQLdb
 
 # Conectamos a la bbdd de guifi.net en la máquina virtual
 db = web.database(dbn="mysql", db="guifi", user="root", pw="guifi", host="192.168.1.30")
