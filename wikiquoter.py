@@ -25,8 +25,8 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.4
-__date__ = "06/05/2012"
+__version__ = 0.5
+__date__ = "11/05/2012 Pre-r-evolution day!"
 
 
 SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press'}
@@ -60,7 +60,10 @@ def getCite(url, t):
 #		fecha_act = re.search('Actualizado: <span class="fecha">(.*)</span>', ll).group(1)
 	elif t == 'economista':
 		titulo = re.search('<title>(.*)</title>', ll).group(1)
-		fecha = re.search('<div class="f-fecha">(.*) -', ll).group(1)
+		try:
+			fecha = re.search('<div class="f-fecha">(.*) -', ll).group(1)
+		except:
+			fecha = re.search('<small>EcoDiario.es \| (.*) - .*<span', ll).group(1)	
 	elif t == 'cs':
 		titulo = re.search('<title>(.*) \| Sonido', ll).group(1).decode('latin-1')
 		if url.endswith('/'): # No viene la fecha!! :?
