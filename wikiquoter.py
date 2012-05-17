@@ -22,14 +22,16 @@
 # http://www.eleconomista.es/noticias/noticias/3780127/02/12/WertNo-estamos-para-gastar-40000-millones-de-euros-en-estudiantes-que-dejan-la-carrera-amedias.html
 # http://www.cadenaser.com/sociedad/audios/wert-fuera-opositor-estaria-dando-saltos-alegria-han-restituido-temario-llevo-trabajando-anos/csrcsrpor/20120208csrcsrsoc_8/Aes/ #no viene fecha?
 # http://www.europapress.es/economia/noticia-alonso-pp-advierte-sindicatos-manifestaciones-no-crean-empleos-les-invita-trabajar-serio-20120211141205.htm
+# http://www.lasprovincias.es/20120516/mas-actualidad/politica/corts-financiacion-local-201205161333.html
+# http://www.elcorreo.com/vizcaya/20120516/local/azkuna-comercio-tiene-espabilar-201205161922.html
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.5
-__date__ = "11/05/2012 Pre-r-evolution day!"
+__version__ = 0.6
+__date__ = "17/05/2012 #caixarolada day!"
 
 
-SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press'}
+SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press', 'lp':'Las Provincias', 'correo':'El Correo'}
 
 import re
 import sys
@@ -76,6 +78,13 @@ def getCite(url, t):
 		htmlparser = HTMLParser.HTMLParser()
 		titulo = htmlparser.unescape(titulo)
 		fecha = url.split('/')[-1].split('-')[-1][:8]
+	elif t == 'lp':
+	#	titulo = re.search('<div class="mpdato">(.*)</div>', ll).group(1)
+		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
+		fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
+	elif t == 'correo':
+		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-11]
+		fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
 
 	print "* \"-frase-\"\n** Fuente: [%s %s], %s, %s" %(url, titulo, SUPPORTED_SITES[t], fecha)
 
