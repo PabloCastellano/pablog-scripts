@@ -29,7 +29,7 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.7
+__version__ = 0.8
 __date__ = "20/05/2012 #LaCaixaEsMordor"
 
 
@@ -40,8 +40,31 @@ import sys
 import urllib
 
 
-def getCite(url, t):
-	if t not in SUPPORTED_SITES.keys():
+def guessType(url):
+	if url.startswith('http://www.abc.es'):
+		return 'abc'
+	elif url.startswith('http://www.publico.es'):
+		return 'publico'
+	elif url.startswith('http://www.eleconomista.es'):
+		return 'economista'
+	elif url.startswith('http://www.cadenaser.com'):
+		return 'cs'
+	elif url.startswith('http://www.europapress.es'):
+		return 'ep'
+	elif url.startswith('http://www.lasprovincias.es'):
+		return 'lp'
+	elif url.startswith('http://www.elcorreo.es'):
+		return 'correo'
+	elif url.startswith('http://www.laverdad.es'):
+		return 'lv'
+	elif url.startswith('http://www.20minutos.es'):
+		return '20m'
+	else:
+		return None
+
+
+def getCite(url, t=None):
+	if t is not None and t not in SUPPORTED_SITES.keys():
 		print "Unsupported site. Please choose one from:"
 		print SUPPORTED_SITES.keys()
 		return
@@ -49,6 +72,15 @@ def getCite(url, t):
 	if not (url.startswith("http://") or url.startswith("www")):
 		print "URL looks wrong :?"
 		sys.exit(1)
+
+	if t is None:
+		t = guessType(url)
+		if t is None:
+			print "Type couldn't be guessed. Please specify it manually."
+			print SUPPORTED_SITES.keys()
+			sys.exit(1)
+		else:
+			print 'Guessing url type... %s (%s)' %(SUPPORTED_SITES[t], t)
 
 	f = urllib.urlopen(url)
 
@@ -106,8 +138,8 @@ if __name__ == "__main__":
 	print
 	
 	# type = abc, publico
-	if len(sys.argv) != 3:
-		print "Usage: %s <URL> <type>" %sys.argv[0]
+	if len(sys.argv) not in (2,3):
+		print "Usage: %s <URL> [type]" %sys.argv[0]
 		sys.exit(0)
 	
-	getCite(sys.argv[1], sys.argv[2])
+	getCite(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
