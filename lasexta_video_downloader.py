@@ -32,13 +32,42 @@
 #       http://www.akamai.com/dl/feature_sheets/FS_edgesuite_accesscontrol.pdf
 #       Un ejemplo de este tipo de urls es:
 # 	http://www.lasexta.com/sextatv/salvados/completos/salvados_en_cuba__recortando_la_revolucion/595863/1
+#
+#	Ademas el contenido esta en formato .f4f (Flash MP4 Video Fragment)
+#	Mas info en: http://blogs.adobe.com/ktowes/2010/06/flash_player_101_http_dynamic.html
+#	http://www.adobe.com/products/hds-dynamic-streaming.html
+#
+# 7704.107019           192.168.1.128   63.80.242.41    HTTP    487     GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag174?als=0.6,300,0.7,0,2053,1693,25.13,380,2,93,f,1037.82,2469.5,f,u,SHPFNCEPGIJK,2.6.8,93 HTTP/1.1
+# 4472	19.507811	192.168.1.128	63.80.242.41	HTTP	494	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag346?als=246.94,300,1.54,0,1846,2231,25.42,1165,6,156,f,1823.49,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 5683	24.304801	192.168.1.128	63.80.242.41	HTTP	494	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag347?als=248.15,300,1.34,0,2292,2279,26.62,1165,6,156,f,1828.22,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 7018	29.460329	192.168.1.128	63.80.242.41	HTTP	493	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag348?als=248.92,300,1.5,0,1975,2268,26.76,1165,6,156,f,1833.54,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 8530	35.100712	192.168.1.128	63.80.242.41	HTTP	493	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag349?als=249.37,300,1.37,0,2568,2355,25.08,1175,6,156,f,1839.1,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 9995	39.883712	192.168.1.128	63.80.242.41	HTTP	493	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag350?als=250.88,300,1.26,0,2121,2953,25.56,1175,6,156,f,1843.9,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 11307	44.668458	192.168.1.128	63.80.242.41	HTTP	494	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag351?als=252.01,300,1.68,0,2189,2425,25.81,1176,6,156,f,1848.77,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 12834	50.726115	192.168.1.128	63.80.242.41	HTTP	493	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag352?als=252.02,300,1.53,0,1538,2214,13.5,1202,6,156,f,1854.24,2469.5,f,u,SHPFNCEPGIJK,2.6.8,156 HTTP/1.1 
+# 14175	55.614538	192.168.1.128	63.80.242.41	HTTP	493	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag353?als=253.16,300,1.16,0,1749,2747,7.36,1262,6,157,f,1859.08,2469.5,f,u,SHPFNCEPGIJK,2.6.8,157 HTTP/1.1 
+# 15467	61.881159	192.168.1.128	63.80.242.41	HTTP	493	GET /z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag354?als=252.87,300,1.64,0,1555,1927,6.61,1347,6,157,f,1865.36,2469.5,f,u,SHPFNCEPGIJK,2.6.8,157 HTTP/1.1 
+#http://lasextavod-f.akamaihd.net/z/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4/0_e8775c2b4acd5464_Seg1-Frag174?als=0.6,300,0.7,0,2053,1693,25.13,380,2,93,f,1037.82,2469.5,f,u,SHPFNCEPGIJK,2.6.8,93
+# rtmp://vod.lasexta.com/vod/_definst_/salvados/hd/PPD0000884012501_SALVADOS_125_18_03_2012_21_33_24_h264.mp4
+
+# http://lasextavod-f.akamaihd.net/z/lasextanoticias/sd/eco10_20120412_1612583153.flv/manifest.f4m
+# http://lasextavod-f.akamaihd.net/z/lasextanoticias/sd/eco10_20120412_1612583153.flv/manifest.f4m?hdcore=2.6.8
+# http://lasextavod-f.akamaihd.net/z/lasextanoticias/sd/eco10_20120412_1612583153.flv/manifest.f4m?hdcore=2.6.8&g=HFQYTVWLTKMQ
+#
+# Anuncios:
+# http://p.lasexta.com/2/sexta/noticias/videos/1438227006
+# Otros:
+# www.lasexta.com//media/swf/players/sextaon/assets/imgV2/controls/mosca.png
+# www.lasexta.com//media/swf/players/sextaon/assets/imgV2/controls/btnPlay.png
+# ...
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = '0.6.2'
-__date__ = "16/04/2012"
+__version__ = '0.6.3'
+__date__ = "10/06/2012 #Hililloshhh"
 
 RTMP_URL = "rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/"
+HTTP_URL = 'http://descarga.lasexta.com/salvados/sd/'
 #"rtmp://vod.lasexta.com/vod/_definst_/salvados/sd/PPD0000884012601_SALVADOS_126_25_03_2012_21_31_47_Ipad.mp4"
 
 from Crypto.Cipher import ARC4
@@ -137,11 +166,15 @@ def decodeRTMP(url):
 		for i in range(len(nodesUrl)):
 			plain_url = nodesUrl[i].childNodes[0].nodeValue
 			title = nodesTitle[i].childNodes[0].nodeValue.encode('utf-8')
+			print
 			print "(%d/%d) Descripción: %s" %(i+1, len(nodesUrl), title)
 			print plain_url
 			filename = plain_url.split('?')[0].split('/')[-1]
 			if versionAkamai:
 				filename = plain_url.split('?')[0].split('/')[-2]
+				plain_url = HTTP_URL + filename
+				print plain_url
+				print 'wget -c', plain_url
 				plain_url = RTMP_URL + filename
 				print plain_url
 			print 'rtmpdump -m 300 -o %s -r "%s"' %(filename, plain_url)
