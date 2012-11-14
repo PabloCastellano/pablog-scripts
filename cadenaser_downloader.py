@@ -20,6 +20,7 @@
 #Ejemplos:
 #http://www.cadenaser.com/espana/audios/baltasar-garzon-pierde-vigilancia-estatica-domicilio-hoy-hoy-2012/csrcsrpor/20120404csrcsrnac_2/Aes/
 #http://www.cadenaser.com/espana/audios/rajoy-hay-presidente-gobierno-va-dar-cara-va-esconder/csrcsrpor/20120410csrcsrnac_11/Aes/
+# NOT FOUND: http://www.cadenaser.com/espana/audios/aguirre-puedes-autorizar-puta-mierda/csrcsrpor/20100129csrcsrnac_8/Aes/
 
 #TODO: Guardar la info ID3...
 #

@@ -24,7 +24,7 @@ import sys
 file_counter = 0
 conn = dict()
 #You may need to set this to something such as wlan0 if using WiFi
-interface='wlan1'
+interface='wlan0'
 
 def rename_id3(filename):
 
