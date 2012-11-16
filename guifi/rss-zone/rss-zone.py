@@ -20,10 +20,9 @@
 # TODO:
 # * Growth bar graphs
 # * Subscription: send e-mail with updates (instantly, weekly...)
-# * This version is only useful to locate new nodes
 # * Find removed nodes, updated nodes... and every change
 
-__version__ = 1.0
+__version__ = 1.1
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
 __date__ = "16/11/2012"
@@ -41,7 +40,6 @@ CNML_ID = '21629' # Málaga provincia
 CNML_URL = 'https://guifi.net/guifi/cnml/%s/detail' %CNML_ID
 ZONE_URL = 'https://guifi.net/node/%s' %CNML_ID
 CNML_FILE = '%s_detail.cnml' %CNML_ID
-LAST_CREATED=''
 RSS_HEAD = """\
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
@@ -55,7 +53,7 @@ RSS_BODY = """\
         <title>%s (%s)</title>
         <link>https://guifi.net/node/%s</link>
         <description>New node "%s" at (%s, %s)</description>
-        <pubDate>%s, %s %s %s</pubDate>
+        <pubDate>%s</pubDate>
         <dc:creator>rss-zone.py</dc:creator>
     </item>\n"""
 RSS_FOOT = '</channel>\n</rss>\n'
@@ -76,23 +74,21 @@ def getNodesSortedByDate(tree):
 		"""
 		sorted_nodes.append(this_node)
 	sorted_nodes.sort()
+	sorted_nodes.reverse()
 	return sorted_nodes
 
 
 def printRSSNodes(nodes, limit=20, fp=sys.stdout):
 	fp.write(RSS_HEAD %('Málaga provincia', CNML_ID, ZONE_URL))
-	nodes.reverse()
 	for node in nodes[:limit]:
-		date1 = node['created'].split()[0]
-		nodedate = datetime(int(date1[:4]),int(date1[4:6]),int(date1[-2:]))
-		month_name = nodedate.strftime('%b')
-		weekday = nodedate.strftime('%a')
-		fp.write(RSS_BODY %(node['title'], node['id'], node['id'], node['title'], node['lat'], node['lon'], weekday, nodedate.day, month_name, nodedate.year))
+		(date1, time1) = node['created'].split()
+		nodedate = datetime(int(date1[:4]),int(date1[4:6]),int(date1[-2:]), int(time1[:2]), int(time1[2:]))
+		fp.write(RSS_BODY %(node['title'], node['id'], node['id'], node['title'], node['lat'], node['lon'], nodedate.strftime('%a, %d %b %Y %H:%M:00 +0000')))
 	fp.write(RSS_FOOT)
 
 
 sys.stderr.write('Guifi.net rss-zone.py - Generate RSS feed with latest nodes\n')
-sys.stderr.write('Usage: %s [output_file.rss]\n\n' %sys.argv[0])
+sys.stderr.write('Usage: %s [output_file.rss] [output_file.log]\n\n' %sys.argv[0])
 sys.stderr.write('#1: Downloading CNML from %s\n' %CNML_URL)
 fUrl = urllib.urlopen(CNML_URL)
 content = fUrl.read()
@@ -103,14 +99,49 @@ fLocal.close()
 sys.stderr.write('#2: Accesing to CNML data\n')
 tree = MD.parse(CNML_FILE)
 nodes = getNodesSortedByDate(tree)
-if len(sys.argv) == 2:
-	sys.stderr.write('#3: Generating RSS feed (saving to %s)\n\n' %sys.argv[1])
+if len(sys.argv) >= 2:
+	limit = len(nodes)
+	sys.stderr.write('#3: Generating RSS feed (saving %d nodes to %s)\n\n' %(limit, sys.argv[1]))
 	# Write to file
 	fp = open(sys.argv[1], 'w')
-	printRSSNodes(nodes, len(nodes), fp)
+	printRSSNodes(nodes, limit, fp)
 	fp.close()
 else:
 	limit = 20
 	sys.stderr.write('#3: Generating RSS feed (stdout, limit=%d)\n\n' %limit)
 	printRSSNodes(nodes, limit)
 
+sys.stderr.write('Result:\n')
+try:
+	fp = open('rss_zone_last_update','r')
+	last_node_id = fp.read()
+	fp.close()
+	for newnodes, node in enumerate(nodes):
+		if node['id'] == last_node_id:
+			break
+	print '  Nodes since last run:', str(newnodes)
+except IOError:
+	print '  First time running this script'
+	newnodes = len(nodes)
+
+last_node = nodes[0]
+# Save log and number of nodes created since last run
+if len(sys.argv) == 3:
+	fp = open(sys.argv[2], 'a')
+else:
+	fp = open('rss_zone.log', 'a')
+fp.write('-- Run on %s --\n' %str(datetime.today()))
+fp.write('Last node "%s" (https://guifi.net/node/%s) created on %s\n' %(last_node['title'], last_node['id'], last_node['created']))
+fp.write('%d new nodes since last update\n' %newnodes)
+for node in nodes[:newnodes]:
+	fp.write('    - %s\n' %node['title'])
+fp.write('\n')
+fp.close()
+sys.stderr.write('  Last node "%s" (https://guifi.net/node/%s) created on %s\n' %(last_node['title'], last_node['id'], last_node['created']))
+sys.stderr.write('  %d new nodes since last update:\n' %newnodes)
+for node in nodes[:newnodes]:
+	sys.stderr.write('    - %s\n' %node['title'])
+# Save last node created
+fp = open('rss_zone_last_update','w')
+fp.write(last_node['id'])
+fp.close()
