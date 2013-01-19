@@ -29,8 +29,9 @@
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 0.8
-__date__ = "20/05/2012 #LaCaixaEsMordor"
+__version__ = 0.9
+__date__ = "19/01/2013"
+__miscdate__ = "20/05/2012 #LaCaixaEsMordor"
 
 
 SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press', 'lp':'Las Provincias', 'correo':'El Correo', 'lv':'La Verdad', '20m':'20 Minutos'}
@@ -124,7 +125,10 @@ def getCite(url, t=None):
 		fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
 	elif t == '20m':
 		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
-		fecha = re.search('<li class="author">.* (.*) - .*', ll).group(1);
+        try:
+            fecha = re.search('<li class="author">.* (.*) - .*', ll).group(1)
+        except:
+            fecha = re.search('<li class="author">.* (.*)</li>', ll).group(1)
 
 	print "* \"-frase-\"\n** Fuente: [%s %s], %s, %s" %(url, titulo, SUPPORTED_SITES[t], fecha)
 
