@@ -34,7 +34,7 @@ __date__ = "19/01/2013"
 __miscdate__ = "20/05/2012 #LaCaixaEsMordor"
 
 
-SUPPORTED_SITES = {'abc':'Diario ABC', 'publico':'Diario Público', 'economista':'El Economista', 'cs':'Cadena Ser', 'ep':'Europa Press', 'lp':'Las Provincias', 'correo':'El Correo', 'lv':'La Verdad', '20m':'20 Minutos'}
+SUPPORTED_SITES = {'abc': 'Diario ABC', 'publico': 'Diario Público', 'economista': 'El Economista', 'cs': 'Cadena Ser', 'ep': 'Europa Press', 'lp': 'Las Provincias', 'correo': 'El Correo', 'lv': 'La Verdad', '20m': '20 Minutos'}
 
 import re
 import sys
@@ -42,108 +42,108 @@ import urllib
 
 
 def guessType(url):
-	if url.startswith('http://www.abc.es'):
-		return 'abc'
-	elif url.startswith('http://www.publico.es'):
-		return 'publico'
-	elif url.startswith('http://www.eleconomista.es'):
-		return 'economista'
-	elif url.startswith('http://www.cadenaser.com'):
-		return 'cs'
-	elif url.startswith('http://www.europapress.es'):
-		return 'ep'
-	elif url.startswith('http://www.lasprovincias.es'):
-		return 'lp'
-	elif url.startswith('http://www.elcorreo.es'):
-		return 'correo'
-	elif url.startswith('http://www.laverdad.es'):
-		return 'lv'
-	elif url.startswith('http://www.20minutos.es'):
-		return '20m'
-	else:
-		return None
+    if url.startswith('http://www.abc.es'):
+        return 'abc'
+    elif url.startswith('http://www.publico.es'):
+        return 'publico'
+    elif url.startswith('http://www.eleconomista.es'):
+        return 'economista'
+    elif url.startswith('http://www.cadenaser.com'):
+        return 'cs'
+    elif url.startswith('http://www.europapress.es'):
+        return 'ep'
+    elif url.startswith('http://www.lasprovincias.es'):
+        return 'lp'
+    elif url.startswith('http://www.elcorreo.es'):
+        return 'correo'
+    elif url.startswith('http://www.laverdad.es'):
+        return 'lv'
+    elif url.startswith('http://www.20minutos.es'):
+        return '20m'
+    else:
+        return None
 
 
 def getCite(url, t=None):
-	if t is not None and t not in SUPPORTED_SITES.keys():
-		print "Unsupported site. Please choose one from:"
-		print SUPPORTED_SITES.keys()
-		return
+    if t is not None and t not in SUPPORTED_SITES.keys():
+        print "Unsupported site. Please choose one from:"
+        print SUPPORTED_SITES.keys()
+        return
 
-	if not (url.startswith("http://") or url.startswith("www")):
-		print "URL looks wrong :?"
-		sys.exit(1)
+    if not (url.startswith("http://") or url.startswith("www")):
+        print "URL looks wrong :?"
+        sys.exit(1)
 
-	if t is None:
-		t = guessType(url)
-		if t is None:
-			print "Type couldn't be guessed. Please specify it manually."
-			print SUPPORTED_SITES.keys()
-			sys.exit(1)
-		else:
-			print 'Guessing url type... %s (%s)' %(SUPPORTED_SITES[t], t)
+    if t is None:
+        t = guessType(url)
+        if t is None:
+            print "Type couldn't be guessed. Please specify it manually."
+            print SUPPORTED_SITES.keys()
+            sys.exit(1)
+        else:
+            print 'Guessing url type... %s (%s)' % (SUPPORTED_SITES[t], t)
 
-	f = urllib.urlopen(url)
+    f = urllib.urlopen(url)
 
-	ll = f.read()
-	f.close()
+    ll = f.read()
+    f.close()
 
-	if t == 'abc':
-		titulo = re.search('<title>(.*)</title>', ll).group(1).decode('latin-1')
-		fecha = re.search('<div class="date">D&iacute;a (.*)( - <span>|</div>)', ll).group(1)
-	elif t == 'publico':
-		titulo = re.search('<title>(.*)</title>', ll).group(1)
-		fecha = re.search('<span class="fecha">(.*)</span>', ll).group(1)
-#		fecha_act = re.search('Actualizado: <span class="fecha">(.*)</span>', ll).group(1)
-	elif t == 'economista':
-		titulo = re.search('<title>(.*)</title>', ll).group(1)
-		try:
-			fecha = re.search('<div class="f-fecha">(.*) -', ll).group(1)
-		except:
-			fecha = re.search('<small>EcoDiario.es \| (.*) - .*<span', ll).group(1)	
-	elif t == 'cs':
-		titulo = re.search('<title>(.*) \| Sonido', ll).group(1).decode('latin-1')
-		if url.endswith('/'): # No viene la fecha!! :?
-			fecha = url.split('/')[-3][:8]
-		else:
-			fecha = url.split('/')[-2][:8]
-	elif t == 'ep':
-		titulo = re.search('<title>\r\n\t(.*)\r\n</title>', ll).group(1).decode('latin-1')
-		import HTMLParser
-		htmlparser = HTMLParser.HTMLParser()
-		titulo = htmlparser.unescape(titulo)
-		fecha = url.split('/')[-1].split('-')[-1][:8]
-	elif t == 'lp':
-	#	titulo = re.search('<div class="mpdato">(.*)</div>', ll).group(1)
-		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
-		fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
-	elif t == 'correo':
-		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-11]
-		fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
-	elif t == 'lv':
-		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-10]
-		fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
-	elif t == '20m':
-		titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
+    if t == 'abc':
+        titulo = re.search('<title>(.*)</title>', ll).group(1).decode('latin-1')
+        fecha = re.search('<div class="date">D&iacute;a (.*)( - <span>|</div>)', ll).group(1)
+    elif t == 'publico':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)
+        fecha = re.search('<span class="fecha">(.*)</span>', ll).group(1)
+#       fecha_act = re.search('Actualizado: <span class="fecha">(.*)</span>', ll).group(1)
+    elif t == 'economista':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)
+        try:
+            fecha = re.search('<div class="f-fecha">(.*) -', ll).group(1)
+        except:
+            fecha = re.search('<small>EcoDiario.es \| (.*) - .*<span', ll).group(1)
+    elif t == 'cs':
+        titulo = re.search('<title>(.*) \| Sonido', ll).group(1).decode('latin-1')
+        if url.endswith('/'):  # No viene la fecha!! :?
+            fecha = url.split('/')[-3][:8]
+        else:
+            fecha = url.split('/')[-2][:8]
+    elif t == 'ep':
+        titulo = re.search('<title>\r\n\t(.*)\r\n</title>', ll).group(1).decode('latin-1')
+        import HTMLParser
+        htmlparser = HTMLParser.HTMLParser()
+        titulo = htmlparser.unescape(titulo)
+        fecha = url.split('/')[-1].split('-')[-1][:8]
+    elif t == 'lp':
+    #   titulo = re.search('<div class="mpdato">(.*)</div>', ll).group(1)
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
+        fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
+    elif t == 'correo':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-11]
+        fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
+    elif t == 'lv':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-10]
+        fecha = re.search('<div class="date">(.*) - <span>', ll).group(1)
+    elif t == '20m':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
         try:
             fecha = re.search('<li class="author">.* (.*) - .*', ll).group(1)
         except:
             fecha = re.search('<li class="author">.* (.*)</li>', ll).group(1)
 
-	print "* \"-frase-\"\n** Fuente: [%s %s], %s, %s" %(url, titulo, SUPPORTED_SITES[t], fecha)
+    print "* \"-frase-\"\n** Fuente: [%s %s], %s, %s" % (url, titulo, SUPPORTED_SITES[t], fecha)
 
 
 if __name__ == "__main__":
-	
-	print "Wikiquoter - Extrae citas directas para es.wikiquote.org"
-	print "Copyright (C) 2011-2012 Pablo Castellano"
-	print "This program comes with ABSOLUTELY NO WARRANTY."
-	print "This is free software, and you are welcome to redistribute it under certain conditions."
-	print
-	
-	# type = abc, publico
-	if len(sys.argv) not in (2,3):
-		print "Usage: %s <URL> [type]" %sys.argv[0]
-		sys.exit(0)
-	
-	getCite(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+
+    print "Wikiquoter - Extrae citas directas para es.wikiquote.org"
+    print "Copyright (C) 2011-2012 Pablo Castellano"
+    print "This program comes with ABSOLUTELY NO WARRANTY."
+    print "This is free software, and you are welcome to redistribute it under certain conditions."
+    print
+
+    # type = abc, publico
+    if len(sys.argv) not in (2, 3):
+        print "Usage: %s <URL> [type]" % sys.argv[0]
+        sys.exit(0)
+
+    getCite(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
