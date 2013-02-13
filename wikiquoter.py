@@ -26,16 +26,20 @@
 # http://www.elcorreo.com/vizcaya/20120516/local/azkuna-comercio-tiene-espabilar-201205161922.html
 # http://www.laverdad.es/murcia/20120519/local/region/pedro-chico-tenemos-conseguir-201205191141.html
 # http://www.20minutos.es/noticia/1459072/0/de-guindos/nacionalizacion-bankia/futuro-privatizacion/
+# http://www.elconfidencial.com/espana/2013/02/13/el-informe-de-la-udef-contra-mato-deja-al-director-de-la-policia-al-borde-de-la-destitucion-114805/
+# http://www.eldiario.es/politica/Gobierno-informado-Suiza-Barcenas-escandalo_0_100790133.html
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = 1.0
+__version__ = '1.1'
 __date__ = "13/02/2013"
 __miscdate__ = "20/05/2012 #LaCaixaEsMordor"
 
 
 SUPPORTED_STYLES = ('15mpedia', 'eswikiquote')
-SUPPORTED_SITES = {'abc': 'Diario ABC', 'publico': 'Diario Público', 'economista': 'El Economista', 'cs': 'Cadena Ser', 'ep': 'Europa Press', 'lp': 'Las Provincias', 'correo': 'El Correo', 'lv': 'La Verdad', '20m': '20 Minutos'}
+SUPPORTED_SITES = {'abc': 'Diario ABC', 'publico': 'Diario Público', 'economista': 'El Economista', 'cs': 'Cadena Ser', 'ep': 'Europa Press',
+                   'lp': 'Las Provincias', 'correo': 'El Correo', 'lv': 'La Verdad', '20m': '20 Minutos', 'ec': 'El Confidencial',
+                   'eldiario': 'eldiario.es'}
 STYLE = '15mpedia'
 DEBUG = False
 
@@ -45,7 +49,8 @@ import re
 import sys
 import urllib
 
-locale.setlocale(locale.LC_ALL, '')
+#locale.setlocale(locale.LC_ALL, '')
+locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
 
 
 def print_debug(text):
@@ -72,6 +77,10 @@ def guessType(url):
         return 'lv'
     elif url.startswith('http://www.20minutos.es'):
         return '20m'
+    elif url.startswith('http://www.elconfidencial.com'):
+        return 'ec'
+    elif url.startswith('http://www.eldiario.es'):
+        return 'eldiario'
     else:
         return None
 
@@ -87,7 +96,7 @@ def formatResult(url, titulo, site, fecha):
     elif STYLE == 'eswikiquote':
         result = "* \"-frase-\"\n** Fuente: [%s %s], %s, %s" % (url, titulo, site, fecha.strftime('%d de %B de %Y'))
 
-    return result.encode('utf-8')
+    return result
 
 
 def getCite(url, t=None):
@@ -164,15 +173,30 @@ def getCite(url, t=None):
         except:
             fecha = re.search('<li class="author">.* (.*)</li>', ll).group(1)
         fecha = datetime.datetime.strptime(fecha, '%d.%m.%Y')
+    elif t == 'ec':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-21].decode('latin-1')
+        fecha = ''.join(url.split('/')[4:7])
+        fecha = datetime.datetime.strptime(fecha, '%Y%m%d')
+        # TODO:
+        """
+        <a href="/espana/2013/02/13">13/02/2013</a>
+                                    &nbsp;
+            <span class="hora-publi">(06:00)</span>
+        """
+    elif t == 'eldiario':
+        titulo = re.search('<title>(.*)</title>', ll).group(1)
+        fecha = re.search('<span class="date">(.*)</span>', ll).group(1)[:-3]
+        hora = re.search('<span class="time">(.*)</span>', ll).group(1)[:-1]
+        fechahora = '%s %s' %(fecha, hora)
+        fecha = datetime.datetime.strptime(fechahora, '%d/%m/%Y %H:%M')
 
     result = formatResult(url, titulo, SUPPORTED_SITES[t], fecha)
-    print result
     return result
 
 
 if __name__ == "__main__":
 
-    print "Wikiquoter - Extrae citas directas para es.wikiquote.org"
+    print "Wikiquoter v%s - Extrae citas directas para es.wikiquote.org" %__version__
     print "Copyright (C) 2011-2013 Pablo Castellano"
     print "This program comes with ABSOLUTELY NO WARRANTY."
     print "This is free software, and you are welcome to redistribute it under certain conditions."
@@ -183,4 +207,5 @@ if __name__ == "__main__":
         print "Usage: %s <URL> [type]" % sys.argv[0]
         sys.exit(0)
 
-    getCite(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+    result = getCite(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+    print result
