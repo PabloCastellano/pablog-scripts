@@ -28,10 +28,12 @@
 # http://www.20minutos.es/noticia/1459072/0/de-guindos/nacionalizacion-bankia/futuro-privatizacion/
 # http://www.elconfidencial.com/espana/2013/02/13/el-informe-de-la-udef-contra-mato-deja-al-director-de-la-policia-al-borde-de-la-destitucion-114805/
 # http://www.eldiario.es/politica/Gobierno-informado-Suiza-Barcenas-escandalo_0_100790133.html
+# http://economia.elpais.com/economia/2013/02/13/actualidad/1360744450_237029.html
+# http://www.elmundo.es/elmundo/2013/02/13/espana/1360771883.html
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
 __license__ = "GNU GPLv3+"
-__version__ = '1.1'
+__version__ = '1.2'
 __date__ = "13/02/2013"
 __miscdate__ = "20/05/2012 #LaCaixaEsMordor"
 
@@ -39,7 +41,7 @@ __miscdate__ = "20/05/2012 #LaCaixaEsMordor"
 SUPPORTED_STYLES = ('15mpedia', 'eswikiquote')
 SUPPORTED_SITES = {'abc': 'Diario ABC', 'publico': 'Diario Público', 'economista': 'El Economista', 'cs': 'Cadena Ser', 'ep': 'Europa Press',
                    'lp': 'Las Provincias', 'correo': 'El Correo', 'lv': 'La Verdad', '20m': '20 Minutos', 'ec': 'El Confidencial',
-                   'eldiario': 'eldiario.es'}
+                   'eldiario': 'eldiario.es', 'pais': 'El País', 'mundo': 'El Mundo'}
 STYLE = '15mpedia'
 DEBUG = False
 
@@ -63,7 +65,7 @@ def guessType(url):
         return 'abc'
     elif url.startswith('http://www.publico.es'):
         return 'publico'
-    elif url.startswith('http://www.eleconomista.es'):
+    elif 'eleconomista.es' in url:
         return 'economista'
     elif url.startswith('http://www.cadenaser.com'):
         return 'cs'
@@ -81,6 +83,10 @@ def guessType(url):
         return 'ec'
     elif url.startswith('http://www.eldiario.es'):
         return 'eldiario'
+    elif 'elpais.com' in url:
+        return 'pais'
+    elif url.startswith('http://www.elmundo.es'):
+        return 'mundo'
     else:
         return None
 
@@ -124,7 +130,7 @@ def getCite(url, t=None):
     f.close()
 
     if t == 'abc':
-        titulo = re.search('<title>(.*)</title>', ll).group(1).decode('latin-1')
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-9].decode('latin-1')
         fecha = re.search('<div class="date">D&iacute;a (.*)( - <span>|</div>)', ll).group(1)
         fecha = datetime.datetime.strptime(fecha, '%d/%m/%Y - <span>%H.%Mh</span>')
     elif t == 'publico':
@@ -133,12 +139,18 @@ def getCite(url, t=None):
         fecha = datetime.datetime.strptime(fecha, '%d/%m/%Y %H:%M')
 #       fecha_act = re.search('Actualizado: <span class="fecha">(.*)</span>', ll).group(1)
     elif t == 'economista':
-        titulo = re.search('<title>(.*)</title>', ll).group(1)
+        titulo = re.search('<title>(.*)</title>', ll).group(1)[:-15]
         try:
             fecha = re.search('<div class="f-fecha">(.*) -', ll).group(1)
+            fecha = datetime.datetime.strptime(fecha, '%d/%m/%Y')
         except:
-            fecha = re.search('<small>EcoDiario.es \| (.*) - .*<span', ll).group(1)
-        fecha = datetime.datetime.strptime(fecha, '%d/%m/%Y')
+            try:
+                fecha = re.search('<small>EcoDiario.es \| (.*) - .*<span', ll).group(1)
+                fecha = datetime.datetime.strptime(fecha, '%d/%m/%Y')
+            except:
+                titulo = titulo.decode('utf-8')
+                fecha = re.search('<span class="l-fecha">(.*)<span', ll).group(1).split(',')[1].strip()
+                fecha = datetime.datetime.strptime(fecha, '%d de %B de %Y')
     elif t == 'cs':
         titulo = re.search('<title>(.*) \| (Noticia|Sonido)', ll).group(1).decode('latin-1')
         if url.endswith('/'):  # No viene la fecha!! :?
@@ -184,10 +196,23 @@ def getCite(url, t=None):
             <span class="hora-publi">(06:00)</span>
         """
     elif t == 'eldiario':
-        titulo = re.search('<title>(.*)</title>', ll).group(1)
+        titulo = re.search('<title>(.*)</title>', ll).group(1).decode('utf-8')
         fecha = re.search('<span class="date">(.*)</span>', ll).group(1)[:-3]
         hora = re.search('<span class="time">(.*)</span>', ll).group(1)[:-1]
-        fechahora = '%s %s' %(fecha, hora)
+        fechahora = '%s %s' % (fecha, hora)
+        fecha = datetime.datetime.strptime(fechahora, '%d/%m/%Y %H:%M')
+    elif t == 'pais':
+        titulo = re.search('<title>(.*)</title>', ll).group(1).split(' |')[0].decode('utf-8')
+        try:
+            fecha = re.search('</strong>, (.*)</div>', ll).group(1).strip()
+            fecha = datetime.datetime.strptime(fecha, '%d de %B de %Y')
+        except:
+            fecha = re.search('class="actualizado".*>(.*) <abbr', ll).group(1)
+            fecha = datetime.datetime.strptime(fecha, '%d %b %Y - %H:%M')
+    elif t == 'mundo':
+        titulo = re.search('<title>(.*)</title>', ll).group(1).split(' |')[0].decode('latin-1')
+        fechahora = re.search('<p class="update">(.*)<strong>(.*)<abbr', ll).group(1).split(' ')[1][:-1]
+        fechahora += ' ' + re.search('<p class="update">(.*)<strong>(.*)<abbr', ll).group(2)
         fecha = datetime.datetime.strptime(fechahora, '%d/%m/%Y %H:%M')
 
     result = formatResult(url, titulo, SUPPORTED_SITES[t], fecha)
@@ -196,7 +221,7 @@ def getCite(url, t=None):
 
 if __name__ == "__main__":
 
-    print "Wikiquoter v%s - Extrae citas directas para es.wikiquote.org" %__version__
+    print "Wikiquoter v%s - Extrae citas directas para es.wikiquote.org" % __version__
     print "Copyright (C) 2011-2013 Pablo Castellano"
     print "This program comes with ABSOLUTELY NO WARRANTY."
     print "This is free software, and you are welcome to redistribute it under certain conditions."
