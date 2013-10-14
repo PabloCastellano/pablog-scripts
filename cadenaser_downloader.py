@@ -27,24 +27,24 @@
 #
 
 __author__ = "Pablo Castellano <pablo@anche.no>"
-__version__ = 0.1
+__version__ = 0.2
 __license__ = "GNU GPLv3+"
-__date__ = "14/04/2012"
+__date__ = "14/10/2013"
 
 import mechanize
 import re
 import sys
 import os
-	
+
 print "cadenaser_downloader.py - Descarga audios de la web Cadena Ser"
 print "Copyright (C) 2012 Pablo Castellano"
 print "This program comes with ABSOLUTELY NO WARRANTY."
 print "This is free software, and you are welcome to redistribute it under certain conditions."
 print
-	
+
 if len(sys.argv) != 2:
-	print "Usage: %s <url>" %sys.argv[0]
-	sys.exit(1)
+    print "Usage: %s <url>" % sys.argv[0]
+    sys.exit(1)
 
 url = sys.argv[1]
 req = mechanize.Request(url)
@@ -52,26 +52,27 @@ res = mechanize.urlopen(req)
 #body = res.read()
 bodyl = res.readlines()
 #i = body.find('obj.urlHTML5')
-exp = re.compile('^obj.urlHTML5 = \'(.*)\';$')
+#exp = re.compile('^obj.urlHTML5 = \'(.*)\';$') # OLD
+exp = re.compile('^srcHTML5 : \'(.*)\',$')
 
 for l in bodyl:
-	m = exp.match(l)
-	if m is None:
-		continue
-	else:
-		break
+    m = exp.match(l)
+    if m is None:
+        continue
+    else:
+        break
 
 if m is None:
-	print "No funcionó"
-	sys.exit(1)
+    print "No funcionó"
+    sys.exit(1)
 
-dl_url = m.group(1) 
+dl_url = m.group(1)
 
-print "\nLa url de descarga es la siguiente:\n%s\n" %dl_url
+print "\nLa url de descarga es la siguiente:\n%s\n" % dl_url
 c = raw_input("¿Desea iniciar la descarga? [S/n]: ")
 
 if c.lower() == 'n':
-	sys.exit(0)
+    sys.exit(0)
 
 req = mechanize.Request(dl_url)
 res = mechanize.urlopen(req)
@@ -79,10 +80,10 @@ res = mechanize.urlopen(req)
 filename = dl_url.split('/')[-1]
 
 if os.path.exists(filename):
-	print "El archivo \'%s\' ya se encuentra en este directorio. Se cancela la descarga." %filename
-	sys.exit(1)
+    print "El archivo \'%s\' ya se encuentra en este directorio. Se cancela la descarga." % filename
+    sys.exit(1)
 
-print 'Descargando %s...' %filename,
+print 'Descargando %s...' % filename,
 
 fp = open(filename, 'w')
 fp.write(res.read())
