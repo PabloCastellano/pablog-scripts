@@ -125,6 +125,8 @@ print("This program comes with ABSOLUTELY NO WARRANTY.")
 print("This is free software, and you are welcome to redistribute it under certain conditions.")
 print()
 
+codecs.register_error("replace_spc", replace_spc_error_handler)	# 20150907 JMW	Register error handler
+
 if len(sys.argv) < 2 or len(sys.argv) > 3:
 	print("Usage: %s <mbox_file> [directory]" %sys.argv[0])
 	sys.exit(0)
