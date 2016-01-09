@@ -18,6 +18,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+__version__ = 1.0
+__author__ = "Pablo Castellano <pablo@anche.no>"
+__license__ = "GNU GPLv3+"
+
 import urllib.request
 import json
 import sys
