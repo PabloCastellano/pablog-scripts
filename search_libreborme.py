@@ -23,16 +23,18 @@ import json
 import sys
 
 USER_AGENT = ''  # Can be blank
-SEARCH_PERSON_ENDPOINT = 'https://libreborme.net/borme/api/v1/persona/search/?q={query}&page={page}'
-SEARCH_COMPANY_ENDPOINT = 'https://libreborme.net/borme/api/v1/empresa/search/?q={query}&page={page}'
 HOST = 'https://libreborme.net'
+
+####################
+SEARCH_PERSON_ENDPOINT = '{host}/borme/api/v1/persona/search/?q={query}&page={page}'
+SEARCH_COMPANY_ENDPOINT = '{host}/borme/api/v1/empresa/search/?q={query}&page={page}'
 
 
 def search_libreborme(query, type, page=1):
     if type == 'person':
-        url = SEARCH_PERSON_ENDPOINT.format(query=query, page=page)
+        url = SEARCH_PERSON_ENDPOINT.format(host=HOST, query=query, page=page)
     elif type == 'company':
-        url = SEARCH_COMPANY_ENDPOINT.format(query=query, page=page)
+        url = SEARCH_COMPANY_ENDPOINT.format(host=HOST, query=query, page=page)
     else:
         raise ValueError('Invalid type: {0}'.format(type))
 
