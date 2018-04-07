@@ -140,7 +140,7 @@ for i in range(len(mb)):
 	em = email.message_from_string(mes.as_string())
 
 	subject = em.get('Subject')
-	if subject.find('=?') != -1:
+	if subject and subject.find('=?') != -1:
 		ll = email.header.decode_header(subject)
 		subject = ""
 		for l in ll:
