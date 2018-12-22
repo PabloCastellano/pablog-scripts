@@ -28,7 +28,7 @@ else:
 
 actions = driver.find_element_by_id("actions")
 button = actions.find_element_by_xpath("li/a")
-assert(button.text == "Castellano")
+assert(button.text.lower() == "castellano")
 
 button.click()
 
