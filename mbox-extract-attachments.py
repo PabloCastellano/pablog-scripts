@@ -36,34 +36,37 @@ import base64
 import os
 import sys
 import email
+import time
+import stat
 
 
 BLACKLIST = ('signature.asc', 'message-footer.txt', 'smime.p7s')
-VERBOSE = 1
+VERBOSE = 0
 
 attachments = 0 #Count extracted attachment
 skipped = 0
 
 # Search for filename or find recursively if it's multipart
-def extract_attachment(payload):
+def extract_attachment(payload, date = None):
 	global attachments, skipped
 	filename = payload.get_filename()
 
 	if filename is not None:
-		print "\nAttachment found!"
+		if (VERBOSE >= 2):
+			print "\nAttachment found!"
 		if filename.find('=?') != -1:
 			ll = email.header.decode_header(filename)
 			filename = ""
 			for l in ll:
 				filename = filename + l[0]
-			
+
 		if filename in BLACKLIST:
 			skipped = skipped + 1
 			if (VERBOSE >= 1):
 				print "Skipping %s (blacklist)\n" %filename
 			return
 
-		# Puede no venir especificado el nombre del archivo??		
+		# Puede no venir especificado el nombre del archivo??
 	#	if filename is None:
 	#		filename = "unknown_%d_%d.txt" %(i, p)
 
@@ -78,14 +81,19 @@ def extract_attachment(payload):
 		# quoted-printable
 		# what else? ...
 
-		print "Extracting %s (%d bytes)\n" %(filename, len(content))
-
 		n = 1
+		# Sanitize filename
+		filename = filename.replace('#','')
+		filename = filename.replace('/','')
 		orig_filename = filename
+
+		print "Extracting %s (%d bytes ; %s)" %(filename, len(content), payload.get_content_type())
+
 		while os.path.exists(filename):
 			filename = orig_filename + "." + str(n)
 			n = n+1
 
+		fp = None
 		try:
 			fp = open(filename, "w")
 #			fp = open(str(i) + "_" + filename, "w")
@@ -94,14 +102,12 @@ def extract_attachment(payload):
 			print "Aborted, IOError!!!"
 			sys.exit(2)
 		finally:
-			fp.close()	
+			if fp is not None:
+				fp.close()
+			if date:
+				os.utime(filename,(date,date))
 
 		attachments = attachments + 1
-	else:
-		if payload.is_multipart():
-			for payl in payload.get_payload():
-				extract_attachment(payl)
-
 
 ###
 print "Extract attachments from mbox files"
@@ -127,16 +133,17 @@ if len(sys.argv) == 3:
 		print "Directory doesn't exist:", directory
 		sys.exit(1)
 
+start = time.time()
+
 mb = mailbox.mbox(filename)
-nmes = len(mb)
 
 os.chdir(directory)
 
-for i in range(len(mb)):
+i = 0
+for mes in mb:
 	if (VERBOSE >= 2):
 		print "Analyzing message number", i
 
-	mes = mb.get_message(i)
 	em = email.message_from_string(mes.as_string())
 
 	subject = em.get('Subject')
@@ -153,18 +160,22 @@ for i in range(len(mb)):
 		for l in ll:
 			em_from = em_from + l[0]
 
+	em_date = email.utils.parsedate(em.get('Date'))
+	em_date = time.mktime(em_date)
+
 	if (VERBOSE >= 2):
 		print "%s - From: %s" %(subject, em_from)
 
 	filename = mes.get_filename()
-	
-	# Puede tener filename siendo multipart???
-	if em.is_multipart():
-		for payl in em.get_payload():
-			extract_attachment(payl)
-	else:
-		extract_attachment(em)
+
+	for part in em.walk():
+		extract_attachment(part, em_date)
+
+	i = i+1
+
+end = time.time()
 
 print "\n--------------"
 print "Total attachments extracted:", attachments
 print "Total attachments skipped:", skipped
+print "Duration (s):", end-start
